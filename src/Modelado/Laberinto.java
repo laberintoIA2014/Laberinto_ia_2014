@@ -456,4 +456,160 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][2].tipo = 'V';
         Casillas[1][2].tipo = 'V';
     }
+    
+   public void generarNivel3() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i%2==0 && (j-1)%3==0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
+                    Casillas[i][j].tipo = 'P';
+            }
+        } 
+    }
+     
+    public void generarNivel4() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i%2!=0 && j%3!=0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
+                    Casillas[i][j].tipo = 'P';
+            }
+        } 
+    }
+     
+    public void generarNivel5() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+          
+          Casillas[2][4].tipo='P';  Casillas[3][2].tipo='P';  Casillas[4][13].tipo='P'; Casillas[5][2].tipo='P'; Casillas[6][6].tipo='P';  Casillas[7][4].tipo='P';  Casillas[8][2].tipo='P';  Casillas[9][2].tipo='P';  Casillas[10][4].tipo='P';  Casillas[11][2].tipo='P';  Casillas[12][8].tipo='P';    Casillas[13][2].tipo='P';    Casillas[14][3].tipo='P';
+          Casillas[2][6].tipo='P';  Casillas[3][3].tipo='P'; Casillas[4][14].tipo='P';  Casillas[5][3].tipo='P'; Casillas[6][11].tipo='P'; Casillas[7][8].tipo='P';  Casillas[8][3].tipo='P';                            Casillas[10][6].tipo='P';  Casillas[11][3].tipo='P';  Casillas[12][10].tipo='P';   Casillas[13][3].tipo='P';    Casillas[14][11].tipo='P';
+          Casillas[2][7].tipo='P';  Casillas[3][4].tipo='P';                            Casillas[5][4].tipo='P'; Casillas[6][13].tipo='P'; Casillas[7][10].tipo='P'; Casillas[8][4].tipo='P';                            Casillas[10][7].tipo='P';  Casillas[11][4].tipo='P';                               Casillas[13][4].tipo='P';
+          Casillas[2][8].tipo='P';  Casillas[3][7].tipo='P';                            Casillas[5][6].tipo='P';                           Casillas[7][11].tipo='P'; Casillas[8][6].tipo='P';                            Casillas[10][8].tipo='P';  Casillas[11][6].tipo='P';                               Casillas[13][6].tipo='P';
+          Casillas[2][10].tipo='P'; Casillas[3][10].tipo='P';                           Casillas[5][7].tipo='P';                           Casillas[7][13].tipo='P'; Casillas[8][7].tipo='P';                            Casillas[10][11].tipo='P'; Casillas[11][12].tipo='P';                              Casillas[13][7].tipo='P';
+          Casillas[2][11].tipo='P'; Casillas[3][11].tipo='P';                           Casillas[5][8].tipo='P';                                                     Casillas[8][8].tipo='P';                            Casillas[10][12].tipo='P';                                                         Casillas[13][8].tipo='P';
+          Casillas[2][13].tipo='P'; Casillas[3][13].tipo='P';                                                                                                        Casillas[8][10].tipo='P';                           Casillas[10][13].tipo='P';                                                         Casillas[13][10].tipo='P';
+   
+    }
+
+       
+        
+    public void generarNivel6() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+       Casillas[13][1].tipo='P'; 
+       Casillas[6][2].tipo='P'; Casillas[7][2].tipo='P'; Casillas[8][2].tipo='P'; Casillas[9][2].tipo='P'; Casillas[12][2].tipo='P'; Casillas[14][2].tipo='P';
+       Casillas[10][3].tipo='P'; Casillas[13][3].tipo='P';
+       Casillas[4][4].tipo='P'; Casillas[7][4].tipo='P'; Casillas[11][4].tipo='P';
+       Casillas[3][5].tipo='P'; Casillas[6][5].tipo='P'; Casillas[8][5].tipo='P';
+       Casillas[2][6].tipo='P'; Casillas[9][6].tipo='P'; Casillas[13][6].tipo='P';
+       Casillas[2][7].tipo='P'; Casillas[4][7].tipo='P'; Casillas[10][7].tipo='P'; Casillas[13][7].tipo='P';
+       Casillas[2][8].tipo='P'; Casillas[5][8].tipo='P'; Casillas[9][8].tipo='P'; Casillas[13][8].tipo='P';
+       Casillas[3][9].tipo='P'; Casillas[8][9].tipo='P'; Casillas[12][9].tipo='P';
+       Casillas[4][10].tipo='P'; Casillas[7][10].tipo='P'; Casillas[11][10].tipo='P';
+       Casillas[6][11].tipo='P'; Casillas[10][11].tipo='P';
+       Casillas[2][12].tipo='P'; Casillas[6][12].tipo='P'; Casillas[7][12].tipo='P'; Casillas[8][12].tipo='P'; Casillas[9][12].tipo='P';
+       Casillas[1][13].tipo='P'; Casillas[3][13].tipo='P';
+       Casillas[2][14].tipo='P';
+    }
+     public void generarNivel7() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+            Casillas[2][3].tipo='P';Casillas[2][4].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';
+            Casillas[2][8].tipo='P';
+            Casillas[2][11].tipo='P';Casillas[2][12].tipo='P';Casillas[2][13].tipo='P';
+            Casillas[2][14].tipo='P';Casillas[2][15].tipo='P';
+            Casillas[5][2].tipo='P';Casillas[5][3].tipo='P';Casillas[5][4].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[5][6].tipo='P';Casillas[5][7].tipo='P';
+            Casillas[5][8].tipo='P';
+            Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[5][14].tipo='P';Casillas[5][15].tipo='P';
+            Casillas[13][2].tipo='P';Casillas[13][3].tipo='P';Casillas[13][4].tipo='P';
+            Casillas[13][5].tipo='P';Casillas[13][6].tipo='P';Casillas[13][7].tipo='P';
+            Casillas[13][8].tipo='P';
+            Casillas[13][11].tipo='P';Casillas[13][12].tipo='P';
+            Casillas[8][8].tipo='P';Casillas[11][8].tipo='P';
+            Casillas[8][10].tipo='P';Casillas[11][10].tipo='P';
+            Casillas[8][11].tipo='P';Casillas[11][11].tipo='P';
+            Casillas[9][11].tipo='P';Casillas[10][11].tipo='P';Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[5][14].tipo='P';
+            Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';Casillas[5][6].tipo='P';Casillas[8][6].tipo='P';
+            Casillas[11][6].tipo='P';
+            Casillas[2][8].tipo='P';Casillas[2][9].tipo='P';Casillas[5][8].tipo='P';Casillas[8][8].tipo='P';
+            Casillas[5][14].tipo='P';Casillas[8][13].tipo='P';Casillas[9][13].tipo='P';
+            Casillas[8][14].tipo='P';
+            Casillas[11][14].tipo='P';Casillas[10][13].tipo='P';Casillas[11][13].tipo='P';
+            Casillas[8][4].tipo='P'; Casillas[8][2].tipo='P'; Casillas[9][2].tipo='P'; Casillas[10][2].tipo='P';
+            Casillas[11][4].tipo='P'; Casillas[11][2].tipo='P';
+            Casillas[8][1].tipo='P'; Casillas[11][1].tipo='P';
+           
+     }
+     public void generarNivel8() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(i==0 || i==n-1)
+                    Casillas[i][j].tipo = 'P';
+                else
+                    if(j==0 || j==m-1)
+                        Casillas[i][j].tipo = 'P';   
+            }
+        }
+            Casillas[2][3].tipo='P';Casillas[2][4].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';
+            Casillas[2][8].tipo='P';Casillas[3][7].tipo='P';Casillas[4][7].tipo='P';
+            Casillas[2][11].tipo='P';Casillas[2][12].tipo='P';Casillas[2][13].tipo='P';
+
+            Casillas[5][2].tipo='P';Casillas[5][3].tipo='P';Casillas[5][4].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[5][6].tipo='P';Casillas[5][7].tipo='P';
+            Casillas[5][8].tipo='P';
+            Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[7][6].tipo='P';Casillas[10][6].tipo='P';
+            Casillas[7][8].tipo='P';Casillas[10][8].tipo='P';
+            Casillas[7][9].tipo='P';Casillas[10][9].tipo='P';
+            Casillas[8][9].tipo='P';Casillas[9][9].tipo='P';
+            Casillas[8][10].tipo='P';Casillas[9][10].tipo='P';
+            Casillas[8][11].tipo='P';Casillas[9][11].tipo='P';
+            Casillas[8][12].tipo='P';Casillas[9][12].tipo='P';
+            Casillas[7][4].tipo='P'; Casillas[10][4].tipo='P';
+            Casillas[7][2].tipo='P'; Casillas[10][2].tipo='P';
+            Casillas[12][3].tipo='P';Casillas[12][4].tipo='P';Casillas[12][5].tipo='P';Casillas[12][6].tipo='P';Casillas[12][7].tipo='P';Casillas[12][8].tipo='P';Casillas[13][7].tipo='P';
+            Casillas[12][11].tipo='P'; Casillas[12][13].tipo='P';
+     }
 }
