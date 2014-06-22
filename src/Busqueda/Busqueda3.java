@@ -29,6 +29,19 @@ public class Busqueda3 implements Constantes {
         exito = false;
 
     }
+    
+    public double getG(){
+       return lienzo.getLaberinto().getJugadorX()+ lienzo.getLaberinto().getJugadorY();
+    }
+    
+    public double getH(){
+       return  (Math.pow(Math.abs(lienzo.getLaberinto().getJugadorX() - lienzo.getLaberinto().getJugador2X()),2))
+              +(Math.pow(Math.abs(lienzo.getLaberinto().getJugadorY() - lienzo.getLaberinto().getJugador2Y()),2)); 
+    }
+    
+    public double getF(){
+       return getG() + getH();
+    }
 
     public void buscar() {
 
