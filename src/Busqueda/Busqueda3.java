@@ -39,7 +39,7 @@ public class Busqueda3 implements Constantes {
             inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
             objetivo = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
             colaEstados.add(inicial);
-
+ System.out.println("ANTES DEL WHILE COLAESTADO INICIAL ->    "+colaEstados);
         }
 
         if (inicial.equals(objetivo)) {
@@ -49,7 +49,7 @@ public class Busqueda3 implements Constantes {
         while (!colaEstados.isEmpty() && !exito) {
         
             temp = colaEstados.poll();
-            System.out.println("WHILE ->    "+temp.x+", "+temp.y+" "+temp.getF());
+            System.out.println("WHILE ACTUAL->    "+temp.x+", "+temp.y+" "+temp.getF());
             parar(500);
             if (temp.equals(objetivo)) {
                 objetivo = temp;
@@ -60,9 +60,9 @@ public class Busqueda3 implements Constantes {
                 if (!historial.contains(temp)) {
 
                     historial.add(temp);
-                    System.out.println("COLAESTADO ->    "+colaEstados);
+                    System.out.println("COLAESTADO ACTUAL ->    "+colaEstados);
                  
-                    System.out.println("HISTORIAL ->    "+historial);
+                    System.out.println("HISTORIAL ACTUAL ->   "+historial);
                     parar(500);
                     expandir(temp);
 
