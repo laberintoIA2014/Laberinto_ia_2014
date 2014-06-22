@@ -14,6 +14,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
+    public static boolean StatusJugador = false;
 
     public VentanaPrincipal() {
 

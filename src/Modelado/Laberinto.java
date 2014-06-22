@@ -3,6 +3,7 @@ package Modelado;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
+import Modelado.VentanaPrincipal;
 import javax.swing.JOptionPane;
 
 public class Laberinto extends JComponent implements Constantes {
@@ -13,6 +14,7 @@ public class Laberinto extends JComponent implements Constantes {
             i_jugador2, j_jugador2,
             i_enemigo, j_enemigo,
             i_premio, j_premio,
+            i_premio2, j_premio2,
             i_fin, j_fin;
 
     public Lienzo lienzo;
@@ -33,14 +35,18 @@ public class Laberinto extends JComponent implements Constantes {
         j_jugador2 = 13;
         i_premio = 6;
         j_premio = 8;
+        i_premio2 = 13;
+        j_premio2 = 14;
         i_enemigo = 12;
         j_enemigo = 12;
         i_fin = 8;
         j_fin = 8;
 
         this.Casillas[i_jugador][j_jugador].tipo = 'J';
-        this.Casillas[i_premio][j_premio].tipo = 'F';
         this.Casillas[i_jugador2][j_jugador2].tipo = 'H';
+        this.Casillas[i_premio][j_premio].tipo = 'F';
+        this.Casillas[i_premio2][j_premio2].tipo = 'F';
+
         this.Casillas[i_enemigo][j_enemigo].tipo = 'E';
         this.Casillas[i_fin][j_fin].tipo = 'M';
         this.Ancho = n * Longitud_Casilla;
@@ -68,42 +74,45 @@ public class Laberinto extends JComponent implements Constantes {
 
     void chequearTecla(KeyEvent evento) {
 
-        //jugador 1
-        if (evento.getKeyCode() == 38) {
-            System.out.println("Mover Arriba");
-            mover_arriba();
-        }
-        if (evento.getKeyCode() == 40) {
-            System.out.println("Mover Abajo");
-            mover_abajo();
-        }
-        if (evento.getKeyCode() == 37) {
-            System.out.println("Mover Izquierda");
-            mover_izquierda();
-        }
-        if (evento.getKeyCode() == 39) {
-            System.out.println("Mover Derecha");
-            mover_derecha();
-        }
+        if (!VentanaPrincipal.bool1 && !VentanaPrincipal.bool2 || !VentanaPrincipal.StatusJugador) {
 
-        //jugador 2
-        if (evento.getKeyCode() == 87) {
-            System.out.println("Mover Arriba");
-            mover_arriba2();
-        }
-        if (evento.getKeyCode() == 83) {
-            System.out.println("Mover Abajo");
-            mover_abajo2();
-        }
-        if (evento.getKeyCode() == 65) {
-            System.out.println("Mover Izquierda");
-            mover_izquierda2();
-        }
-        if (evento.getKeyCode() == 68) {
-            System.out.println("Mover Derecha");
-            mover_derecha2();
-        }
+        } else {
+            //jugador 1
+            if (evento.getKeyCode() == 38) {
+                System.out.println("Mover Arriba");
+                mover_arriba();
+            }
+            if (evento.getKeyCode() == 40) {
+                System.out.println("Mover Abajo");
+                mover_abajo();
+            }
+            if (evento.getKeyCode() == 37) {
+                System.out.println("Mover Izquierda");
+                mover_izquierda();
+            }
+            if (evento.getKeyCode() == 39) {
+                System.out.println("Mover Derecha");
+                mover_derecha();
+            }
 
+            //jugador 2
+            if (evento.getKeyCode() == 87) {
+                System.out.println("Mover Arriba");
+                mover_arriba2();
+            }
+            if (evento.getKeyCode() == 83) {
+                System.out.println("Mover Abajo");
+                mover_abajo2();
+            }
+            if (evento.getKeyCode() == 65) {
+                System.out.println("Mover Izquierda");
+                mover_izquierda2();
+            }
+            if (evento.getKeyCode() == 68) {
+                System.out.println("Mover Derecha");
+                mover_derecha2();
+            }
+        }
     }
 
     public void mover_arriba() {
