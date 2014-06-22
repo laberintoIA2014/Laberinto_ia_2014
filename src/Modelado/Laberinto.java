@@ -29,6 +29,22 @@ public class Laberinto extends JComponent implements Constantes {
         //generarNivel2();
         
    
+        i_jugador = 1;
+        j_jugador = 1;
+        i_jugador2 = 13;
+        j_jugador2 = 13;
+        i_premio = 6;
+        j_premio = 8;
+        i_enemigo = 12;
+        j_enemigo = 12;
+        i_fin = 8;
+        j_fin = 8;
+
+        this.Casillas[i_jugador][j_jugador].tipo = 'J';
+        this.Casillas[i_premio][j_premio].tipo = 'F';
+        this.Casillas[i_jugador2][j_jugador2].tipo = 'H';
+        this.Casillas[i_enemigo][j_enemigo].tipo = 'E';
+        this.Casillas[i_fin][j_fin].tipo = 'M';
         this.Ancho = n * Longitud_Casilla;
         this.Largo = m * Longitud_Casilla;
         this.setSize(Ancho, Largo);
@@ -486,24 +502,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][2].tipo = 'V';
     }
     
-    public void generar(){
-    
-        i_jugador = 1;
-        j_jugador = 1;
-        i_jugador2 = 13;
-        j_jugador2 = 13;
-        i_premio = 6;
-        j_premio = 8;
-        i_enemigo = 12;
-        j_enemigo = 12;
-        i_fin = 8;
-        j_fin = 8;
 
-        this.Casillas[i_jugador][j_jugador].tipo = 'J';
-        this.Casillas[i_premio][j_premio].tipo = 'F';
-        this.Casillas[i_jugador2][j_jugador2].tipo = 'H';
-        this.Casillas[i_enemigo][j_enemigo].tipo = 'E';
-        this.Casillas[i_fin][j_fin].tipo = 'M';
-    }
 
 }
