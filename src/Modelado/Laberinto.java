@@ -488,11 +488,16 @@ public class Laberinto extends JComponent implements Constantes {
     
     public void generarNivel2() {
         for (int i = 0; i < n; i++) {
-            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
+             for (int j = 0; j < m; j++) {
+                 
+            Casillas[i][j].tipo = 'P';
+            }
         }
-        for (int i = 0; i < m; i++) {
-            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
-        }
+        
+        
+        
+        
+        
         
     }
     
