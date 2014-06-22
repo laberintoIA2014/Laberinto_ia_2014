@@ -28,7 +28,7 @@ public class Estado{
     }
     
     public int getY(){
-        return x;
+        return y;
     }
     
     @Override
