@@ -494,31 +494,6 @@ public class Laberinto extends JComponent implements Constantes {
             Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
         }
         
-        //colum
-        for (int i = 1; i < 15; i++) {
-          //  Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
-          //  Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';    
-        }
-        
-        //fila
-        for (int i = 1; i < 15; i++) {
-            Casillas[i][2].tipo = Casillas[i][2].tipo = 'P';
-            Casillas[i][4].tipo = Casillas[i][4].tipo = 'P';
-            Casillas[i][6].tipo = Casillas[i][6].tipo = 'P';
-            Casillas[i][8].tipo = Casillas[i][8].tipo = 'P';
-            Casillas[i][10].tipo = Casillas[i][10].tipo = 'P';
-            Casillas[i][12].tipo = Casillas[i][12].tipo = 'P';
-            Casillas[i][14].tipo = Casillas[i][14].tipo = 'P';
-        }
-
-            Casillas[14][2].tipo = 'V';
-            Casillas[1][4].tipo = 'V';
-            Casillas[14][6].tipo = 'V';
-            Casillas[1][8].tipo = 'V';
-            Casillas[14][10].tipo = 'V';
-            Casillas[1][12].tipo = 'V';
-      
-        
     }
     
     
