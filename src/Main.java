@@ -56,20 +56,9 @@ public class Main {
         //Menu 2
         menu = new JMenu("Info");
         menuBar.add(menu);
-        
-        
-        
+ 
         vp.setJMenuBar(menuBar);
-
         vp.setVisible(true);
-
-        
-        
-        
-        
-        
-        
-        
         vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vp.startThread();

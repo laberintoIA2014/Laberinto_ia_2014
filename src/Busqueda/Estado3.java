@@ -2,12 +2,12 @@ package Busqueda;
 
 import java.util.Objects;
 
-public class Estado3{
+public class Estado3 implements Comparable{
     
     public int x, y;
     public Estado3 Antecesor;
     public char Movimiento;
-    public double f,g,h;
+    public double f, g, h;
     
     public Estado3(int x, int y, double f, double g, double h, char Movimiento, Estado3 Antecesor) {
         this.x = x;
@@ -32,7 +32,7 @@ public class Estado3{
     }
     
     public int getY(){
-        return x;
+        return y;
     }
     
     @Override
@@ -45,14 +45,31 @@ public class Estado3{
     Estado3 e = (Estado3)x;
         return this.x==e.x && this.y==e.y;
     }
-
+    
+    @Override
+    public int compareTo(Object x) {
+        Estado e = (Estado) x;
+        if (this.f == e.f) {
+            return 0;
+        } else {
+            if (this.f > e.f) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    }
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.x;
-        hash = 79 * hash + this.y;
-        hash = 79 * hash + Objects.hashCode(this.Antecesor);
-        hash = 79 * hash + this.Movimiento;
+        int hash = 3;
+        hash = 89 * hash + this.x;
+        hash = 89 * hash + this.y;
+        hash = 89 * hash + Objects.hashCode(this.Antecesor);
+        hash = 89 * hash + this.Movimiento;
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.f) ^ (Double.doubleToLongBits(this.f) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.g) ^ (Double.doubleToLongBits(this.g) >>> 32));
+        hash = 89 * hash + (int) (Double.doubleToLongBits(this.h) ^ (Double.doubleToLongBits(this.h) >>> 32));
         return hash;
     }
     
