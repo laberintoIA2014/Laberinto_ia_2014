@@ -3,22 +3,25 @@ package Busqueda;
 import Modelado.Constantes;
 import Modelado.Lienzo;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Busqueda3 implements Constantes {
 
     public Lienzo lienzo;
-    public ArrayList<Estado> colaEstados;
-    public ArrayList<Estado> historial;
+    public PriorityQueue<Estado3> colaEstados;
+    public ArrayList<Estado3> historial;
     public ArrayList<Character> pasos;
     public int index_pasos;
-    public Estado inicial;
-    public Estado objetivo;
-    public Estado temp;
+    public Estado3 inicial;
+    public Estado3 objetivo;
+    public Estado3 temp;
     public boolean exito, tipoBusqueda, role;
 
     public Busqueda3(Lienzo lienzo) {
         this.lienzo = lienzo;
-        colaEstados = new ArrayList<>();
+        colaEstados = new PriorityQueue<Estado3>();
+        
         historial = new ArrayList<>();
         pasos = new ArrayList<>();
         index_pasos = 0;
@@ -29,14 +32,21 @@ public class Busqueda3 implements Constantes {
         exito = false;
 
     }
+        
+    public double getF(){
+       return  (Math.pow(Math.abs(lienzo.getLaberinto().getJugadorX() - lienzo.getLaberinto().getJugador2X()),2))
+              +(Math.pow(Math.abs(lienzo.getLaberinto().getJugadorY() - lienzo.getLaberinto().getJugador2Y()),2)); 
+    }
+    
+
 
     public void buscar() {
 
         if (role == true) {
-            inicial = new Estado(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 'N', null);
-            objetivo = new Estado(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 'N', null);
+            inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(),getF(), 'N', null);
+            objetivo = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(),getF(), 'N', null);
             colaEstados.add(inicial);
-
+            System.out.println("adsdasdassad");
         }
 
       
@@ -46,7 +56,7 @@ public class Busqueda3 implements Constantes {
 
         while (!colaEstados.isEmpty() && !exito) {
 
-            temp = colaEstados.get(0);
+            temp=colaEstados.poll();
 
             if (temp.equals(objetivo)) {
                 objetivo = temp;
@@ -74,7 +84,7 @@ public class Busqueda3 implements Constantes {
         }
     }
 
-    public void expandir(Estado temp) {
+    public void expandir(Estado3 temp) {
 
         moverAbajo(temp);
         moverArriba(temp);
@@ -85,32 +95,32 @@ public class Busqueda3 implements Constantes {
 
     }
 
-    public void moverArriba(Estado e) {
+    public void moverArriba(Estado3 e) {
 
         if (e.y > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
-                Estado arriba = new Estado(e.x, e.y - 1, 'U', e);
+                Estado3 arriba = new Estado3(e.x, e.y - 1,e.f, 'U', e);
 
                 if (getTipoBusqueda()) {
                     colaEstados.add(arriba); // busqueda en anchura;
                 } else {
-                    colaEstados.add(0, arriba); // busqueda en profundidad;
+                  //  colaEstados.add(0, arriba); // busqueda en profundidad;
                 }
             }
         }
 
     }
 
-    public void moverAbajo(Estado e) {
+    public void moverAbajo(Estado3 e) {
 
         if (e.y + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
-                Estado abajo = new Estado(e.x, e.y + 1, 'D', e);
+                Estado3 abajo = new Estado3(e.x, e.y + 1,e.f, 'D', e);
 
                 if (getTipoBusqueda()) {
                     colaEstados.add(abajo);
                 } else {
-                    colaEstados.add(0, abajo); // busqueda en profundidad;
+                  //  colaEstados.add(0, abajo); // busqueda en profundidad;
                 }
 
             }
@@ -119,16 +129,16 @@ public class Busqueda3 implements Constantes {
 
     }
 
-    public void moverIzquierda(Estado e) {
+    public void moverIzquierda(Estado3 e) {
 
         if (e.x > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P') {
-                Estado izquierda = new Estado(e.x - 1, e.y, 'L', e);
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.f, 'L', e);
 
                 if (getTipoBusqueda()) {
                     colaEstados.add(izquierda); // busqueda en anchura;
                 } else {
-                    colaEstados.add(0, izquierda); // busqueda en profundidad;
+                   // colaEstados.add(0, izquierda); // busqueda en profundidad;
                 }
 
             }
@@ -136,16 +146,16 @@ public class Busqueda3 implements Constantes {
         }
     }
 
-    public void moverDerecha(Estado e) {
+    public void moverDerecha(Estado3 e) {
 
         if (e.x + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P') {
-                Estado derecha = new Estado(e.x + 1, e.y, 'R', e);
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.f, 'R', e);
 
                 if (getTipoBusqueda()) {
                     colaEstados.add(derecha); // busqueda en anchura;
                 } else {
-                    colaEstados.add(0, derecha); // busqueda en profundidad;
+                   // colaEstados.add(0, derecha); // busqueda en profundidad;
                 }
 
             }
@@ -154,7 +164,7 @@ public class Busqueda3 implements Constantes {
     }
 
    public void calcularRuta() {
-        Estado antecesor = objetivo;
+        Estado3 antecesor = objetivo;
         do {
 
             pasos.add(antecesor.Movimiento);
@@ -168,7 +178,7 @@ public class Busqueda3 implements Constantes {
     }
 
     public boolean getTipoBusqueda() {
-        return tipoBusqueda;
+        return true;
     }
 
     public void setRole(boolean bool) {

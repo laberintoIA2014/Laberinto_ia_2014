@@ -1,6 +1,7 @@
 package Modelado;
 
 import Busqueda.Busqueda;
+import Busqueda.Busqueda3;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.util.Timer;
@@ -12,7 +13,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public Lienzo lienzo;
     public AnimadorAutomatico animador;
-    public Busqueda buscador;
+    public Busqueda3 buscador;
     public static boolean bool1 = true, bool2 = true;
 
     public VentanaPrincipal() {
@@ -41,7 +42,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
             do {
                 Timer lanzadorTareas = new Timer();
-                buscador = new Busqueda(lienzo);
+                buscador = new Busqueda3(lienzo);
                 buscador.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador.setRole(true);
                 buscador.buscar();
@@ -59,7 +60,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
             do {
                 Timer lanzadorTareas = new Timer();
-                buscador = new Busqueda(lienzo);
+                buscador = new Busqueda3(lienzo);
                 buscador.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador.setRole(false);
                 buscador.buscar();
