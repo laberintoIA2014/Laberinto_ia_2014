@@ -83,7 +83,7 @@ public class Busqueda3 implements Constantes {
         if (e.y > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
                 Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                
+                arriba.calcularF(e, objetivo);
                 if (getTipoBusqueda()) {
                     colaEstados.add(arriba); // busqueda en anchura;
                 } else {
@@ -99,7 +99,7 @@ public class Busqueda3 implements Constantes {
         if (e.y + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
                 Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                
+                abajo.calcularF(e, objetivo);
                 if (getTipoBusqueda()) {
                     colaEstados.add(abajo);
                 } else {
@@ -117,7 +117,7 @@ public class Busqueda3 implements Constantes {
         if (e.x > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P') {
                 Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                
+                izquierda.calcularF(e, objetivo);
                 if (getTipoBusqueda()) {
                     colaEstados.add(izquierda); // busqueda en anchura;
                 } else {
@@ -134,6 +134,7 @@ public class Busqueda3 implements Constantes {
         if (e.x + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P') {
                 Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
+                derecha.calcularF(e, objetivo);
                 if (getTipoBusqueda()) {
                     colaEstados.add(derecha); // busqueda en anchura;
                 } else {

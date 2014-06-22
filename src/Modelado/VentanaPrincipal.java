@@ -49,7 +49,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador1.calcularRuta();
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(2000);
+                parar(800);
             }
         }
     };
@@ -67,7 +67,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(2000);
+                parar(800);
             }
         }
     };
