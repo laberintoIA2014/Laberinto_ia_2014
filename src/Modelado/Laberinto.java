@@ -225,156 +225,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[i_jugador][j_jugador].j1derecha();
     }
 
-    public String getJugadorString() {
-        return "(" + i_jugador + " ," + j_jugador + ")";
-
-    }
-
-    public int getJugadorX() {
-        int i, j;
-
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < m; j++) {
-
-                if ('J' == Casillas[i][j].getTipo()) {
-                    return i;
-
-                }
-            }
-        }
-        return 0;
-
-    }
-
-    public int getJugadorY() {
-        int i, j;
-
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < m; j++) {
-
-                if ('J' == Casillas[i][j].getTipo()) {
-                    return j;
-
-                }
-            }
-        }
-        return 0;
-    }
-
-    public int getJugador2X() {
-        int i, j;
-
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < m; j++) {
-
-                if ('H' == Casillas[i][j].getTipo()) {
-                    return i;
-
-                }
-            }
-        }
-        return 0;
-    }
-
-    public int getJugador2Y() {
-        int i, j;
-
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < m; j++) {
-
-                if ('H' == Casillas[i][j].getTipo()) {
-                    return j;
-
-                }
-            }
-        }
-        return 0;
-    }
-
-    public String getMetaString() {
-        return "(" + i_fin + " ," + j_fin + ")";
-    }
-
-    public int getFinX() {
-        return i_fin;
-    }
-
-    public int getFinY() {
-        return j_fin;
-    }
-
-    public Celda[][] getCasillas() {
-        return Casillas;
-    }
-
-    public void setCasillas(Celda[][] casillas) {
-        this.Casillas = casillas;
-    }
-
-    public void generarNivelRandom() {
-        for (int i = 0; i < n; i++) {
-            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
-        }
-        for (int i = 0; i < m; i++) {
-            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
-        }
-        int obstaculosMaximo = (n * m) / 3;
-        for (int i = 0; i < obstaculosMaximo; i++) {
-            int x = (int) (Math.random() * n);
-            int y = (int) (Math.random() * m);
-            if (x != n - 3 && y != m - 3) {
-               if(Casillas[x][y].tipo != 'J' && Casillas[x][y].tipo != 'H' && Casillas[x][y].tipo != 'E' && Casillas[x][y].tipo != 'F' && Casillas[x][y].tipo != 'M'){
-                
-                Casillas[x][y].tipo = 'P';
-               }
-            }
-        }
-    }
-    
-        public void generarNivel1() {
-        for (int i = 0; i < n; i++) {
-            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
-        }
-        for (int i = 0; i < m; i++) {
-            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
-        }
-        
-        
-        //colum
-        for (int i = 1; i < 15; i++) {
-          //  Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
-          //  Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';
-            
-            
-            
-        }
-      
-        
-        
-        
-        
-        //fila
-        for (int i = 1; i < 15; i++) {
-            Casillas[i][2].tipo = Casillas[i][2].tipo = 'P';
-            Casillas[i][4].tipo = Casillas[i][4].tipo = 'P';
-             Casillas[i][6].tipo = Casillas[i][6].tipo = 'P';
-            Casillas[i][8].tipo = Casillas[i][8].tipo = 'P';
-             Casillas[i][10].tipo = Casillas[i][10].tipo = 'P';
-            Casillas[i][12].tipo = Casillas[i][12].tipo = 'P';
-             Casillas[i][14].tipo = Casillas[i][14].tipo = 'P';
-  
-        }
-      
-          Casillas[14][2].tipo = 'V';
-         Casillas[1][4].tipo = 'V';
-         Casillas[14][6].tipo = 'V';
-         Casillas[1][8].tipo = 'V';
-        Casillas[14][10].tipo = 'V';
-         Casillas[1][12].tipo = 'V';
-      
-        
-    }
-    
     
 
     public void mover_arriba2() {
@@ -493,4 +343,183 @@ public class Laberinto extends JComponent implements Constantes {
         }
         Casillas[i_jugador2][j_jugador2].j2derecha();
     }
+    
+    
+    public String getJugadorString() {
+        return "(" + i_jugador + " ," + j_jugador + ")";
+
+    }
+
+    public int getJugadorX() {
+        int i, j;
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+
+                if ('J' == Casillas[i][j].getTipo()) {
+                    return i;
+
+                }
+            }
+        }
+        return 0;
+
+    }
+
+    public int getJugadorY() {
+        int i, j;
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+
+                if ('J' == Casillas[i][j].getTipo()) {
+                    return j;
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int getJugador2X() {
+        int i, j;
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+
+                if ('H' == Casillas[i][j].getTipo()) {
+                    return i;
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int getJugador2Y() {
+        int i, j;
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+
+                if ('H' == Casillas[i][j].getTipo()) {
+                    return j;
+
+                }
+            }
+        }
+        return 0;
+    }
+
+    public String getMetaString() {
+        return "(" + i_fin + " ," + j_fin + ")";
+    }
+
+    public int getFinX() {
+        return i_fin;
+    }
+
+    public int getFinY() {
+        return j_fin;
+    }
+
+    public Celda[][] getCasillas() {
+        return Casillas;
+    }
+
+    public void setCasillas(Celda[][] casillas) {
+        this.Casillas = casillas;
+    }
+
+    public void generarNivelRandom() {
+        for (int i = 0; i < n; i++) {
+            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
+        }
+        for (int i = 0; i < m; i++) {
+            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
+        }
+        int obstaculosMaximo = (n * m) / 3;
+        for (int i = 0; i < obstaculosMaximo; i++) {
+            int x = (int) (Math.random() * n);
+            int y = (int) (Math.random() * m);
+            if (x != n - 3 && y != m - 3) {
+               if(Casillas[x][y].tipo != 'J' && Casillas[x][y].tipo != 'H' && Casillas[x][y].tipo != 'E' && Casillas[x][y].tipo != 'F' && Casillas[x][y].tipo != 'M'){
+                
+                Casillas[x][y].tipo = 'P';
+               }
+            }
+        }
+    }
+    
+    public void generarNivel1() {
+        for (int i = 0; i < n; i++) {
+            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
+        }
+        for (int i = 0; i < m; i++) {
+            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
+        }
+        
+        //colum
+        for (int i = 1; i < 15; i++) {
+          //  Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
+          //  Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';    
+        }
+        
+        //fila
+        for (int i = 1; i < 15; i++) {
+            Casillas[i][2].tipo = Casillas[i][2].tipo = 'P';
+            Casillas[i][4].tipo = Casillas[i][4].tipo = 'P';
+            Casillas[i][6].tipo = Casillas[i][6].tipo = 'P';
+            Casillas[i][8].tipo = Casillas[i][8].tipo = 'P';
+            Casillas[i][10].tipo = Casillas[i][10].tipo = 'P';
+            Casillas[i][12].tipo = Casillas[i][12].tipo = 'P';
+            Casillas[i][14].tipo = Casillas[i][14].tipo = 'P';
+        }
+
+            Casillas[14][2].tipo = 'V';
+            Casillas[1][4].tipo = 'V';
+            Casillas[14][6].tipo = 'V';
+            Casillas[1][8].tipo = 'V';
+            Casillas[14][10].tipo = 'V';
+            Casillas[1][12].tipo = 'V';
+      
+        
+    }
+    
+    public void generarNivel2() {
+        for (int i = 0; i < n; i++) {
+            Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
+        }
+        for (int i = 0; i < m; i++) {
+            Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
+        }
+        
+        //colum
+        for (int i = 1; i < 15; i++) {
+          //  Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
+          //  Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';    
+        }
+        
+        //fila
+        for (int i = 1; i < 15; i++) {
+            Casillas[i][2].tipo = Casillas[i][2].tipo = 'P';
+            Casillas[i][4].tipo = Casillas[i][4].tipo = 'P';
+            Casillas[i][6].tipo = Casillas[i][6].tipo = 'P';
+            Casillas[i][8].tipo = Casillas[i][8].tipo = 'P';
+            Casillas[i][10].tipo = Casillas[i][10].tipo = 'P';
+            Casillas[i][12].tipo = Casillas[i][12].tipo = 'P';
+            Casillas[i][14].tipo = Casillas[i][14].tipo = 'P';
+        }
+
+            Casillas[14][2].tipo = 'V';
+            Casillas[1][4].tipo = 'V';
+            Casillas[14][6].tipo = 'V';
+            Casillas[1][8].tipo = 'V';
+            Casillas[14][10].tipo = 'V';
+            Casillas[1][12].tipo = 'V';
+      
+        
+    }
+    
+    
 }

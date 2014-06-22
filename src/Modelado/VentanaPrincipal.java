@@ -72,7 +72,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 animador = new AnimadorAutomatico(lienzo, buscador.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
                 parar(1000);
-
             } while (bool2);
         }
     };
