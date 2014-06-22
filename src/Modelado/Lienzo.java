@@ -51,7 +51,7 @@ public class Lienzo extends Canvas {
         laberinto.paintComponent(g);
     }
 
-    private void identificarCelda(java.awt.event.MouseEvent evt) {
+    public void identificarCelda(java.awt.event.MouseEvent evt) {
 
         for (int i = 0; i < laberinto.Casillas.length; i++) {
             for (int j = 0; j < laberinto.Casillas.length; j++) {

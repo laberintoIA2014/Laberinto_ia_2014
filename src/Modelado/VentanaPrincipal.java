@@ -17,7 +17,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public static boolean bool1 = true, bool2 = true;
 
     public VentanaPrincipal() {
-        
+
         lienzo = new Lienzo();
         lienzo.setFocusable(true);
         lienzo.requestFocus();
@@ -29,12 +29,20 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
         this.setSize(lienzo.getWidth() + 30, lienzo.getHeight() + 75);
         this.setLocationRelativeTo(null);
-        
+
+        Timer lanzadorTareas = new Timer();
+        buscador = new Busqueda3(lienzo);
+        buscador.setTipoBusqueda(true); //true anchura, false profundidad
+        buscador.setRole(true);
+        buscador.buscar();
+        buscador.calcularRuta();
+        animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
+        lanzadorTareas.scheduleAtFixedRate(animador, 0, 1000);
     }
 
     public void startThread() {
-        thread1.start();
-      //thread2.start();
+        //thread1.start();
+        //thread2.start();
     }
 
     Thread thread1 = new Thread() {

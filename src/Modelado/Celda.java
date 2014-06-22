@@ -45,13 +45,14 @@ public class Celda extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
-
-        if (seleccionado) {
-            g.drawRect(x, y, Longitud_Casilla, Longitud_Casilla);
-            g.fillRect(x, y, Longitud_Casilla, Longitud_Casilla);
-        } else {
-            g.drawRect(x, y, Longitud_Casilla, Longitud_Casilla);
-        }
+        /*
+         if (seleccionado) {
+         g.drawRect(x, y, Longitud_Casilla, Longitud_Casilla);
+         g.fillRect(x, y, Longitud_Casilla, Longitud_Casilla);
+         } else {
+         g.drawRect(x, y, Longitud_Casilla, Longitud_Casilla);
+         }
+         */
 
         switch (tipo) {
             case 'J':
@@ -141,9 +142,8 @@ public class Celda extends JComponent implements Constantes {
             Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-        public void j2abajo() {
+
+    public void j2abajo() {
         try {
             jugador_dos = ImageIO.read(new File("src/Images/jugador2_abajo.png"));
         } catch (IOException ex) {
@@ -174,7 +174,5 @@ public class Celda extends JComponent implements Constantes {
             Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
 }
