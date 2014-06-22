@@ -60,7 +60,10 @@ public class Busqueda3 implements Constantes {
                 if (!historial.contains(temp)) {
 
                     historial.add(temp);
-
+                    System.out.println("COLAESTADO ->    "+colaEstados);
+                 
+                    System.out.println("HISTORIAL ->    "+historial);
+                    parar(500);
                     expandir(temp);
 
                 }
