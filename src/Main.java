@@ -59,7 +59,6 @@ public class Main {
  
         vp.setJMenuBar(menuBar);
         vp.setVisible(true);
-        vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vp.startThread();
     }

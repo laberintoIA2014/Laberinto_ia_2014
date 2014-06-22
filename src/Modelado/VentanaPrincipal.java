@@ -19,7 +19,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public Busqueda3 buscador;
     public static boolean bool1 = true, bool2 = true;
 
-    CountDownLatch latch = new CountDownLatch(2);
 
     public VentanaPrincipal() {
 
@@ -47,26 +46,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     }
 
-    public void startThread() {
+    public synchronized void startThread() {
 
-        thread2.start();
         thread1.start();
-
+        thread2.start();
     }
 
     Thread thread1 = new Thread() {
-
         @Override
         public void run() {
-
-            latch.countDown();
-            try {
-                latch.await();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+                      
             do {
+                
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda3(lienzo);
                 buscador.setTipoBusqueda(true); //true anchura, false profundidad
@@ -84,12 +75,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     Thread thread2 = new Thread() {
         @Override
         public void run() {
-            latch.countDown();
-            try {
-                latch.await();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          
             do {
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda3(lienzo);
