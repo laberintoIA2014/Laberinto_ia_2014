@@ -4,9 +4,6 @@ import Busqueda.Busqueda3;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.util.Timer;
-import java.util.concurrent.CountDownLatch;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,7 +14,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador;
     public static boolean bool1 = true, bool2 = true;
-    public CountDownLatch latch = new CountDownLatch(1);
 
     public VentanaPrincipal() {
 
@@ -32,34 +28,19 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
         this.setSize(lienzo.getWidth() + 30, lienzo.getHeight() + 75);
         this.setLocationRelativeTo(null);
-        /*
-         Timer lanzadorTareas = new Timer();
-         buscador = new Busqueda3(lienzo);
-         buscador.setTipoBusqueda(true); //true anchura, false profundidad
-         buscador.setRole(true);
-         buscador.buscar();
-         buscador.calcularRuta();
-         animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
-         lanzadorTareas.scheduleAtFixedRate(animador, 0, 1000);
-         */
 
     }
 
     public void startThread() {
-        parar(1000);
+        parar(2000);
         thread1.start();
         thread2.start();
-     
     }
-    
-    
 
     Thread thread1 = new Thread() {
         @Override
         public void run() {
-            int i=0;
-            while (bool1){
-                System.out.println("THREAD 1: "+i);
+            while (bool1) {
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda3(lienzo);
                 buscador.setTipoBusqueda(true); //true anchura, false profundidad
@@ -68,20 +49,17 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador.calcularRuta();
                 animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
-                i++;
+                parar(2000);
             }
             JOptionPane.showMessageDialog(null, "Has sido capturado!", "Fin del Juego", 1);
         }
-        
+
     };
 
     Thread thread2 = new Thread() {
         @Override
         public void run() {
-            int i=0;
-            while (bool2){
-                System.out.println("THREAD 2: "+i);
+            while (bool2) {
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda3(lienzo);
                 buscador.setTipoBusqueda(true); //true anchura, false profundidad
@@ -91,9 +69,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 System.out.println(buscador.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
-                i++;
-            } 
+                parar(2000);
+            }
         }
     };
 

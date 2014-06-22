@@ -26,9 +26,9 @@ public class Laberinto extends JComponent implements Constantes {
             }
         }
 
-        i_jugador = 1;
-        j_jugador = 1;
-        i_jugador2 = 13;
+        i_jugador = 2;
+        j_jugador = 2;
+        i_jugador2 = 9;
         j_jugador2 = 13;
         i_premio = 6;
         j_premio = 8;
@@ -405,7 +405,7 @@ public class Laberinto extends JComponent implements Constantes {
         }
         //columnas
         for (int i = 1; i < 15; i++) {
-          //Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
+            //Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
             //Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';    
         }
         //filas

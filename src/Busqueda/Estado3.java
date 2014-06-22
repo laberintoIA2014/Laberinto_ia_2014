@@ -42,8 +42,6 @@ public class Estado3 implements Comparable{
     public double getF(){
        return f;
     }
-
-    
     
     @Override
     public String toString(){
