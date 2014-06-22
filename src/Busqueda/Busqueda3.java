@@ -54,7 +54,7 @@ public class Busqueda3 implements Constantes {
         while (!colaEstados.isEmpty() && !exito) {
         
             temp = colaEstados.poll();
-            System.out.println("WHILE ACTUAL->    "+temp.x+", "+temp.y+" "+temp.getF());
+          //System.out.println("WHILE ACTUAL->    "+temp.x+", "+temp.y+" "+temp.getF());
             if (temp.equals(objetivo)) {
                 objetivo = temp;
                 exito = true;
@@ -62,9 +62,9 @@ public class Busqueda3 implements Constantes {
             } else {
 
                 if (!historial.contains(temp)) {
-                    System.out.println("COLAESTADO ACTUAL ->    "+colaEstados);
+                  //System.out.println("COLAESTADO ACTUAL ->    "+colaEstados);
                  
-                    System.out.println("HISTORIAL ACTUAL ->   "+historial);
+                  //System.out.println("HISTORIAL ACTUAL ->   "+historial);
                     historial.add(temp);
                  
                     expandir(temp);

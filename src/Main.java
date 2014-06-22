@@ -1,3 +1,4 @@
+
 import Modelado.VentanaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,17 +11,16 @@ public class Main {
 
     public static void main(String[] args) {
         VentanaPrincipal vp = new VentanaPrincipal();
-      
-          //Menu Variables
+
+        //Menu Variables
         JMenuBar menuBar;
         JMenu menu;
         JMenuItem menuItem;
- 
 
         //Menu 1
         menuBar = new JMenuBar();
         menu = new JMenu("Opciones");
-        
+
         menuBar.add(menu);
 
         //Grupo
@@ -28,26 +28,23 @@ public class Main {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           
+
             }
 
         });
-        
+
         menu.add(menuItem);
         menuItem = new JMenuItem("Opcion 2");
         menu.add(menuItem);
 
-     
-   
-        
         //Separador grupo
         menu.addSeparator();
 
         menuItem = new JMenuItem("Salir");
-           menuItem.addActionListener(new ActionListener() {
+        menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            System.exit(0);
+                System.exit(0);
             }
 
         });
@@ -56,7 +53,7 @@ public class Main {
         //Menu 2
         menu = new JMenu("Info");
         menuBar.add(menu);
- 
+
         vp.setJMenuBar(menuBar);
         vp.setVisible(true);
         vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
