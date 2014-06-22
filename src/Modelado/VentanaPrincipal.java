@@ -58,7 +58,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador.calcularRuta();
                 animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+            parar(1000);
             } while (bool1);
             JOptionPane.showMessageDialog(null, "Has sido capturado!", "Fin del Juego", 1);
         }
@@ -77,7 +77,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 System.out.println(buscador.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+            parar(1000);
             } while (bool2);
         }
     };
