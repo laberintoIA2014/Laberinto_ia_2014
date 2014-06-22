@@ -3,6 +3,7 @@ package Modelado;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 public class Laberinto extends JComponent implements Constantes {
 
@@ -115,6 +116,10 @@ public class Laberinto extends JComponent implements Constantes {
                 j_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
             } else if (Casillas[i_jugador][j_jugador - 1].tipo != 'P') {
+                if (Casillas[i_jugador][j_jugador - 1].tipo == 'H') {
+                    VentanaPrincipal.bool1 = false;
+                    VentanaPrincipal.bool2 = false;
+                }
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 j_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
@@ -138,6 +143,10 @@ public class Laberinto extends JComponent implements Constantes {
                 j_jugador += 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
             } else if (Casillas[i_jugador][j_jugador + 1].tipo != 'P') {
+                if (Casillas[i_jugador][j_jugador + 1].tipo == 'H') {
+                    VentanaPrincipal.bool1 = false;
+                    VentanaPrincipal.bool2 = false;
+                }
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 j_jugador += 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
@@ -161,6 +170,10 @@ public class Laberinto extends JComponent implements Constantes {
                 i_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
             } else if (Casillas[i_jugador - 1][j_jugador].tipo != 'P') {
+                if (Casillas[i_jugador - 1][j_jugador].tipo == 'H') {
+                    VentanaPrincipal.bool1 = false;
+                    VentanaPrincipal.bool2 = false;
+                }
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 i_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
@@ -184,6 +197,10 @@ public class Laberinto extends JComponent implements Constantes {
                 i_jugador += 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
             } else if (Casillas[i_jugador + 1][j_jugador].tipo != 'P') {
+                if (Casillas[i_jugador + 1][j_jugador].tipo == 'H') {
+                    VentanaPrincipal.bool1 = false;
+                    VentanaPrincipal.bool2 = false;
+                }
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 i_jugador += 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';

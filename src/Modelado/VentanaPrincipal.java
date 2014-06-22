@@ -12,7 +12,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public Lienzo lienzo;
     public AnimadorAutomatico animador;
-    public Busqueda3 buscador;
+    public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
 
     public VentanaPrincipal() {
@@ -33,7 +33,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public void startThread() {
         thread1.start();
-        //thread2.start();
+        thread2.start();
+        status.start();
     }
 
     Thread thread1 = new Thread() {
@@ -41,16 +42,15 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
             while (bool1) {
                 Timer lanzadorTareas = new Timer();
-                buscador = new Busqueda3(lienzo);
-                buscador.setTipoBusqueda(true); //true anchura, false profundidad
-                buscador.setRole(true);
-                buscador.buscar();
-                buscador.calcularRuta();
-                animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
+                buscador1 = new Busqueda3(lienzo);
+                buscador1.setTipoBusqueda(true); //true anchura, false profundidad
+                buscador1.setRole(true);
+                buscador1.buscar();
+                buscador1.calcularRuta();
+                animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
                 parar(2000);
             }
-            JOptionPane.showMessageDialog(null, "Has sido capturado!", "Fin del Juego", 1);
         }
     };
 
@@ -59,17 +59,31 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
             while (bool2) {
                 Timer lanzadorTareas = new Timer();
-                buscador = new Busqueda3(lienzo);
-                buscador.setTipoBusqueda(true); //true anchura, false profundidad
-                buscador.setRole(false);
-                buscador.buscar();
-                buscador.calcularRuta();
-                System.out.println(buscador.pasos);
-                animador = new AnimadorAutomatico(lienzo, buscador.pasos, false);
+                buscador2 = new Busqueda3(lienzo);
+                buscador2.setTipoBusqueda(true); //true anchura, false profundidad
+                buscador2.setRole(false);
+                buscador2.buscar();
+                buscador2.calcularRuta();
+                System.out.println(buscador2.pasos);
+                animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
                 parar(2000);
             }
         }
+    };
+
+    
+    Thread status = new Thread() {
+        @Override
+        public void run() {
+            while(true){
+            if(!bool1 && !bool2){
+                JOptionPane.showMessageDialog(null, "Has sido capturado!", "Fin del Juego", 1);
+                break;
+            }
+            }
+            
+       }
     };
 
     public void parar(int time) {
