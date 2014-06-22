@@ -40,6 +40,12 @@ public class Busqueda3 implements Constantes {
             objetivo = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
             colaEstados.add(inicial);
         }
+        if(role == false){
+            inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
+            objetivo = new Estado3(1, 1, 0, 'N', null);
+            colaEstados.add(inicial);
+        
+        }
 
         if (inicial.equals(objetivo)) {
             exito = true;

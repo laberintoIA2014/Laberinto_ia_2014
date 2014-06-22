@@ -27,19 +27,19 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
                 switch (pasos.get(paso_actual)) {
                     case 'D':
                         lienzo.getLaberinto().mover_abajo();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'U':
                         lienzo.getLaberinto().mover_arriba();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'R':
                         lienzo.getLaberinto().mover_derecha();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'L':
                         lienzo.getLaberinto().mover_izquierda();
-                        //this.cancel();
+                        this.cancel();
                         break;
                 }
                 lienzo.repaint();
