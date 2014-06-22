@@ -2,6 +2,7 @@ package Busqueda;
 
 import java.util.Objects;
 
+
 public class Estado implements Comparable {
 
     public int x, y;
@@ -69,5 +70,4 @@ public class Estado implements Comparable {
         hash = 53 * hash + this.Movimiento;
         return hash;
     }
-
 }
