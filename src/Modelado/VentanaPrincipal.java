@@ -32,9 +32,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
     public void startThread() {
-        parar(2000);
         thread1.start();
-        thread2.start();
+        //thread2.start();
     }
 
     Thread thread1 = new Thread() {
@@ -53,7 +52,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             }
             JOptionPane.showMessageDialog(null, "Has sido capturado!", "Fin del Juego", 1);
         }
-
     };
 
     Thread thread2 = new Thread() {

@@ -11,12 +11,10 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
     public boolean role;
 
     public AnimadorAutomatico(Lienzo lienzo, ArrayList<Character> pasos, boolean role) {
-
         this.role = role;
         this.lienzo = lienzo;
         this.pasos = pasos;
         paso_actual = pasos.size() - 1;
-
     }
 
     @Override
