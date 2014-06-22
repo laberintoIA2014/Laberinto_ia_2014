@@ -16,7 +16,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public static boolean bool1 = true, bool2 = true;
 
     public VentanaPrincipal() {
-        
         lienzo = new Lienzo();
         lienzo.setFocusable(true);
         lienzo.requestFocus();
@@ -28,20 +27,25 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
         this.setSize(lienzo.getWidth() + 30, lienzo.getHeight() + 75);
         this.setLocationRelativeTo(null);
-
+        
+                Timer lanzadorTareas = new Timer();
+                buscador = new Busqueda(lienzo);
+                buscador.setTipoBusqueda(true); //true anchura, false profundidad
+                buscador.setRole(true);
+                buscador.buscar();
+                buscador.calcularRuta();
+                animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
+                lanzadorTareas.scheduleAtFixedRate(animador, 0, 1000);
     }
 
     public void startThread() {
-        parar(250);
-        thread1.start();
-        parar(120);
-        thread2.start();
+        //thread1.start();
+        //thread2.start();
     }
 
     Thread thread1 = new Thread() {
         @Override
         public void run() {
-
             do {
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda(lienzo);
@@ -60,7 +64,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     Thread thread2 = new Thread() {
         @Override
         public void run() {
-
             do {
                 Timer lanzadorTareas = new Timer();
                 buscador = new Busqueda(lienzo);
@@ -77,12 +80,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     };
 
     public void parar(int time) {
-
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
         }
-
     }
 
 }
