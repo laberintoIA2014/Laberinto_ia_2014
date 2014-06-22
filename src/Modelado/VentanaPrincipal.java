@@ -48,8 +48,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public synchronized void startThread() {
 
-        thread1.start();
-        thread2.start();
+        //thread1.start();
+        //thread2.start();
     }
 
     Thread thread1 = new Thread() {
