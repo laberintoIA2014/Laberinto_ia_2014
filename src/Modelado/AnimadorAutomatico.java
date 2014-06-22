@@ -22,6 +22,8 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
     @Override
     public void run() {
 
+        
+        
         if (role) {
             if (paso_actual >= 0) {
                 switch (pasos.get(paso_actual)) {
