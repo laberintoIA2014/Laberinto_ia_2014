@@ -33,6 +33,18 @@ public class Estado3 implements Comparable{
         return y;
     }
     
+    public double setF(int x, int y, Estado3 meta){
+       f = ((Math.pow(Math.abs(x- meta.x),2))
+              +(Math.pow(Math.abs(y - meta.y),2))); 
+       return f;
+    }
+    
+    public double getF(){
+       return f;
+    }
+
+    
+    
     @Override
     public String toString(){
         return "("+x+", "+y+")";   
