@@ -48,6 +48,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador1.setRole(true);
                 buscador1.buscar();
                 buscador1.calcularRuta();
+                 System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
                 parar(2000);
