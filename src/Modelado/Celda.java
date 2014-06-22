@@ -19,7 +19,7 @@ public class Celda extends JComponent implements Constantes {
     boolean seleccionado;                        //Estado de la Celda
 
     //Constructor Celda
-    public Celda(int x, int y, char tipo, boolean estado) {
+    public Celda(int x, int y, char tipo) {
 
         this.x = x;
         this.y = y;

@@ -11,6 +11,7 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
     public boolean role;
 
     public AnimadorAutomatico(Lienzo lienzo, ArrayList<Character> pasos, boolean role) {
+       
         this.role = role;
         this.lienzo = lienzo;
         this.pasos = pasos;
@@ -22,34 +23,30 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
     public void run() {
 
         if (role) {
-
             if (paso_actual >= 0) {
                 switch (pasos.get(paso_actual)) {
                     case 'D':
                         lienzo.getLaberinto().mover_abajo();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'U':
                         lienzo.getLaberinto().mover_arriba();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'R':
                         lienzo.getLaberinto().mover_derecha();
-                        //this.cancel();
+                        this.cancel();
                         break;
                     case 'L':
                         lienzo.getLaberinto().mover_izquierda();
-                        //this.cancel();
+                        this.cancel();
                         break;
                 }
-
                 lienzo.repaint();
                 paso_actual--;
             } else {
-
                 this.cancel();
             }
-
         } else {
             if (paso_actual >= 0) {
                 switch (pasos.get(paso_actual)) {
@@ -70,14 +67,11 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
                         this.cancel();
                         break;
                 }
-
                 lienzo.repaint();
                 paso_actual--;
             } else {
-
                 this.cancel();
             }
         }
-
     }
 }

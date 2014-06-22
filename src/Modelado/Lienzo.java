@@ -12,12 +12,14 @@ public class Lienzo extends Canvas {
     public Lienzo() {
 
         laberinto = new Laberinto();
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.DARK_GRAY);
         this.setSize(laberinto.Ancho, laberinto.Largo);
+
         //laberinto.generarNivelRandom();
         //laberinto.generarNivel1();
+        laberinto.generar();
         laberinto.generarNivel2();
-        
+
         addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
@@ -34,7 +36,6 @@ public class Lienzo extends Canvas {
             public void keyPressed(KeyEvent e) {
                 laberinto.chequearTecla(e);
                 repaint();
-
             }
 
         });
@@ -49,28 +50,20 @@ public class Lienzo extends Canvas {
     @Override
     public void paint(Graphics g) {
         laberinto.paintComponent(g);
-
     }
 
     private void identificarCelda(java.awt.event.MouseEvent evt) {
 
         for (int i = 0; i < laberinto.Casillas.length; i++) {
-
             for (int j = 0; j < laberinto.Casillas.length; j++) {
-
-                if (laberinto.Casillas[i][j].dentro_area(evt.getX(), evt.getY())) { // Arreglar
-
+                if (laberinto.Casillas[i][j].dentro_area(evt.getX(), evt.getY())) {
                     if (laberinto.Casillas[i][j].tipo == 'P') {
                         laberinto.Casillas[i][j].tipo = 'V';
-                        laberinto.Casillas[i][j].seleccionado = true;
                     } else if (laberinto.Casillas[i][j].tipo == 'V') {
                         laberinto.Casillas[i][j].tipo = 'P';
-                        laberinto.Casillas[i][j].seleccionado = true;
                     }
                 }
-
             }
-
         }
 
     }
