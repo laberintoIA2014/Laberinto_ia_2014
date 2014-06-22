@@ -118,7 +118,7 @@ public class Busqueda2 implements Constantes {
 
     public void moverAbajo(Estado2 e) {
 
-        if (e.getY() + 1 < 16) {
+        if (e.getY() + 1 < m) {
             if (lienzo.getLaberinto().getCasillas()[e.getX()][e.getY() + 1].tipo != 'P') {
                 Estado2 abajo = new Estado2(e.getX(), e.getY() + 1, 'D', e);
                 abajo.calcularH(objetivo);
@@ -153,7 +153,7 @@ public class Busqueda2 implements Constantes {
 
     public void moverDerecha(Estado2 e) {
 
-        if (e.getX() + 1 < 16) {
+        if (e.getX() + 1 < n) {
             if (lienzo.getLaberinto().getCasillas()[e.getX()+ 1][e.getY()].tipo != 'P') {
                 Estado2 derecha = new Estado2(e.getX() + 1, e.getY(), 'R', e);
                 derecha.calcularH(objetivo);

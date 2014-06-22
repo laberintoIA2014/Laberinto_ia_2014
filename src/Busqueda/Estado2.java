@@ -121,14 +121,13 @@ public class Estado2 implements Comparable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + this.x;
-        hash = 89 * hash + this.y;
-        hash = 89 * hash + Objects.hashCode(this.antecesor);
-        hash = 89 * hash + this.movimiento;
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.f) ^ (Double.doubleToLongBits(this.f) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.g) ^ (Double.doubleToLongBits(this.g) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.h) ^ (Double.doubleToLongBits(this.h) >>> 32));
+        int hash = 7;
+        hash = 71 * hash + this.x;
+        hash = 71 * hash + this.y;
+        hash = 71 * hash + Objects.hashCode(this.antecesor);
+        hash = 71 * hash + this.movimiento;
         return hash;
     }
+
+
 }
