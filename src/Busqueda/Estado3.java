@@ -9,12 +9,10 @@ public class Estado3 implements Comparable{
     public char Movimiento;
     public double f, g, h;
     
-    public Estado3(int x, int y, double f, double g, double h, char Movimiento, Estado3 Antecesor) {
+    public Estado3(int x, int y, double f, char Movimiento, Estado3 Antecesor) {
         this.x = x;
         this.y = y;
         this.f = f;
-        this.g = g;
-        this.h = h;
         this.Antecesor = Antecesor;
         this.Movimiento = Movimiento;
     }
@@ -48,7 +46,7 @@ public class Estado3 implements Comparable{
     
     @Override
     public int compareTo(Object x) {
-        Estado e = (Estado) x;
+        Estado3 e = (Estado3) x;
         if (this.f == e.f) {
             return 0;
         } else {
