@@ -16,14 +16,14 @@ public class Lienzo extends Canvas {
 
         //laberinto.generarNivelRandom();
         //laberinto.generarNivel10();
-//          laberinto.generarNivel2();
+        //laberinto.generarNivel2();
         //laberinto.generarNivel10();
         addMouseListener(new java.awt.event.MouseAdapter() {
 
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                identificarCelda(evt);
-                repaint();
+                //identificarCelda(evt);
+                //repaint();
             }
 
         });
