@@ -32,7 +32,6 @@ public class Busqueda3 implements Constantes {
 
     public void buscar() {
         if (role == true) {
-
             inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
             objetivo = new Estado3(lienzo.getLaberinto().menorDistancia().x,lienzo.getLaberinto().menorDistancia().y, 0, 'N', null);
             colaEstados.add(inicial);
@@ -48,15 +47,12 @@ public class Busqueda3 implements Constantes {
         }
 
         while (!colaEstados.isEmpty() && !exito) {
-
             temp = colaEstados.poll();
             //System.out.println("WHILE ACTUAL->    " + temp.x + ", " + temp.y + " " + temp.getF());
             if (temp.equals(objetivo)) {
                 objetivo = temp;
                 exito = true;
-
             } else {
-
                 if (!historial.contains(temp)) {
                     //System.out.println("COLAESTADO ACTUAL ->    " + colaEstados);
                     //System.out.println("HISTORIAL ACTUAL ->   " + historial);
@@ -87,7 +83,6 @@ public class Busqueda3 implements Constantes {
 
         if (e.y > 0) {
             if (role == true) {
-
                 if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
                     Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
                     arriba.calcularF(e, objetivo);
@@ -117,9 +112,7 @@ public class Busqueda3 implements Constantes {
     public synchronized void moverAbajo(Estado3 e) {
 
         if (e.y + 1 < 16) {
-
             if (role == true) {
-
                 if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
                     Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
                     abajo.calcularF(e, objetivo);
@@ -236,6 +229,8 @@ public class Busqueda3 implements Constantes {
     public boolean getRole() {
         return role;
     }
+    
+    
 
     public void parar(int time) {
         try {

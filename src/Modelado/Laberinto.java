@@ -71,7 +71,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void insertarObjetos() {
-
         Casillas[i_jugador][j_jugador].tipo = 'J';
         Casillas[i_jugador2][j_jugador2].tipo = 'H';
         Casillas[i_fin][j_fin].tipo = 'M';
