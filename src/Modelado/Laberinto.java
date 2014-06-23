@@ -47,13 +47,13 @@ public class Laberinto extends JComponent implements Constantes {
         double opcion = (Math.sqrt(((Math.pow(Math.abs(i_jugador2 - i_jugador), 2))
                 + (Math.pow(Math.abs(j_jugador2 - j_jugador), 2)))));
 
-        /*if (opcion < 3) {
+        if (opcion < 1) {
             decision = true;
             return punto = new Point(i_jugador2, j_jugador2);
         } else {
             return menorDistancia();
-        }*/
-        return menorDistancia();
+        }
+        //return menorDistancia();
     }
 
     public Point menorDistancia() {
