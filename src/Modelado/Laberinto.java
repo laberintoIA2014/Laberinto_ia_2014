@@ -763,6 +763,7 @@ public class Laberinto extends JComponent implements Constantes {
           Casillas[4][13].tipo='P'; Casillas[5][13].tipo='P';Casillas[10][13].tipo='P'; Casillas[11][13].tipo='P';
           insertarMarco();
           insertarObjetos();
+          generarPremio(10);
      }
 
     
