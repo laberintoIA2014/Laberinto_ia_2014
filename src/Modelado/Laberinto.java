@@ -10,7 +10,6 @@ public class Laberinto extends JComponent implements Constantes {
     public Celda[][] Casillas;  //Las Casillas n x m
     int i_jugador, j_jugador,
             i_jugador2, j_jugador2,
-            i_enemigo, j_enemigo,
             i_premio, j_premio,
             i_premio2, j_premio2,
             i_fin, j_fin;
@@ -35,8 +34,6 @@ public class Laberinto extends JComponent implements Constantes {
         j_premio = 8;
         i_premio2 = 13;
         j_premio2 = 14;
-        i_enemigo = 12;
-        j_enemigo = 12;
         i_fin = 8;
         j_fin = 8;
 
@@ -50,7 +47,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[i_jugador][j_jugador].tipo = 'J';
         Casillas[i_jugador2][j_jugador2].tipo = 'H';
         Casillas[i_premio][j_premio].tipo = 'F';
-        Casillas[i_enemigo][j_enemigo].tipo = 'E';
         Casillas[i_premio2][j_premio2].tipo = 'F';
         Casillas[i_fin][j_fin].tipo = 'M';
     }
@@ -66,9 +62,7 @@ public class Laberinto extends JComponent implements Constantes {
             }
         }
     }
-    
- 
-     
+
     @Override
     public void paintComponent(Graphics g) {
         for (int i = 0; i < n; i++) {
@@ -145,6 +139,7 @@ public class Laberinto extends JComponent implements Constantes {
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 j_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
+                // Casillas[i_jugador][j_jugador].tipo = 'J';
             } else if (Casillas[i_jugador][j_jugador - 1].tipo != 'P') {
                 if (Casillas[i_jugador][j_jugador - 1].tipo == 'H') {
                     VentanaPrincipal.bool1 = false;
@@ -258,16 +253,13 @@ public class Laberinto extends JComponent implements Constantes {
     public void mover_arriba2() {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (j_jugador2 > 0) {
-            if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'F') {
-                //System.out.println("Jugador paso a: " + i_jugador2 + ", " + (j_jugador2 - 1));
+            if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'J') {
+                VentanaPrincipal.bool1 = false;
+                VentanaPrincipal.bool2 = false;
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 -= 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
-            } else if (Casillas[i_jugador2][j_jugador2 - 1].tipo != 'P') {
-                if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'J') {
-                    VentanaPrincipal.bool1 = false;
-                    VentanaPrincipal.bool2 = false;
-                }
+            } else if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'V') {
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 -= 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
@@ -284,16 +276,13 @@ public class Laberinto extends JComponent implements Constantes {
     public void mover_abajo2() {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > j_jugador2) {
-            if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'F') {
-                //System.out.println("Jugador paso a: " + i_jugador2 + ", " + (j_jugador2 + 1));
+            if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'J') {
+                VentanaPrincipal.bool1 = false;
+                VentanaPrincipal.bool2 = false;
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 += 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
-            } else if (Casillas[i_jugador2][j_jugador2 + 1].tipo != 'P') {
-                if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'J') {
-                    VentanaPrincipal.bool1 = false;
-                    VentanaPrincipal.bool2 = false;
-                }
+            } else if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'V') {
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 += 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
@@ -310,16 +299,13 @@ public class Laberinto extends JComponent implements Constantes {
     public void mover_izquierda2() {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (i_jugador2 > 0) {
-            if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'F') {
-                //System.out.println("Jugador paso a: " + (i_jugador2 - 1) + ", " + j_jugador2);
+            if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'J') {
+                VentanaPrincipal.bool1 = false;
+                VentanaPrincipal.bool2 = false;
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 -= 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
-            } else if (Casillas[i_jugador2 - 1][j_jugador2].tipo != 'P') {
-                if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'J') {
-                    VentanaPrincipal.bool1 = false;
-                    VentanaPrincipal.bool2 = false;
-                }
+            } else if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'V') {
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 -= 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
@@ -336,16 +322,13 @@ public class Laberinto extends JComponent implements Constantes {
     public void mover_derecha2() {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > i_jugador2) {
-            if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'F') {
-                // System.out.println("Jugador paso a: " + (i_jugador2 + 1) + ", " + j_jugador2);
+            if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'J') {
+                VentanaPrincipal.bool1 = false;
+                VentanaPrincipal.bool2 = false;
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 += 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
-            } else if (Casillas[i_jugador2 + 1][j_jugador2].tipo != 'P') {
-                if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'J') {
-                    VentanaPrincipal.bool1 = false;
-                    VentanaPrincipal.bool2 = false;
-                }
+            } else if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'V') {
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 += 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
@@ -494,15 +477,15 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][2].tipo = 'V';
     }
 
-    
-   public void generarNivel3() {
+    public void generarNivel3() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if(i%2==0 && (j-1)%3==0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
+                if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
                     Casillas[i][j].tipo = 'P';
+                }
             }
-        } 
+        }
 
         insertarMarco();
         insertarObjetos();
@@ -513,8 +496,9 @@ public class Laberinto extends JComponent implements Constantes {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
 
-                if(i%2!=0 && j%3!=0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
+                if (i % 2 != 0 && j % 3 != 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
                     Casillas[i][j].tipo = 'P';
+                }
             }
         }
         insertarMarco();
@@ -590,7 +574,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel6() {
-
 
         Casillas[13][1].tipo = 'P';
         Casillas[6][2].tipo = 'P';

@@ -15,7 +15,7 @@ public class Celda extends JComponent implements Constantes {
 
     private int x, y;
     public char tipo;
-    public BufferedImage jugador_uno, jugador_dos, enemigo, pared, piso, premio, fin;
+    public BufferedImage jugador_uno, jugador_dos, pared, piso, premio, fin;
     boolean seleccionado;
 
     public Celda(int x, int y, char tipo) {
@@ -27,7 +27,6 @@ public class Celda extends JComponent implements Constantes {
         try {
             jugador_uno = ImageIO.read(new File("src/Images/jugador1_abajo.png"));
             jugador_dos = ImageIO.read(new File("src/Images/jugador2_abajo.png"));
-            enemigo = ImageIO.read(new File("src/Images/enemigo.png"));
             piso = ImageIO.read(new File("src/Images/piso.jpg"));
             pared = ImageIO.read(new File("src/Images/pared.jpg"));
             fin = ImageIO.read(new File("src/Images/fin.jpg"));
@@ -51,9 +50,6 @@ public class Celda extends JComponent implements Constantes {
                 break;
             case 'H':
                 g.drawImage(jugador_dos, x, y, null);
-                break;
-            case 'E':
-                g.drawImage(enemigo, x, y, null);
                 break;
             case 'P':
                 g.drawImage(pared, x, y, null);
@@ -102,6 +98,14 @@ public class Celda extends JComponent implements Constantes {
         this.tipo = tipo;
     }
 
+    public void j1arriba() {
+        try {
+            jugador_uno = ImageIO.read(new File("src/Images/jugador1_arriba.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void j1abajo() {
         try {
             jugador_uno = ImageIO.read(new File("src/Images/jugador1_abajo.png"));
@@ -118,17 +122,17 @@ public class Celda extends JComponent implements Constantes {
         }
     }
 
-    public void j1arriba() {
+    public void j1izquierda() {
         try {
-            jugador_uno = ImageIO.read(new File("src/Images/jugador1_arriba.png"));
+            jugador_uno = ImageIO.read(new File("src/Images/jugador1_izquierda.png"));
         } catch (IOException ex) {
             Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void j1izquierda() {
+    public void j2arriba() {
         try {
-            jugador_uno = ImageIO.read(new File("src/Images/jugador1_izquierda.png"));
+            jugador_dos = ImageIO.read(new File("src/Images/jugador2_arriba.png"));
         } catch (IOException ex) {
             Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -150,49 +154,9 @@ public class Celda extends JComponent implements Constantes {
         }
     }
 
-    public void j2arriba() {
-        try {
-            jugador_dos = ImageIO.read(new File("src/Images/jugador2_arriba.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public void j2izquierda() {
         try {
             jugador_dos = ImageIO.read(new File("src/Images/jugador2_izquierda.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void enemigoabajo() {
-        try {
-            jugador_dos = ImageIO.read(new File("src/Images/enemigo_abajo.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void enemigoderecha() {
-        try {
-            jugador_dos = ImageIO.read(new File("src/Images/enemigo_derecha.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void enemigoarriba() {
-        try {
-            jugador_dos = ImageIO.read(new File("src/Images/enemigo_arriba.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void enemigoizquierda() {
-        try {
-            jugador_dos = ImageIO.read(new File("src/Images/enemigo_izquierda.png"));
         } catch (IOException ex) {
             Logger.getLogger(Celda.class.getName()).log(Level.SEVERE, null, ex);
         }
