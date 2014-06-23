@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
-    public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean StatusJugador1 = true, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
 
     public VentanaPrincipal() {
@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
         this.setSize(lienzo.getWidth() + 30, lienzo.getHeight() + 75);
         this.setLocationRelativeTo(null);
-
+        status.start();
     }
 
     public void startThread() {
@@ -41,7 +41,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         if (!StatusJugador2) {
             thread2.start();
         }
-        status.start();
+        
+    }
+       public void runThread() {
+        parar(2000);
+        if (!StatusJugador1) {
+            thread1.run();
+        }
+        if (!StatusJugador2) {
+            thread2.run();
+        }
+        parar(500);
+        status.run();
     }
 
     Thread thread1 = new Thread() {
@@ -57,7 +68,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(800);
+                parar(200);
             }
         }
     };
@@ -75,7 +86,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(200);
+                parar(1000);
             }
         }
     };
@@ -87,7 +98,14 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                  if(countPremio == sizePremio && lienzo.getLaberinto().EsunWinner() == true){
                     bool1 = false;
                     bool2 = false;
-                    JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas", "Fin del Juego", 1);
+                    JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas\nAvanzaste al Nivel: "+(lienzo.getLaberinto().getNivelLaberinto()+1), "Fin del Juego", 1);
+                    lienzo.setLaberinto();
+                    lienzo.getLaberinto().generarNivelNuevo( lienzo.getLaberinto().getNivelLaberinto()+1);
+                    bool1 = true;
+                    bool2 = true;
+                    runThread();
+                    setcountPremio();
+                    lienzo.repaint();
                     break;
                 }
                 
@@ -106,6 +124,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             Thread.sleep(time);
         } catch (InterruptedException e) {
         }
+    }
+    
+    public void setcountPremio(){
+        this.countPremio=0;
     }
 
 }

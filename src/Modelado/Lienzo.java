@@ -16,10 +16,9 @@ public class Lienzo extends Canvas {
         this.setSize(laberinto.Ancho, laberinto.Largo);
 
         //laberinto.generarNivelRandom();
-        //laberinto.generarNivel1();
+        laberinto.generarNivel1();
         //laberinto.generarNivel2();
-        laberinto.generarNivel10();
-
+        //laberinto.generarNivel10();
 
         addMouseListener(new java.awt.event.MouseAdapter() {
 
@@ -71,6 +70,10 @@ public class Lienzo extends Canvas {
 
     public Laberinto getLaberinto() {
         return laberinto;
+    }
+
+    public void setLaberinto() {
+        this.laberinto = new Laberinto();
     }
 
 }
