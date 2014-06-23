@@ -124,170 +124,84 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverArribaJugador(Estado3 e) {
-
         if (e.y > 0) {
-            if (role == true) {
-
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
-                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                    arriba.calcularF(e, objetivo);
-                    if (Laberinto.decision) {
-                        arriba.f = arriba.f * -1;
-                    }
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(arriba); // busqueda en anchura;
-                    } else {
-                        //  colaEstados.add(0, arriba); // busqueda en profundidad;
-                    }
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
+                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
+                arriba.calcularF(e, objetivo);
+                if (Laberinto.decision) {
+                    arriba.f = arriba.f * -1;
                 }
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'M') {
-                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                    arriba.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(arriba); // busqueda en anchura;
-                    } else {
-                        //  colaEstados.add(0, arriba); // busqueda en profundidad;
-                    }
+                if (getTipoBusqueda()) {
+                    colaEstados.add(arriba); // busqueda en anchura;
+                } else {
+                    //  colaEstados.add(0, arriba); // busqueda en profundidad;
                 }
-
             }
-
         }
-
     }
 
     public synchronized void moverAbajoJugador(Estado3 e) {
-
         if (e.y + 1 < 16) {
-
-            if (role == true) {
-
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
-                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                    abajo.calcularF(e, objetivo);
-                    if (Laberinto.decision) {
-                        abajo.f = abajo.f * -1;
-                    }
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(abajo);
-                    } else {
-                        //  colaEstados.add(0, abajo); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                abajo.calcularF(e, objetivo);
+                if (Laberinto.decision) {
+                    abajo.f = abajo.f * -1;
                 }
-
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'M') {
-                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                    abajo.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(abajo);
-                    } else {
-                        //  colaEstados.add(0, abajo); // busqueda en profundidad;
-                    }
-
+                if (getTipoBusqueda()) {
+                    colaEstados.add(abajo);
+                } else {
+                    //  colaEstados.add(0, abajo); // busqueda en profundidad;
                 }
-
             }
-
         }
-
     }
 
     public synchronized void moverIzquierdaJugador(Estado3 e) {
-
         if (e.x > 0) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P') {
-                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                    izquierda.calcularF(e, objetivo);
-                    if (Laberinto.decision) {
-                        izquierda.f = izquierda.f * -1;
-                    }
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(izquierda); // busqueda en anchura;
-                    } else {
-                        // colaEstados.add(0, izquierda); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P') {
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
+                izquierda.calcularF(e, objetivo);
+                if (Laberinto.decision) {
+                    izquierda.f = izquierda.f * -1;
                 }
-
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'M') {
-                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                    izquierda.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(izquierda); // busqueda en anchura;
-                    } else {
-                        // colaEstados.add(0, izquierda); // busqueda en profundidad;
-                    }
-
+                if (getTipoBusqueda()) {
+                    colaEstados.add(izquierda); // busqueda en anchura;
+                } else {
+                    // colaEstados.add(0, izquierda); // busqueda en profundidad;
                 }
-
             }
-
         }
     }
 
     public synchronized void moverDerechaJugador(Estado3 e) {
-
         if (e.x + 1 < 16) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P') {
-                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
-                    derecha.calcularF(e, objetivo);
-                    if (Laberinto.decision) {
-                        derecha.f = derecha.f * -1;
-                    }
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(derecha); // busqueda en anchura;
-                    } else {
-                        //colaEstados.add(0, derecha); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P') {
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
+                derecha.calcularF(e, objetivo);
+                if (Laberinto.decision) {
+                    derecha.f = derecha.f * -1;
                 }
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'M') {
-                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
-                    derecha.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(derecha); // busqueda en anchura;
-                    } else {
-                        //colaEstados.add(0, derecha); // busqueda en profundidad;
-                    }
-
+                if (getTipoBusqueda()) {
+                    colaEstados.add(derecha); // busqueda en anchura;
+                } else {
+                    //colaEstados.add(0, derecha); // busqueda en profundidad;
                 }
 
             }
-
         }
     }
 
     public synchronized void moverArribaEnemigo(Estado3 e) {
-
         if (e.y > 0) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P') {
-                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                    arriba.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(arriba); // busqueda en anchura;
-                    } else {
-                        //  colaEstados.add(0, arriba); // busqueda en profundidad;
-                    }
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'M') {
+                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
+                arriba.calcularF(e, objetivo);
+                if (getTipoBusqueda()) {
+                    colaEstados.add(arriba); // busqueda en anchura;
+                } else {
+                    //  colaEstados.add(0, arriba); // busqueda en profundidad;
                 }
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'M') {
-                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                    arriba.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(arriba); // busqueda en anchura;
-                    } else {
-                        //  colaEstados.add(0, arriba); // busqueda en profundidad;
-                    }
-                }
-
             }
 
         }
@@ -295,98 +209,46 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverAbajoEnemigo(Estado3 e) {
-
         if (e.y + 1 < 16) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P') {
-                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                    abajo.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(abajo);
-                    } else {
-                        //  colaEstados.add(0, abajo); // busqueda en profundidad;
-                    }
-
-                }
-
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'M') {
-                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                    abajo.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(abajo);
-                    } else {
-                        //  colaEstados.add(0, abajo); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'M') {
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                abajo.calcularF(e, objetivo);
+                if (getTipoBusqueda()) {
+                    colaEstados.add(abajo);
+                } else {
+                    //  colaEstados.add(0, abajo); // busqueda en profundidad;
                 }
 
             }
 
         }
-
     }
 
     public synchronized void moverIzquierdaEnemigo(Estado3 e) {
-
         if (e.x > 0) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P') {
-                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                    izquierda.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(izquierda); // busqueda en anchura;
-                    } else {
-                        // colaEstados.add(0, izquierda); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'M') {
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
+                izquierda.calcularF(e, objetivo);
+                if (getTipoBusqueda()) {
+                    colaEstados.add(izquierda); // busqueda en anchura;
+                } else {
+                    // colaEstados.add(0, izquierda); // busqueda en profundidad;
                 }
-
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'M') {
-                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                    izquierda.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(izquierda); // busqueda en anchura;
-                    } else {
-                        // colaEstados.add(0, izquierda); // busqueda en profundidad;
-                    }
-
-                }
-
             }
-
         }
     }
 
     public synchronized void moverDerechaEnemigo(Estado3 e) {
-
         if (e.x + 1 < 16) {
-            if (role == true) {
-                if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P') {
-                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
-                    derecha.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(derecha); // busqueda en anchura;
-                    } else {
-                        //colaEstados.add(0, derecha); // busqueda en profundidad;
-                    }
-
+            if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'M') {
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
+                derecha.calcularF(e, objetivo);
+                if (getTipoBusqueda()) {
+                    colaEstados.add(derecha); // busqueda en anchura;
+                } else {
+                    //colaEstados.add(0, derecha); // busqueda en profundidad;
                 }
-            } else {
-                if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'M') {
-                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
-                    derecha.calcularF(e, objetivo);
-                    if (getTipoBusqueda()) {
-                        colaEstados.add(derecha); // busqueda en anchura;
-                    } else {
-                        //colaEstados.add(0, derecha); // busqueda en profundidad;
-                    }
-
-                }
-
             }
-
         }
     }
 

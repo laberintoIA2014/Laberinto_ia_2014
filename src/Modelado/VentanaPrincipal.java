@@ -359,6 +359,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
+        menuItem = new JMenuItem("J1IA VS J2");
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StatusJugador1 = false;
+                StatusJugador2 = true;
+                startThread();
+
+            }
+        });
+        menu.add(menuItem);
+
         menuItem = new JMenuItem("J1IA VS J2IA");
         menuItem.addActionListener(new ActionListener() {
             @Override
