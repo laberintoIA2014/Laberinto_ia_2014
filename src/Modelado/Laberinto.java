@@ -454,18 +454,16 @@ public class Laberinto extends JComponent implements Constantes {
         return 0;
     }
 
-    
-    
     public String getMetaString() {
         return "(" + i_fin + " ," + j_fin + ")";
     }
 
     public int getFinX() {
-         int i, j;
+        int i, j;
         for (i = 0; i < n; i++) {
             for (j = 0; j < m; j++) {
                 if ('M' == Casillas[i][j].getTipo()) {
-                    return j;
+                    return i;
                 }
             }
         }
@@ -511,40 +509,9 @@ public class Laberinto extends JComponent implements Constantes {
         }
         insertarMarco();
         insertarObjetos();
-        generarPremio(5);
+        generarPremio(8);
     }
 
-    /* public void generarNivel1() {
-     VentanaPrincipal.sizePremio = 2;
-     for (int i = 0; i < n; i++) {
-     Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
-     }
-     for (int i = 0; i < m; i++) {
-     Casillas[i][0].tipo = Casillas[i][m - 1].tipo = 'P';
-     }
-     //columnas
-     for (int i = 1; i < 15; i++) {
-     //Casillas[2][i].tipo = Casillas[2][i].tipo = 'P';
-     //Casillas[4][i].tipo = Casillas[4][i].tipo = 'P';    
-     }
-     //filas
-     for (int i = 1; i < 15; i++) {
-     Casillas[i][2].tipo = Casillas[i][2].tipo = 'P';
-     Casillas[i][4].tipo = Casillas[i][4].tipo = 'P';
-     Casillas[i][6].tipo = Casillas[i][6].tipo = 'P';
-     Casillas[i][8].tipo = Casillas[i][8].tipo = 'P';
-     Casillas[i][10].tipo = Casillas[i][10].tipo = 'P';
-     Casillas[i][12].tipo = Casillas[i][12].tipo = 'P';
-     Casillas[i][14].tipo = Casillas[i][14].tipo = 'P';
-     }
-     Casillas[14][2].tipo = 'V';
-     Casillas[1][4].tipo = 'V';
-     Casillas[14][6].tipo = 'V';
-     Casillas[1][8].tipo = 'V';
-     Casillas[14][10].tipo = 'V';
-     Casillas[1][12].tipo = 'V';
-   
-     }*/
     public void generarNivel1() {
 
         Casillas[4][2].tipo = 'P';
@@ -604,9 +571,9 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[7][14].tipo = 'P';
         Casillas[9][14].tipo = 'P';
         Casillas[13][14].tipo = 'P';
-        generarPremio(2);
         insertarMarco();
         insertarObjetos();
+        generarPremio(1);
     }
 
     public void generarNivel2() {
@@ -665,6 +632,7 @@ public class Laberinto extends JComponent implements Constantes {
 
         insertarMarco();
         insertarObjetos();
+        generarPremio(2);
     }
 
     public void generarNivel3() {
@@ -676,9 +644,9 @@ public class Laberinto extends JComponent implements Constantes {
                 }
             }
         }
-        generarPremio(3);
         insertarMarco();
         insertarObjetos();
+        generarPremio(3);
     }
 
     public void generarNivel4() {
@@ -692,7 +660,7 @@ public class Laberinto extends JComponent implements Constantes {
         }
         insertarMarco();
         insertarObjetos();
-        generarPremio(2);
+        generarPremio(4);
     }
 
     public void generarNivel5() {
@@ -760,8 +728,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[13][10].tipo = 'P';
         insertarMarco();
         insertarObjetos();
-        generarPremio(2);
-
+        generarPremio(5);
     }
 
     public void generarNivel6() {
@@ -810,6 +777,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[2][14].tipo = 'P';
         insertarMarco();
         insertarObjetos();
+        generarPremio(6);
     }
 
     public void generarNivel7() {
@@ -884,7 +852,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[11][1].tipo = 'P';
         insertarMarco();
         insertarObjetos();
-
+        generarPremio(7);
     }
 
     public void generarNivel8() {
@@ -939,6 +907,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[12][13].tipo = 'P';
         insertarMarco();
         insertarObjetos();
+        generarPremio(8);
     }
 
     public void generarNivel9() {
@@ -1005,6 +974,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[13][13].tipo = 'P';
         insertarMarco();
         insertarObjetos();
+        generarPremio(9);
     }
 
     public void generarNivel10() {
@@ -1077,16 +1047,12 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public boolean EsunWinner() {
-        if (getJugadorX() == getFinX() && getJugadorY() == getFinY()) {
+        if (i_jugador == i_fin && j_jugador == j_fin) {
             return true;
         }
 
         return false;
 
     }
-    
-    
-    
-    
 
 }

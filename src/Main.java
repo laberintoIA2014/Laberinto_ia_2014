@@ -1,5 +1,6 @@
 
 import Modelado.VentanaPrincipal;
+import Sounds.Reproductor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -9,7 +10,7 @@ import javax.swing.JMenuItem;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         VentanaPrincipal vp = new VentanaPrincipal();
 
         //Menu Variables
@@ -53,11 +54,19 @@ public class Main {
         //Menu 2
         menu = new JMenu("Info");
         menuBar.add(menu);
-
+        
+        Reproductor musica_de_vivo = new Reproductor();
+        musica_de_vivo.AbrirFichero("src/Sounds/music.ogg");
+        musica_de_vivo.Play();
+        
         vp.setJMenuBar(menuBar);
         vp.setVisible(true);
+        vp.setResizable(false);
         vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vp.startThread();
-    }
+      
+    
+
+}
 
 }

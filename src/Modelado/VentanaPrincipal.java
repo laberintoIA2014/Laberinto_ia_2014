@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
-    public static boolean StatusJugador1 = true, StatusJugador2 = true; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean StatusJugador1 = true, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
 
     public VentanaPrincipal() {
@@ -84,7 +84,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             while (true) {
-                 if(countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()){
+                 if(countPremio == sizePremio && lienzo.getLaberinto().EsunWinner() == true){
                     bool1 = false;
                     bool2 = false;
                     JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas", "Fin del Juego", 1);
