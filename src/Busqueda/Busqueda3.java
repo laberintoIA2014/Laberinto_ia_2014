@@ -63,9 +63,9 @@ public class Busqueda3 implements Constantes {
         }
         
         if (exito) {
-            System.out.println("Ruta Calculada");
+            //System.out.println("Ruta Calculada");
         } else {
-            System.out.println("La Ruta no pudo Calcularse");
+            //System.out.println("La Ruta no pudo Calcularse");
         }
     }
     
