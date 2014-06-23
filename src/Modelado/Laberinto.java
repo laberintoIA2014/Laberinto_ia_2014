@@ -12,6 +12,8 @@ public class Laberinto extends JComponent implements Constantes {
             i_jugador2, j_jugador2,
             i_premio, j_premio,
             i_premio2, j_premio2,
+             i_premio3, j_premio3,
+            i_premio4, j_premio4,
             i_fin, j_fin;
 
     public Lienzo lienzo;
@@ -28,14 +30,10 @@ public class Laberinto extends JComponent implements Constantes {
 
         i_jugador = 1;
         j_jugador = 1;
-        i_jugador2 = 9;
-        j_jugador2 = 13;
-        i_premio = 6;
-        j_premio = 8;
-        i_premio2 = 13;
-        j_premio2 = 14;
-        i_fin = 8;
-        j_fin = 8;
+        i_jugador2 = 13;
+        j_jugador2 = 14;
+        i_fin = 14;
+        j_fin = 14;
 
         this.Ancho = n * Longitud_Casilla;
         this.Largo = m * Longitud_Casilla;
@@ -46,8 +44,6 @@ public class Laberinto extends JComponent implements Constantes {
 
         Casillas[i_jugador][j_jugador].tipo = 'J';
         Casillas[i_jugador2][j_jugador2].tipo = 'H';
-        Casillas[i_premio][j_premio].tipo = 'F';
-        Casillas[i_premio2][j_premio2].tipo = 'F';
         Casillas[i_fin][j_fin].tipo = 'M';
     }
 
@@ -434,6 +430,7 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel1() {
+        VentanaPrincipal.sizePremio = 2;
         for (int i = 0; i < n; i++) {
             Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
         }
@@ -461,6 +458,11 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][8].tipo = 'V';
         Casillas[14][10].tipo = 'V';
         Casillas[1][12].tipo = 'V';
+        
+        
+        
+        
+        
     }
 
     public void generarNivel2() {
@@ -489,6 +491,7 @@ public class Laberinto extends JComponent implements Constantes {
 
         insertarMarco();
         insertarObjetos();
+        generarPremio(1);
     }
 
     public void generarNivel4() {
@@ -749,5 +752,21 @@ public class Laberinto extends JComponent implements Constantes {
         insertarMarco();
         insertarObjetos();
     }
+    
+    
+    public void generarPremio(int cantidad){
+
+            do{
+                int x = (int) (Math.random() * n-3)+1;
+                int y = (int) (Math.random() * m-3)+1;
+                if(Casillas[x][y].tipo == 'V'){
+                    Casillas[x][y].tipo = 'F';
+                    cantidad=cantidad-1;
+                }                
+                
+           }while(cantidad>0);
+    
+    }
+    
 
 }
