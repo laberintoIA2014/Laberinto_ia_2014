@@ -250,7 +250,7 @@ public class Laberinto extends JComponent implements Constantes {
             } else if (Casillas[i_jugador - 1][j_jugador].tipo == 'M') {
                 if (VentanaPrincipal.countPremio == VentanaPrincipal.sizePremio) {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
-                    j_jugador += 1;
+                    i_jugador -= 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                 }
             } else if (Casillas[i_jugador - 1][j_jugador].tipo != 'P') {
@@ -287,7 +287,7 @@ public class Laberinto extends JComponent implements Constantes {
             } else if (Casillas[i_jugador + 1][j_jugador].tipo == 'M') {
                 if (VentanaPrincipal.countPremio == VentanaPrincipal.sizePremio) {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
-                    j_jugador += 1;
+                    i_jugador += 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                 }
             } else if (Casillas[i_jugador + 1][j_jugador].tipo != 'P') {

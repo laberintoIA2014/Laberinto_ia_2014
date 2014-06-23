@@ -55,9 +55,9 @@ public class Main {
         menu = new JMenu("Info");
         menuBar.add(menu);
         
-        Reproductor musica_de_vivo = new Reproductor();
-        musica_de_vivo.AbrirFichero("src/Sounds/music.ogg");
-        musica_de_vivo.Play();
+        //Reproductor musica_de_vivo = new Reproductor();
+        //musica_de_vivo.AbrirFichero("src/Sounds/music.ogg");
+        //musica_de_vivo.Play();
         
         vp.setJMenuBar(menuBar);
         vp.setVisible(true);

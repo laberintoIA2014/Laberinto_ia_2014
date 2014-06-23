@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
-    public static boolean StatusJugador1 = true, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean StatusJugador1 = true, StatusJugador2 = true; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
 
     public VentanaPrincipal() {
@@ -75,7 +75,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+                parar(200);
             }
         }
     };
@@ -95,11 +95,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     JOptionPane.showMessageDialog(null, "Has sido capturado!\nHas Obtenido " + countPremio + " Monedas", "Fin del Juego", 1);
                     break;
                 }
-             
-               
-                
-                
-                
+   
             }
 
         }
