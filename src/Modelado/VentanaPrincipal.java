@@ -13,8 +13,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public Lienzo lienzo;
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
-    public static boolean bool1 = true, bool2 = true; 
-    public static boolean StatusJugador = false; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean bool1 = true, bool2 = true;
+    public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio;
 
     public VentanaPrincipal() {
@@ -34,8 +34,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
     public void startThread() {
-        thread1.start();
-        thread2.start();
+        parar(2000);
+        if (!StatusJugador1) {
+            thread1.start();
+        }
+        if (!StatusJugador2) {
+            thread2.start();
+        }
         status.start();
     }
 
@@ -52,7 +57,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+                parar(800);
             }
         }
     };
@@ -70,23 +75,22 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+                parar(800);
             }
         }
     };
 
-    
     Thread status = new Thread() {
         @Override
         public void run() {
-            while(true){
-            if(!bool1 && !bool2){
-                JOptionPane.showMessageDialog(null, "Has sido capturado!\nHas agarrado "+countPremio+" Monedas", "Fin del Juego", 1);
-                break;
+            while (true) {
+                if (!bool1 && !bool2) {
+                    JOptionPane.showMessageDialog(null, "Has sido capturado!\nHas agarrado " + countPremio + " Monedas", "Fin del Juego", 1);
+                    break;
+                }
             }
-            }
-            
-       }
+
+        }
     };
 
     public void parar(int time) {

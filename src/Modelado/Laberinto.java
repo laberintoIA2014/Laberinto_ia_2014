@@ -74,9 +74,11 @@ public class Laberinto extends JComponent implements Constantes {
 
     void chequearTecla(KeyEvent evento) {
 
-        if (!VentanaPrincipal.bool1 && !VentanaPrincipal.bool2 || !VentanaPrincipal.StatusJugador) {
+        if (!VentanaPrincipal.bool1 && !VentanaPrincipal.bool2) {
 
         } else {
+            
+            if(VentanaPrincipal.StatusJugador1){
             //jugador 1
             if (evento.getKeyCode() == 38) {
                 System.out.println("Mover Arriba");
@@ -94,7 +96,9 @@ public class Laberinto extends JComponent implements Constantes {
                 System.out.println("Mover Derecha");
                 mover_derecha();
             }
-
+            }
+            
+            if(VentanaPrincipal.StatusJugador2){
             //jugador 2
             if (evento.getKeyCode() == 87) {
                 System.out.println("Mover Arriba");
@@ -111,6 +115,7 @@ public class Laberinto extends JComponent implements Constantes {
             if (evento.getKeyCode() == 68) {
                 System.out.println("Mover Derecha");
                 mover_derecha2();
+            }
             }
         }
     }
@@ -239,7 +244,6 @@ public class Laberinto extends JComponent implements Constantes {
         if (j_jugador2 > 0) {
             if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'F') {
                 //System.out.println("Jugador paso a: " + i_jugador2 + ", " + (j_jugador2 - 1));
-                System.out.println("Has Encontrado la Salida!");
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador -= 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
@@ -266,7 +270,6 @@ public class Laberinto extends JComponent implements Constantes {
         if (15 > j_jugador2) {
             if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'F') {
                 //System.out.println("Jugador paso a: " + i_jugador2 + ", " + (j_jugador2 + 1));
-                System.out.println("Has Encontrado la Salida!");
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 += 1;
                 Casillas[i_jugador2][j_jugador2].tipo = 'H';
