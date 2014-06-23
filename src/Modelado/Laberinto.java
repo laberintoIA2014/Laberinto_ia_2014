@@ -429,7 +429,7 @@ public class Laberinto extends JComponent implements Constantes {
         }
     }
 
-    public void generarNivel1() {
+   /* public void generarNivel1() {
         VentanaPrincipal.sizePremio = 2;
         for (int i = 0; i < n; i++) {
             Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
@@ -458,300 +458,210 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][8].tipo = 'V';
         Casillas[14][10].tipo = 'V';
         Casillas[1][12].tipo = 'V';
-        
-        
-        
-        
-        
-    }
+   
+    }*/
 
-    public void generarNivel2() {
+    public void generarNivel1() {
+         
+            Casillas[4][2].tipo='P'; Casillas[8][2].tipo='P'; Casillas[9][2].tipo='P'; Casillas[10][2].tipo='P'; Casillas[11][2].tipo='P';
+            Casillas[8][3].tipo='P'; Casillas[11][3].tipo='P';
+            Casillas[4][4].tipo='P'; Casillas[8][4].tipo='P'; Casillas[11][4].tipo='P';
+            Casillas[4][5].tipo='P'; Casillas[8][5].tipo='P'; Casillas[9][5].tipo='P'; Casillas[10][5].tipo='P'; Casillas[11][5].tipo='P';
+            Casillas[4][6].tipo='P'; Casillas[8][6].tipo='P'; Casillas[11][6].tipo='P';
+            Casillas[4][7].tipo='P'; Casillas[6][7].tipo='P'; Casillas[8][7].tipo='P'; Casillas[11][7].tipo='P'; Casillas[13][7].tipo='P';
+            Casillas[2][10].tipo='P'; Casillas[3][10].tipo='P'; Casillas[5][10].tipo='P'; Casillas[6][10].tipo='P'; Casillas[7][10].tipo='P'; Casillas[9][10].tipo='P'; Casillas[11][10].tipo='P'; Casillas[13][10].tipo='P';
+            Casillas[3][11].tipo='P'; Casillas[5][11].tipo='P'; Casillas[7][11].tipo='P'; Casillas[9][11].tipo='P'; Casillas[11][11].tipo='P'; Casillas[13][11].tipo='P';
+            Casillas[2][12].tipo='P'; Casillas[3][12].tipo='P';  Casillas[5][12].tipo='P'; Casillas[7][12].tipo='P'; Casillas[9][12].tipo='P'; Casillas[11][12].tipo='P'; Casillas[12][12].tipo='P'; Casillas[13][12].tipo='P';
+            Casillas[2][13].tipo='P'; Casillas[5][13].tipo='P'; Casillas[7][13].tipo='P'; Casillas[9][13].tipo='P'; Casillas[13][13].tipo='P';
+            Casillas[2][14].tipo='P'; Casillas[3][14].tipo='P'; Casillas[5][14].tipo='P'; Casillas[6][14].tipo='P'; Casillas[7][14].tipo='P'; Casillas[9][14].tipo='P'; Casillas[13][14].tipo='P';
+            insertarMarco();
+            insertarObjetos();
+     }
+     public void generarNivel2() {
+         
+            Casillas[3][3].tipo='P';Casillas[4][3].tipo='P';Casillas[5][3].tipo='P';
+            Casillas[6][3].tipo='P';Casillas[3][4].tipo='P';Casillas[4][4].tipo='P';
+            Casillas[5][4].tipo='P';Casillas[6][4].tipo='P';Casillas[3][5].tipo='P';
+            Casillas[4][5].tipo='P';Casillas[5][5].tipo='P';Casillas[6][5].tipo='P';
+            
+            Casillas[3][9].tipo='P';Casillas[4][9].tipo='P';Casillas[5][9].tipo='P';
+            Casillas[6][9].tipo='P';Casillas[3][10].tipo='P';Casillas[4][10].tipo='P';
+            Casillas[5][10].tipo='P';Casillas[6][10].tipo='P';Casillas[3][11].tipo='P';
+            Casillas[4][11].tipo='P';Casillas[5][11].tipo='P';Casillas[6][11].tipo='P';
+            
+            Casillas[9][3].tipo='P';Casillas[10][3].tipo='P';Casillas[11][3].tipo='P';
+            Casillas[12][3].tipo='P';Casillas[9][4].tipo='P';Casillas[10][4].tipo='P';
+            Casillas[11][4].tipo='P';Casillas[12][4].tipo='P';Casillas[9][5].tipo='P';
+            Casillas[10][5].tipo='P';Casillas[11][5].tipo='P';Casillas[12][5].tipo='P';
+            
+            Casillas[9][9].tipo='P';Casillas[10][9].tipo='P';Casillas[11][9].tipo='P';
+            Casillas[12][9].tipo='P';Casillas[9][10].tipo='P';Casillas[10][10].tipo='P';
+            Casillas[11][10].tipo='P';Casillas[12][10].tipo='P';Casillas[9][11].tipo='P';
+            Casillas[10][11].tipo='P';Casillas[11][11].tipo='P';Casillas[12][11].tipo='P';           
+            
+            insertarMarco();
+            insertarObjetos();
+     }
+    
+   public void generarNivel3() {
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (Casillas[i][j].tipo != 'J') {
+                if(i%2==0 && (j-1)%3==0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
                     Casillas[i][j].tipo = 'P';
-                }
             }
-        }
-        Casillas[1][2].tipo = 'V';
-        Casillas[1][3].tipo = 'V';
-        Casillas[1][2].tipo = 'V';
-        Casillas[1][2].tipo = 'V';
-    }
-
-    public void generarNivel3() {
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
-                    Casillas[i][j].tipo = 'P';
-                }
-            }
-        }
-
+        } 
         insertarMarco();
         insertarObjetos();
-        generarPremio(1);
     }
-
+     
     public void generarNivel4() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-
-                if (i % 2 != 0 && j % 3 != 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
+                if(i%2!=0 && j%3!=0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
                     Casillas[i][j].tipo = 'P';
-                }
             }
         }
         insertarMarco();
         insertarObjetos();
     }
-
+     
     public void generarNivel5() {
 
-        Casillas[2][4].tipo = 'P';
-        Casillas[3][2].tipo = 'P';
-        Casillas[4][13].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[6][6].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[10][4].tipo = 'P';
-        Casillas[11][2].tipo = 'P';
-        Casillas[12][8].tipo = 'P';
-        Casillas[13][2].tipo = 'P';
-        Casillas[14][3].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[3][3].tipo = 'P';
-        Casillas[4][14].tipo = 'P';
-        Casillas[5][3].tipo = 'P';
-        Casillas[6][11].tipo = 'P';
-        Casillas[7][8].tipo = 'P';
-        Casillas[8][3].tipo = 'P';
-        Casillas[10][6].tipo = 'P';
-        Casillas[11][3].tipo = 'P';
-        Casillas[12][10].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[14][11].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[3][4].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[6][13].tipo = 'P';
-        Casillas[7][10].tipo = 'P';
-        Casillas[8][4].tipo = 'P';
-        Casillas[10][7].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[13][4].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[3][7].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[7][11].tipo = 'P';
-        Casillas[8][6].tipo = 'P';
-        Casillas[10][8].tipo = 'P';
-        Casillas[11][6].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[2][10].tipo = 'P';
-        Casillas[3][10].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[7][13].tipo = 'P';
-        Casillas[8][7].tipo = 'P';
-        Casillas[10][11].tipo = 'P';
-        Casillas[11][12].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[3][11].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[10][12].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[3][13].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[10][13].tipo = 'P';
-        Casillas[13][10].tipo = 'P';
-        insertarMarco();
-        insertarObjetos();
-
+          Casillas[2][4].tipo='P';  Casillas[3][2].tipo='P';  Casillas[4][13].tipo='P'; Casillas[5][2].tipo='P'; Casillas[6][6].tipo='P';  Casillas[7][4].tipo='P';  Casillas[8][2].tipo='P';  Casillas[9][2].tipo='P';  Casillas[10][4].tipo='P';  Casillas[11][2].tipo='P';  Casillas[12][8].tipo='P';    Casillas[13][2].tipo='P';    Casillas[14][3].tipo='P';
+          Casillas[2][6].tipo='P';  Casillas[3][3].tipo='P'; Casillas[4][14].tipo='P';  Casillas[5][3].tipo='P'; Casillas[6][11].tipo='P'; Casillas[7][8].tipo='P';  Casillas[8][3].tipo='P';                            Casillas[10][6].tipo='P';  Casillas[11][3].tipo='P';  Casillas[12][10].tipo='P';   Casillas[13][3].tipo='P';    Casillas[14][11].tipo='P';
+          Casillas[2][7].tipo='P';  Casillas[3][4].tipo='P';                            Casillas[5][4].tipo='P'; Casillas[6][13].tipo='P'; Casillas[7][10].tipo='P'; Casillas[8][4].tipo='P';                            Casillas[10][7].tipo='P';  Casillas[11][4].tipo='P';                               Casillas[13][4].tipo='P';
+          Casillas[2][8].tipo='P';  Casillas[3][7].tipo='P';                            Casillas[5][6].tipo='P';                           Casillas[7][11].tipo='P'; Casillas[8][6].tipo='P';                            Casillas[10][8].tipo='P';  Casillas[11][6].tipo='P';                               Casillas[13][6].tipo='P';
+          Casillas[2][10].tipo='P'; Casillas[3][10].tipo='P';                           Casillas[5][7].tipo='P';                           Casillas[7][13].tipo='P'; Casillas[8][7].tipo='P';                            Casillas[10][11].tipo='P'; Casillas[11][12].tipo='P';                              Casillas[13][7].tipo='P';
+          Casillas[2][11].tipo='P'; Casillas[3][11].tipo='P';                           Casillas[5][8].tipo='P';                                                     Casillas[8][8].tipo='P';                            Casillas[10][12].tipo='P';                                                         Casillas[13][8].tipo='P';
+          Casillas[2][13].tipo='P'; Casillas[3][13].tipo='P';                                                                                                        Casillas[8][10].tipo='P';                           Casillas[10][13].tipo='P';                                                         Casillas[13][10].tipo='P';
+          insertarMarco();
+          insertarObjetos();
     }
 
+       
+        
     public void generarNivel6() {
 
-        Casillas[13][1].tipo = 'P';
-        Casillas[6][2].tipo = 'P';
-        Casillas[7][2].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[12][2].tipo = 'P';
-        Casillas[14][2].tipo = 'P';
-        Casillas[10][3].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[4][4].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[3][5].tipo = 'P';
-        Casillas[6][5].tipo = 'P';
-        Casillas[8][5].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[9][6].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[4][7].tipo = 'P';
-        Casillas[10][7].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[9][8].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[3][9].tipo = 'P';
-        Casillas[8][9].tipo = 'P';
-        Casillas[12][9].tipo = 'P';
-        Casillas[4][10].tipo = 'P';
-        Casillas[7][10].tipo = 'P';
-        Casillas[11][10].tipo = 'P';
-        Casillas[6][11].tipo = 'P';
-        Casillas[10][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[6][12].tipo = 'P';
-        Casillas[7][12].tipo = 'P';
-        Casillas[8][12].tipo = 'P';
-        Casillas[9][12].tipo = 'P';
-        Casillas[1][13].tipo = 'P';
-        Casillas[3][13].tipo = 'P';
-        Casillas[2][14].tipo = 'P';
-        insertarMarco();
-        insertarObjetos();
+       Casillas[13][1].tipo='P'; 
+       Casillas[6][2].tipo='P'; Casillas[7][2].tipo='P'; Casillas[8][2].tipo='P'; Casillas[9][2].tipo='P'; Casillas[12][2].tipo='P'; Casillas[14][2].tipo='P';
+       Casillas[10][3].tipo='P'; Casillas[13][3].tipo='P';
+       Casillas[4][4].tipo='P'; Casillas[7][4].tipo='P'; Casillas[11][4].tipo='P';
+       Casillas[3][5].tipo='P'; Casillas[6][5].tipo='P'; Casillas[8][5].tipo='P';
+       Casillas[2][6].tipo='P'; Casillas[9][6].tipo='P'; Casillas[13][6].tipo='P';
+       Casillas[2][7].tipo='P'; Casillas[4][7].tipo='P'; Casillas[10][7].tipo='P'; Casillas[13][7].tipo='P';
+       Casillas[2][8].tipo='P'; Casillas[5][8].tipo='P'; Casillas[9][8].tipo='P'; Casillas[13][8].tipo='P';
+       Casillas[3][9].tipo='P'; Casillas[8][9].tipo='P'; Casillas[12][9].tipo='P';
+       Casillas[4][10].tipo='P'; Casillas[7][10].tipo='P'; Casillas[11][10].tipo='P';
+       Casillas[6][11].tipo='P'; Casillas[10][11].tipo='P';
+       Casillas[2][12].tipo='P'; Casillas[6][12].tipo='P'; Casillas[7][12].tipo='P'; Casillas[8][12].tipo='P'; Casillas[9][12].tipo='P';
+       Casillas[1][13].tipo='P'; Casillas[3][13].tipo='P';
+       Casillas[2][14].tipo='P';
+       insertarMarco();
+       insertarObjetos();
     }
+     public void generarNivel7() {
 
-    public void generarNivel7() {
-
-        Casillas[2][3].tipo = 'P';
-        Casillas[2][4].tipo = 'P';
-        Casillas[2][5].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[2][14].tipo = 'P';
-        Casillas[2][15].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[5][3].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[5][5].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[5][15].tipo = 'P';
-        Casillas[13][2].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[13][4].tipo = 'P';
-        Casillas[13][5].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[13][11].tipo = 'P';
-        Casillas[13][12].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[11][8].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[11][10].tipo = 'P';
-        Casillas[8][11].tipo = 'P';
-        Casillas[11][11].tipo = 'P';
-        Casillas[9][11].tipo = 'P';
-        Casillas[10][11].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[8][6].tipo = 'P';
-        Casillas[11][6].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[2][9].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[8][13].tipo = 'P';
-        Casillas[9][13].tipo = 'P';
-        Casillas[8][14].tipo = 'P';
-        Casillas[11][14].tipo = 'P';
-        Casillas[10][13].tipo = 'P';
-        Casillas[11][13].tipo = 'P';
-        Casillas[8][4].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[10][2].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[11][2].tipo = 'P';
-        Casillas[8][1].tipo = 'P';
-        Casillas[11][1].tipo = 'P';
-        insertarMarco();
-        insertarObjetos();
-
-    }
-
-    public void generarNivel8() {
-
-        Casillas[2][3].tipo = 'P';
-        Casillas[2][4].tipo = 'P';
-        Casillas[2][5].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[3][7].tipo = 'P';
-        Casillas[4][7].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[5][3].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[5][5].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[7][6].tipo = 'P';
-        Casillas[10][6].tipo = 'P';
-        Casillas[7][8].tipo = 'P';
-        Casillas[10][8].tipo = 'P';
-        Casillas[7][9].tipo = 'P';
-        Casillas[10][9].tipo = 'P';
-        Casillas[8][9].tipo = 'P';
-        Casillas[9][9].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[9][10].tipo = 'P';
-        Casillas[8][11].tipo = 'P';
-        Casillas[9][11].tipo = 'P';
-        Casillas[8][12].tipo = 'P';
-        Casillas[9][12].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[10][4].tipo = 'P';
-        Casillas[7][2].tipo = 'P';
-        Casillas[10][2].tipo = 'P';
-        Casillas[12][3].tipo = 'P';
-        Casillas[12][4].tipo = 'P';
-        Casillas[12][5].tipo = 'P';
-        Casillas[12][6].tipo = 'P';
-        Casillas[12][7].tipo = 'P';
-        Casillas[12][8].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[12][11].tipo = 'P';
-        Casillas[12][13].tipo = 'P';
-        insertarMarco();
-        insertarObjetos();
-    }
+            Casillas[2][3].tipo='P';Casillas[2][4].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';
+            Casillas[2][8].tipo='P';
+            Casillas[2][11].tipo='P';Casillas[2][12].tipo='P';Casillas[2][13].tipo='P';
+            Casillas[2][14].tipo='P';Casillas[2][15].tipo='P';
+            Casillas[5][2].tipo='P';Casillas[5][3].tipo='P';Casillas[5][4].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[5][6].tipo='P';Casillas[5][7].tipo='P';
+            Casillas[5][8].tipo='P';
+            Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[5][14].tipo='P';Casillas[5][15].tipo='P';
+            Casillas[13][2].tipo='P';Casillas[13][3].tipo='P';Casillas[13][4].tipo='P';
+            Casillas[13][5].tipo='P';Casillas[13][6].tipo='P';Casillas[13][7].tipo='P';
+            Casillas[13][8].tipo='P';
+            Casillas[13][11].tipo='P';Casillas[13][12].tipo='P';
+            Casillas[8][8].tipo='P';Casillas[11][8].tipo='P';
+            Casillas[8][10].tipo='P';Casillas[11][10].tipo='P';
+            Casillas[8][11].tipo='P';Casillas[11][11].tipo='P';
+            Casillas[9][11].tipo='P';Casillas[10][11].tipo='P';Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[5][14].tipo='P';
+            Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';Casillas[5][6].tipo='P';Casillas[8][6].tipo='P';
+            Casillas[11][6].tipo='P';
+            Casillas[2][8].tipo='P';Casillas[2][9].tipo='P';Casillas[5][8].tipo='P';Casillas[8][8].tipo='P';
+            Casillas[5][14].tipo='P';Casillas[8][13].tipo='P';Casillas[9][13].tipo='P';
+            Casillas[8][14].tipo='P';
+            Casillas[11][14].tipo='P';Casillas[10][13].tipo='P';Casillas[11][13].tipo='P';
+            Casillas[8][4].tipo='P'; Casillas[8][2].tipo='P'; Casillas[9][2].tipo='P'; Casillas[10][2].tipo='P';
+            Casillas[11][4].tipo='P'; Casillas[11][2].tipo='P';
+            Casillas[8][1].tipo='P'; Casillas[11][1].tipo='P';
+            insertarMarco();
+            insertarObjetos();
+           
+     }
+     public void generarNivel8() {
+       
+            Casillas[2][3].tipo='P';Casillas[2][4].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';
+            Casillas[2][8].tipo='P';Casillas[3][7].tipo='P';Casillas[4][7].tipo='P';
+            Casillas[2][11].tipo='P';Casillas[2][12].tipo='P';Casillas[2][13].tipo='P';
+            Casillas[5][2].tipo='P';Casillas[5][3].tipo='P';Casillas[5][4].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[5][6].tipo='P';Casillas[5][7].tipo='P';
+            Casillas[5][8].tipo='P';
+            Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[7][6].tipo='P';Casillas[10][6].tipo='P';
+            Casillas[7][8].tipo='P';Casillas[10][8].tipo='P';
+            Casillas[7][9].tipo='P';Casillas[10][9].tipo='P';
+            Casillas[8][9].tipo='P';Casillas[9][9].tipo='P';
+            Casillas[8][10].tipo='P';Casillas[9][10].tipo='P';
+            Casillas[8][11].tipo='P';Casillas[9][11].tipo='P';
+            Casillas[8][12].tipo='P';Casillas[9][12].tipo='P';
+            Casillas[7][4].tipo='P'; Casillas[10][4].tipo='P';
+            Casillas[7][2].tipo='P'; Casillas[10][2].tipo='P';
+            Casillas[12][3].tipo='P';Casillas[12][4].tipo='P';Casillas[12][5].tipo='P';Casillas[12][6].tipo='P';Casillas[12][7].tipo='P';Casillas[12][8].tipo='P';Casillas[13][7].tipo='P';
+            Casillas[12][11].tipo='P'; Casillas[12][13].tipo='P';
+            insertarMarco();
+            insertarObjetos();
+     }
+     public void generarNivel9() {
+       
+            Casillas[2][2].tipo='P';Casillas[3][2].tipo='P';Casillas[4][2].tipo='P';
+            Casillas[5][2].tipo='P';Casillas[6][2].tipo='P';Casillas[7][2].tipo='P';
+            Casillas[8][2].tipo='P';
+            Casillas[11][2].tipo='P';Casillas[12][2].tipo='P';Casillas[13][2].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[3][5].tipo='P';Casillas[4][5].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[6][5].tipo='P';Casillas[7][5].tipo='P';
+            Casillas[8][5].tipo='P';
+            Casillas[11][5].tipo='P';Casillas[12][5].tipo='P';Casillas[13][5].tipo='P';
+            Casillas[2][2].tipo='P';Casillas[2][3].tipo='P';Casillas[2][4].tipo='P';
+            Casillas[2][5].tipo='P';Casillas[2][6].tipo='P';Casillas[2][7].tipo='P';
+            Casillas[2][8].tipo='P';
+            Casillas[2][11].tipo='P';Casillas[2][12].tipo='P';Casillas[2][13].tipo='P';
+            Casillas[5][2].tipo='P';Casillas[5][3].tipo='P';Casillas[5][4].tipo='P';
+            Casillas[5][5].tipo='P';Casillas[5][6].tipo='P';Casillas[5][7].tipo='P';
+            Casillas[5][8].tipo='P';
+            Casillas[5][11].tipo='P';Casillas[5][12].tipo='P';Casillas[5][13].tipo='P';
+            Casillas[10][8].tipo='P'; Casillas[13][8].tipo='P';
+            Casillas[10][9].tipo='P'; Casillas[13][9].tipo='P';
+            Casillas[8][10].tipo='P'; Casillas[9][10].tipo='P';Casillas[10][10].tipo='P'; Casillas[11][10].tipo='P';Casillas[12][10].tipo='P'; Casillas[13][10].tipo='P';
+            Casillas[10][11].tipo='P'; Casillas[13][11].tipo='P';
+            Casillas[10][12].tipo='P'; Casillas[13][12].tipo='P';
+            Casillas[8][13].tipo='P'; Casillas[9][13].tipo='P';Casillas[10][13].tipo='P'; Casillas[11][13].tipo='P';Casillas[12][13].tipo='P'; Casillas[13][13].tipo='P';
+            insertarMarco();
+            insertarObjetos();
+     }
+      public void generarNivel10() {
+          
+          Casillas[4][2].tipo='P'; Casillas[10][2].tipo='P';
+          Casillas[4][3].tipo='P'; Casillas[5][3].tipo='P';Casillas[6][3].tipo='P'; Casillas[8][3].tipo='P'; Casillas[9][3].tipo='P'; Casillas[10][3].tipo='P';
+          Casillas[4][4].tipo='P'; Casillas[10][4].tipo='P';
+          Casillas[4][5].tipo='P'; Casillas[7][5].tipo='P';Casillas[10][5].tipo='P';
+          Casillas[4][6].tipo='P'; Casillas[5][6].tipo='P';Casillas[6][6].tipo='P'; Casillas[7][6].tipo='P';Casillas[8][6].tipo='P'; Casillas[9][6].tipo='P'; Casillas[10][6].tipo='P';
+          Casillas[4][7].tipo='P'; Casillas[6][7].tipo='P'; Casillas[8][7].tipo='P'; Casillas[10][7].tipo='P';
+          Casillas[5][9].tipo='P'; Casillas[7][9].tipo='P';Casillas[9][9].tipo='P';
+          Casillas[5][10].tipo='P'; Casillas[6][10].tipo='P';Casillas[7][10].tipo='P'; Casillas[8][10].tipo='P';Casillas[9][10].tipo='P';
+          Casillas[2][11].tipo='P'; Casillas[3][11].tipo='P';Casillas[12][11].tipo='P'; Casillas[13][11].tipo='P';
+          Casillas[3][12].tipo='P'; Casillas[4][12].tipo='P';Casillas[11][12].tipo='P'; Casillas[12][12].tipo='P';
+          Casillas[4][13].tipo='P'; Casillas[5][13].tipo='P';Casillas[10][13].tipo='P'; Casillas[11][13].tipo='P';
+          insertarMarco();
+          insertarObjetos();
+     }
     
     
     public void generarPremio(int cantidad){
