@@ -38,6 +38,7 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
                         lienzo.getLaberinto().mover_izquierda();
                         this.cancel();
                         break;
+                        
                 }
                 lienzo.repaint();
                 paso_actual--;
@@ -69,6 +70,12 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
             } else {
                 this.cancel();
             }
+        }
+    }
+        public void parar(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
         }
     }
 }

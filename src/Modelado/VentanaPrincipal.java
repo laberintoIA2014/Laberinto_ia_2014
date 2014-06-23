@@ -443,7 +443,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(800);
+                parar(1000);
             }
         }
     };
@@ -515,7 +515,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void sonidofondo() {
         Reproductor moneda = new Reproductor();
         try {
-            moneda.AbrirFichero("src/Sounds/fondo.ogg");
+            moneda.AbrirFichero("src/Sounds/1.ogg");
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
