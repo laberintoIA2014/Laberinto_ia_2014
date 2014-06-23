@@ -55,8 +55,11 @@ public class Laberinto extends JComponent implements Constantes {
                menor = opcion;
                punto = new Point(monedas.get(i).x ,monedas.get(i).y);
             }
-        } 
-         return punto;
+        }
+        
+        if(monedas.isEmpty())punto = new Point(14 ,14);
+        
+        return punto;
    
    }     
     
@@ -502,6 +505,7 @@ public class Laberinto extends JComponent implements Constantes {
             Casillas[2][12].tipo='P'; Casillas[3][12].tipo='P';  Casillas[5][12].tipo='P'; Casillas[7][12].tipo='P'; Casillas[9][12].tipo='P'; Casillas[11][12].tipo='P'; Casillas[12][12].tipo='P'; Casillas[13][12].tipo='P';
             Casillas[2][13].tipo='P'; Casillas[5][13].tipo='P'; Casillas[7][13].tipo='P'; Casillas[9][13].tipo='P'; Casillas[13][13].tipo='P';
             Casillas[2][14].tipo='P'; Casillas[3][14].tipo='P'; Casillas[5][14].tipo='P'; Casillas[6][14].tipo='P'; Casillas[7][14].tipo='P'; Casillas[9][14].tipo='P'; Casillas[13][14].tipo='P';
+            generarPremio(2);
             insertarMarco();
             insertarObjetos();
      }
