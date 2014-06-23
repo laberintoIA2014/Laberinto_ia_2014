@@ -48,11 +48,11 @@ public class Laberinto extends JComponent implements Constantes {
                 + (Math.pow(Math.abs(j_jugador2 - j_jugador), 2)))));
 
         /*if (opcion < 3) {
-            decision = true;
-            return punto = new Point(i_jugador2, j_jugador2);
-        } else {
-            return menorDistancia();
-        }*/
+         decision = true;
+         return punto = new Point(i_jugador2, j_jugador2);
+         } else {
+         return menorDistancia();
+         }*/
         return menorDistancia();
     }
 
@@ -68,7 +68,7 @@ public class Laberinto extends JComponent implements Constantes {
                 punto = new Point(monedas.get(i).x, monedas.get(i).y);
             }
         }
-        
+
         if (monedas.isEmpty()) {
             punto = new Point(14, 14);
         }
@@ -506,8 +506,8 @@ public class Laberinto extends JComponent implements Constantes {
         this.Casillas = casillas;
     }
 
-    public void generarNivelInicial(){
-         Casillas[4][2].tipo = 'P';
+    public void generarNivelInicial() {
+        Casillas[4][2].tipo = 'P';
         Casillas[8][2].tipo = 'P';
         Casillas[9][2].tipo = 'P';
         Casillas[10][2].tipo = 'P';
@@ -564,9 +564,9 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[7][14].tipo = 'P';
         Casillas[9][14].tipo = 'P';
         Casillas[13][14].tipo = 'P';
-    
+
     }
-    
+
     public void generarNivelRandom() {
         NivelNum = 0;
         for (int i = 0; i < n; i++) {
@@ -714,7 +714,7 @@ public class Laberinto extends JComponent implements Constantes {
                 if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
                     Casillas[i][j].tipo = 'P';
                 }
-                
+
             }
         }
         eliminarContornoInterno();
@@ -1131,10 +1131,10 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivelNuevo(int x) {
-        if (x == 0){
+        if (x == 0) {
             generarNivelInicial();
         }
-        if (x == 1){
+        if (x == 1) {
             generarNivel1();
         }
         if (x == 2) {
@@ -1188,7 +1188,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void sonidoMoneda() {
-
         Reproductor musica_de_vivo = new Reproductor();
         try {
             musica_de_vivo.AbrirFichero("src/Sounds/moneda.wav");
@@ -1201,11 +1200,11 @@ public class Laberinto extends JComponent implements Constantes {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void eliminarContornoInterno(){
+
+    public void eliminarContornoInterno() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if(j==1 && i>0 && i<16||i==1 && j>0 && j<16||j==14 && i>0 && i<16||i==14 && j<16 && j>0){
+                if (j == 1 && i > 0 && i < 16 || i == 1 && j > 0 && j < 16 || j == 14 && i > 0 && i < 16 || i == 14 && j < 16 && j > 0) {
                     Casillas[i][j].tipo = 'V';
                 }
             }

@@ -36,7 +36,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         lienzo.setFocusable(true);
         lienzo.requestFocus();
         label = new JLabel("Laberinto 2014", (int) CENTER_ALIGNMENT);
-        label.getAlignmentX();
         label.setFont(new java.awt.Font("Impact", 0, 30));
         label2 = new JLabel("IECI", (int) CENTER_ALIGNMENT);
         label2.setFont(new java.awt.Font("Impact", 0, 30));
@@ -54,7 +53,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.setLocationRelativeTo(null);
 
         menuBar = new JMenuBar();
-        menu = new JMenu("Nivel Laberinto");
+        menu = new JMenu("LABERINTO NIVEL");
         menuBar.add(menu);
         menuItem = new JMenuItem("Nivel 1");
         menuItem.addActionListener(new ActionListener() {
@@ -363,6 +362,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 StatusJugador1 = true;
                 StatusJugador2 = true;
+                bool1 = true;
+                bool2 = true;
                 startThread();
             }
         });
@@ -431,7 +432,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
         if (thread2.isAlive() && StatusJugador2) {
             thread2.suspend();
-        }if(!status.isAlive())status.start();
+        }
+        if (!status.isAlive()) {
+            status.start();
+        }
 
         status.resume();
 
@@ -468,7 +472,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(800);
+                parar(900);
             }
         }
     };
