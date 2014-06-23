@@ -12,7 +12,7 @@ public class Laberinto extends JComponent implements Constantes {
     public Celda[][] Casillas;  //Las Casillas n x m
     public ArrayList<Point> monedas;
     public static boolean decision = false;
-    public static int nivelNum;
+    public static boolean win;
     int i_jugador, j_jugador,
             i_jugador2, j_jugador2,
             i_premio, j_premio,
@@ -506,7 +506,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivelRandom() {
-        this.nivelNum = 0;
         for (int i = 0; i < n; i++) {
             Casillas[0][i].tipo = Casillas[n - 1][i].tipo = 'P';
         }
@@ -529,7 +528,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel1() {
-        this.nivelNum = 1;
         Casillas[4][2].tipo = 'P';
         Casillas[8][2].tipo = 'P';
         Casillas[9][2].tipo = 'P';
@@ -593,7 +591,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel2() {
-        this.nivelNum = 2;
         Casillas[3][3].tipo = 'P';
         Casillas[4][3].tipo = 'P';
         Casillas[5][3].tipo = 'P';
@@ -652,7 +649,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel3() {
-        this.nivelNum = 3;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
@@ -666,7 +662,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel4() {
-        this.nivelNum = 4;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (i % 2 != 0 && j % 3 != 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
@@ -680,7 +675,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel5() {
-        this.nivelNum = 5;
         Casillas[2][4].tipo = 'P';
         Casillas[3][2].tipo = 'P';
         Casillas[4][13].tipo = 'P';
@@ -748,7 +742,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel6() {
-        this.nivelNum = 6;
         Casillas[13][1].tipo = 'P';
         Casillas[6][2].tipo = 'P';
         Casillas[7][2].tipo = 'P';
@@ -797,7 +790,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel7() {
-        this.nivelNum = 7;
         Casillas[2][3].tipo = 'P';
         Casillas[2][4].tipo = 'P';
         Casillas[2][5].tipo = 'P';
@@ -872,7 +864,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel8() {
-        this.nivelNum = 8;
         Casillas[2][3].tipo = 'P';
         Casillas[2][4].tipo = 'P';
         Casillas[2][5].tipo = 'P';
@@ -927,7 +918,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel9() {
-        this.nivelNum = 9;
         Casillas[2][2].tipo = 'P';
         Casillas[3][2].tipo = 'P';
         Casillas[4][2].tipo = 'P';
@@ -994,7 +984,6 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel10() {
-        this.nivelNum = 10;
         Casillas[4][2].tipo = 'P';
         Casillas[10][2].tipo = 'P';
         Casillas[4][3].tipo = 'P';
@@ -1064,21 +1053,63 @@ public class Laberinto extends JComponent implements Constantes {
 
     public boolean EsunWinner() {
         if (i_jugador == i_fin && j_jugador == j_fin) {
-            return true;
-        }
-
+       return true;
+        }else{
         return false;
-
-    }
+        }
+        
+   }
 
     public int getNivelLaberinto() {
-        return this.nivelNum;
+        return VentanaPrincipal.sizePremio;
     }
 
     public void generarNivelNuevo(int x) {
         if (x == 2) {
             generarNivel2();
         }
+        if (x == 3) {
+            generarNivel3();
+        }
+        if (x == 4) {
+            generarNivel4();
+        }
+        if (x == 5) {
+            generarNivel5();
+        }
+        if (x == 6) {
+            generarNivel6();
+        }
+        if (x == 7) {
+            generarNivel7();
+        }
+        if (x == 8) {
+            generarNivel8();
+        }
+        if (x == 9) {
+            generarNivel9();
+        }
+        if (x == 10) {
+            generarNivel10();
+        }
     }
+    
+    public void vaciarLaberinto(){
+    
+    
+        for(int i=0;i<n;i++)
+                 for(int j=0;j<m;j++)
+                    Casillas[i][j].tipo='V';
+ 
+        }
+        public void defaultPosicionLaberinto(){
+        
+                i_jugador = 1;
+        j_jugador = 1;
+        i_jugador2 = 13;
+        j_jugador2 = 14;
+        i_fin = 14;
+        j_fin = 14;
+        }
 
 }

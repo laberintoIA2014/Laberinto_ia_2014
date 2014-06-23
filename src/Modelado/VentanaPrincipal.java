@@ -13,7 +13,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public Lienzo lienzo;
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
-    public static boolean bool1 = true, bool2 = true;
+    public static boolean bool1 = true, bool2 = true, bool3 = true;
     public static boolean StatusJugador1 = true, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
 
@@ -28,9 +28,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.setTitle("Laberinto IA");
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
-        this.setSize(lienzo.getWidth() + 30, lienzo.getHeight() + 75);
+        this.setSize(lienzo.getWidth() + 21, lienzo.getHeight() + 67);
         this.setLocationRelativeTo(null);
-        status.start();
+
     }
 
     public void startThread() {
@@ -41,23 +41,23 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         if (!StatusJugador2) {
             thread2.start();
         }
-        
+        status.start();
     }
-       public void runThread() {
-        parar(2000);
+
+    public void runThread() {
         if (!StatusJugador1) {
             thread1.run();
         }
         if (!StatusJugador2) {
             thread2.run();
         }
-        parar(500);
-        status.run();
+
     }
 
     Thread thread1 = new Thread() {
         @Override
         public void run() {
+
             while (bool1) {
                 Timer lanzadorTareas = new Timer();
                 buscador1 = new Busqueda3(lienzo);
@@ -68,7 +68,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(200);
+                parar(1000);
             }
         }
     };
@@ -94,28 +94,32 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     Thread status = new Thread() {
         @Override
         public void run() {
-            while (true) {
-                 if(countPremio == sizePremio && lienzo.getLaberinto().EsunWinner() == true){
-                    bool1 = false;
-                    bool2 = false;
-                    JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas\nAvanzaste al Nivel: "+(lienzo.getLaberinto().getNivelLaberinto()+1), "Fin del Juego", 1);
-                    lienzo.setLaberinto();
-                    lienzo.getLaberinto().generarNivelNuevo( lienzo.getLaberinto().getNivelLaberinto()+1);
-                    bool1 = true;
-                    bool2 = true;
-                    runThread();
-                    setcountPremio();
-                    lienzo.repaint();
-                    break;
-                }
-                
+            while (bool3) {
                 if (!bool1 && !bool2) {
+                    System.out.println("B");
                     JOptionPane.showMessageDialog(null, "Has sido capturado!\nHas Obtenido " + countPremio + " Monedas", "Fin del Juego", 1);
-                    break;
+                    bool3 = false;
                 }
-   
-            }
 
+                if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
+                    if (countPremio == 10) {
+                        bool3 = false;
+                    }
+                    System.out.println("A");
+                    thread2.suspend();
+                    thread1.suspend();
+                    JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas\nAvanzaste al Nivel: " + (lienzo.getLaberinto().getNivelLaberinto() + 1), "Fin del Juego", 1);
+                    lienzo.getLaberinto().vaciarLaberinto();
+                    lienzo.getLaberinto().defaultPosicionLaberinto();
+                    lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
+                    lienzo.repaint();
+                    thread1.resume();
+                    thread2.resume();
+                    countPremio = 0;
+                 
+                }
+
+            }
         }
     };
 
@@ -124,10 +128,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             Thread.sleep(time);
         } catch (InterruptedException e) {
         }
-    }
-    
-    public void setcountPremio(){
-        this.countPremio=0;
     }
 
 }

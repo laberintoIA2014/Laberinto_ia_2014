@@ -72,8 +72,5 @@ public class Lienzo extends Canvas {
         return laberinto;
     }
 
-    public void setLaberinto() {
-        this.laberinto = new Laberinto();
-    }
 
 }
