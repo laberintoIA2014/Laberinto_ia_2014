@@ -427,6 +427,9 @@ public class Laberinto extends JComponent implements Constantes {
                 }
             }
         }
+           insertarMarco();
+        insertarObjetos();
+        generarPremio(5);
     }
 
     public void generarNivel1() {
@@ -504,8 +507,9 @@ public class Laberinto extends JComponent implements Constantes {
                 }
             }
         }
-        insertarMarco();
+   insertarMarco();
         insertarObjetos();
+        generarPremio(2);
     }
 
     public void generarNivel5() {
@@ -571,8 +575,9 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[8][10].tipo = 'P';
         Casillas[10][13].tipo = 'P';
         Casillas[13][10].tipo = 'P';
-        insertarMarco();
+       insertarMarco();
         insertarObjetos();
+        generarPremio(2);
 
     }
 
@@ -751,22 +756,21 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[12][13].tipo = 'P';
         insertarMarco();
         insertarObjetos();
+        generarPremio(1);
     }
     
     
     public void generarPremio(int cantidad){
-
+        
             do{
-                int x = (int) (Math.random() * n-3)+1;
-                int y = (int) (Math.random() * m-3)+1;
+                int x = (int) (Math.random() * 13)+1;
+                int y = (int) (Math.random() * 13)+1;
                 if(Casillas[x][y].tipo == 'V'){
                     Casillas[x][y].tipo = 'F';
                     cantidad=cantidad-1;
                 }                
                 
-           }while(cantidad>0);
-    
+           }while(cantidad > 0);
     }
     
-
 }
