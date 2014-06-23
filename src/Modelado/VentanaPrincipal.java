@@ -37,13 +37,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         lienzo.requestFocus();
         label = new JLabel("Laberinto 2014", (int) CENTER_ALIGNMENT);
         label.getAlignmentX();
-       
         label.setFont(new java.awt.Font("Impact", 0, 30));
-
-        label2 = new JLabel(" ", (int) CENTER_ALIGNMENT);
+        label2 = new JLabel("IECI", (int) CENTER_ALIGNMENT);
         label2.setFont(new java.awt.Font("Impact", 0, 30));
-        
-        
         lienzo.getLaberinto().generarNivelNuevo(0);
         sonidofondo();
         ImageIcon icon = new ImageIcon("src/Images/laberinto_icon.jpg");
@@ -51,9 +47,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.setIconImage(Image);
         this.setTitle("Laberinto IA");
         this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(label,BorderLayout.NORTH);
+        this.getContentPane().add(label, BorderLayout.NORTH);
         this.getContentPane().add(lienzo, BorderLayout.CENTER);
-        this.getContentPane().add(label2,BorderLayout.SOUTH);
+        this.getContentPane().add(label2, BorderLayout.SOUTH);
         this.setSize(lienzo.getWidth() + 21, lienzo.getHeight() + 144);
         this.setLocationRelativeTo(null);
 
@@ -67,7 +63,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel1();
                 label.setText("NIVEL 1");
-                
+
             }
         });
         menu.add(menuItem);
@@ -121,7 +117,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             @Override
             public void actionPerformed(ActionEvent e) {
                 resetJuego();
-                lienzo.getLaberinto().generarNivel6(); 
+                lienzo.getLaberinto().generarNivel6();
                 label.setText("NIVEL 6");
             }
         });
@@ -133,7 +129,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel7();
-                 label.setText("NIVEL 7");
+                label.setText("NIVEL 7");
             }
         });
         menu.add(menuItem);
@@ -378,6 +374,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 StatusJugador1 = true;
                 StatusJugador2 = false;
+                bool1 = true;
+                bool2 = true;
                 startThread();
 
             }
@@ -388,8 +386,11 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 StatusJugador1 = false;
                 StatusJugador2 = true;
+                bool1 = true;
+                bool2 = true;
                 startThread();
 
             }
@@ -402,6 +403,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 StatusJugador1 = false;
                 StatusJugador2 = false;
+                bool1 = true;
+                bool2 = true;
+
                 startThread();
             }
         });
@@ -427,13 +431,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
         if (thread2.isAlive() && StatusJugador2) {
             thread2.suspend();
-        }
+        }if(!status.isAlive())status.start();
 
-        if (status.isAlive()) {
-            status.resume();
-        } else {
-            status.start();
-        }
+        status.resume();
 
     }
 
@@ -477,7 +477,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             while (true) {
-                label2.setText("Monedas Count: "+ countPremio);
+                label2.setText("Monedas Count: " + countPremio);
                 if (!bool1 && !bool2) {
                     sonidoPrimeraSangre();
                     thread2.suspend();
@@ -498,17 +498,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                         label.setText("FIN DEL JUEGO!");
                         label2.setText("IECI");
                         status.suspend();
+                    } else {
+                        lienzo.getLaberinto().vaciarLaberinto();
+                        lienzo.getLaberinto().defaultPosicionLaberinto();
+                        lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
+                        lienzo.repaint();
+                        thread1.resume();
+                        thread2.resume();
+                        countPremio = 0;
+                        label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
+                        label2.setText("Monedas Count: " + countPremio);
+                        parar(800);
                     }
-                    lienzo.getLaberinto().vaciarLaberinto();
-                    lienzo.getLaberinto().defaultPosicionLaberinto();
-                    lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);            
-                    lienzo.repaint();
-                    thread1.resume();
-                    thread2.resume();
-                    countPremio = 0;
-                    label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
-                    label2.setText("Monedas Count: "+ countPremio);
-                    parar(800);
                 }
 
             }
@@ -529,6 +530,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         lienzo.getLaberinto().defaultPosicionLaberinto();
         lienzo.repaint();
         countPremio = 0;
+        status.resume();
     }
 
     public void sonidoPrimeraSangre() {
