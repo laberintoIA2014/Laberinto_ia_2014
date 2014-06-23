@@ -47,12 +47,13 @@ public class Laberinto extends JComponent implements Constantes {
         double opcion = (Math.sqrt(((Math.pow(Math.abs(i_jugador2 - i_jugador), 2))
                 + (Math.pow(Math.abs(j_jugador2 - j_jugador), 2)))));
 
-        if (opcion < 3) {
+        /*if (opcion < 3) {
             decision = true;
             return punto = new Point(i_jugador2, j_jugador2);
         } else {
             return menorDistancia();
-        }
+        }*/
+        return menorDistancia();
     }
 
     public Point menorDistancia() {
@@ -584,6 +585,7 @@ public class Laberinto extends JComponent implements Constantes {
                 }
             }
         }
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(8);
@@ -599,8 +601,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[8][3].tipo = 'P';
         Casillas[11][3].tipo = 'P';
         Casillas[4][4].tipo = 'P';
-        Casillas[8][4].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
         Casillas[4][5].tipo = 'P';
         Casillas[8][5].tipo = 'P';
         Casillas[9][5].tipo = 'P';
@@ -636,18 +636,13 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[11][12].tipo = 'P';
         Casillas[12][12].tipo = 'P';
         Casillas[13][12].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[7][13].tipo = 'P';
-        Casillas[9][13].tipo = 'P';
-        Casillas[13][13].tipo = 'P';
         Casillas[2][14].tipo = 'P';
         Casillas[3][14].tipo = 'P';
         Casillas[5][14].tipo = 'P';
         Casillas[6][14].tipo = 'P';
         Casillas[7][14].tipo = 'P';
         Casillas[9][14].tipo = 'P';
-        Casillas[13][14].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(2);
@@ -706,7 +701,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[10][11].tipo = 'P';
         Casillas[11][11].tipo = 'P';
         Casillas[12][11].tipo = 'P';
-
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(3);
@@ -719,8 +714,10 @@ public class Laberinto extends JComponent implements Constantes {
                 if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
                     Casillas[i][j].tipo = 'P';
                 }
+                
             }
         }
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(5);
@@ -735,6 +732,7 @@ public class Laberinto extends JComponent implements Constantes {
                 }
             }
         }
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(4);
@@ -803,6 +801,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[8][10].tipo = 'P';
         Casillas[10][13].tipo = 'P';
         Casillas[13][10].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(5);
@@ -852,6 +851,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][13].tipo = 'P';
         Casillas[3][13].tipo = 'P';
         Casillas[2][14].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(6);
@@ -927,6 +927,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[11][2].tipo = 'P';
         Casillas[8][1].tipo = 'P';
         Casillas[11][1].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(7);
@@ -940,7 +941,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[2][6].tipo = 'P';
         Casillas[2][7].tipo = 'P';
         Casillas[2][8].tipo = 'P';
-        Casillas[3][7].tipo = 'P';
         Casillas[4][7].tipo = 'P';
         Casillas[2][11].tipo = 'P';
         Casillas[2][12].tipo = 'P';
@@ -982,6 +982,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[13][7].tipo = 'P';
         Casillas[12][11].tipo = 'P';
         Casillas[12][13].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(8);
@@ -990,7 +991,6 @@ public class Laberinto extends JComponent implements Constantes {
     public void generarNivel9() {
         NivelNum = 9;
         Casillas[2][2].tipo = 'P';
-        Casillas[3][2].tipo = 'P';
         Casillas[4][2].tipo = 'P';
         Casillas[5][2].tipo = 'P';
         Casillas[6][2].tipo = 'P';
@@ -1011,7 +1011,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[13][5].tipo = 'P';
         Casillas[2][2].tipo = 'P';
         Casillas[2][3].tipo = 'P';
-        Casillas[2][4].tipo = 'P';
         Casillas[2][5].tipo = 'P';
         Casillas[2][6].tipo = 'P';
         Casillas[2][7].tipo = 'P';
@@ -1042,13 +1041,12 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[10][11].tipo = 'P';
         Casillas[13][11].tipo = 'P';
         Casillas[10][12].tipo = 'P';
-        Casillas[13][12].tipo = 'P';
         Casillas[8][13].tipo = 'P';
         Casillas[9][13].tipo = 'P';
         Casillas[10][13].tipo = 'P';
-        Casillas[11][13].tipo = 'P';
         Casillas[12][13].tipo = 'P';
         Casillas[13][13].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(9);
@@ -1066,9 +1064,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[10][3].tipo = 'P';
         Casillas[4][4].tipo = 'P';
         Casillas[10][4].tipo = 'P';
-        Casillas[4][5].tipo = 'P';
         Casillas[7][5].tipo = 'P';
-        Casillas[10][5].tipo = 'P';
         Casillas[4][6].tipo = 'P';
         Casillas[5][6].tipo = 'P';
         Casillas[6][6].tipo = 'P';
@@ -1100,6 +1096,7 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[5][13].tipo = 'P';
         Casillas[10][13].tipo = 'P';
         Casillas[11][13].tipo = 'P';
+        eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
         generarPremio(10);
@@ -1206,6 +1203,16 @@ public class Laberinto extends JComponent implements Constantes {
             musica_de_vivo.Play();
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void eliminarContornoInterno(){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(j==1 && i>0 && i<16||i==1 && j>0 && j<16||j==14 && i>0 && i<16||i==14 && j<16 && j>0){
+                    Casillas[i][j].tipo = 'V';
+                }
+            }
         }
     }
 
