@@ -33,7 +33,7 @@ public class Laberinto extends JComponent implements Constantes {
         j_jugador = 1;
         i_jugador2 = 9;
         j_jugador2 = 13;
-        i_premio = 6;
+        i_premio = 8;
         j_premio = 8;
         i_premio2 = 13;
         j_premio2 = 14;
