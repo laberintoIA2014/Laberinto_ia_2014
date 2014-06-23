@@ -66,7 +66,9 @@ public class Laberinto extends JComponent implements Constantes {
             }
         }
     }
-
+    
+ 
+     
     @Override
     public void paintComponent(Graphics g) {
         for (int i = 0; i < n; i++) {
@@ -492,15 +494,16 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[1][2].tipo = 'V';
     }
 
-    public void generarNivel3() {
+    
+   public void generarNivel3() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
+                if(i%2==0 && (j-1)%3==0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
                     Casillas[i][j].tipo = 'P';
-                }
             }
-        }
+        } 
+
         insertarMarco();
         insertarObjetos();
     }
@@ -509,9 +512,9 @@ public class Laberinto extends JComponent implements Constantes {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (i % 2 != 0 && j % 3 != 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
+
+                if(i%2!=0 && j%3!=0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
                     Casillas[i][j].tipo = 'P';
-                }
             }
         }
         insertarMarco();
@@ -583,9 +586,11 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[13][10].tipo = 'P';
         insertarMarco();
         insertarObjetos();
+
     }
 
     public void generarNivel6() {
+
 
         Casillas[13][1].tipo = 'P';
         Casillas[6][2].tipo = 'P';

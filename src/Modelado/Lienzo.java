@@ -15,9 +15,11 @@ public class Lienzo extends Canvas {
         this.setBackground(Color.DARK_GRAY);
         this.setSize(laberinto.Ancho, laberinto.Largo);
 
-      //laberinto.generarNivelRandom();
+
+
         //laberinto.generarNivelRandom();
       //laberinto.generarNivel1();
+
         //laberinto.generarNivel2();
         laberinto.generarNivel3();
 
