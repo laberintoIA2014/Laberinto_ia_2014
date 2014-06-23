@@ -2,6 +2,7 @@ package Busqueda;
 
 import Modelado.Constantes;
 import Modelado.Lienzo;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -11,6 +12,7 @@ public class Busqueda3 implements Constantes {
     public PriorityQueue<Estado3> colaEstados;
     public ArrayList<Estado3> historial;
     public ArrayList<Character> pasos;
+    public ArrayList<Point> premios;
     public int index_pasos;
     public Estado3 inicial;
     public Estado3 objetivo;
@@ -24,12 +26,15 @@ public class Busqueda3 implements Constantes {
         pasos = new ArrayList<>();
         index_pasos = 0;
         exito = false;
+        premios = new ArrayList<>();
+     
     }
     
     public void buscar() {
         if (role == true) {
+            
             inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
-            objetivo = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
+            objetivo = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2X(), 0, 'N', null);
             colaEstados.add(inicial);
         }
         if (role == false) {
