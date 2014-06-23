@@ -2,7 +2,6 @@ package Busqueda;
 
 import java.util.Objects;
 
-
 public class Estado implements Comparable {
 
     public int x, y;

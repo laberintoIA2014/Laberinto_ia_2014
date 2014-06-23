@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Busqueda;
 
 import Modelado.Constantes;
 import Modelado.Lienzo;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Busqueda2 implements Constantes {
@@ -46,11 +39,11 @@ public class Busqueda2 implements Constantes {
             objetivo = new Estado2(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 'N', null);
             colaEstados.add(inicial);
         }
-        if(role == false){
+        if (role == false) {
             inicial = new Estado2(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 'N', null);
             objetivo = new Estado2(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 'N', null);
             colaEstados.add(inicial);
-        
+
         }
 
         if (inicial.equals(objetivo)) {
@@ -58,9 +51,9 @@ public class Busqueda2 implements Constantes {
         }
 
         while (!colaEstados.isEmpty() && !exito) {
-        
+
             temp = colaEstados.poll();
-            System.out.println("WHILE ACTUAL->    "+temp.getX()+", "+temp.getY()+" "+temp.getF());
+            System.out.println("WHILE ACTUAL->    " + temp.getX() + ", " + temp.getY() + " " + temp.getF());
             if (temp.equals(objetivo)) {
                 objetivo = temp;
                 exito = true;
@@ -68,17 +61,17 @@ public class Busqueda2 implements Constantes {
             } else {
 
                 if (!historial.contains(temp)) {
-                    System.out.println("COLAESTADO ACTUAL ->    "+colaEstados);
-                 
-                    System.out.println("HISTORIAL ACTUAL ->   "+historial);
+                    System.out.println("COLAESTADO ACTUAL ->    " + colaEstados);
+
+                    System.out.println("HISTORIAL ACTUAL ->   " + historial);
                     historial.add(temp);
-                 
+
                     expandir(temp);
 
                 }
-                
+
                 colaEstados.remove(0);  //Anchura
-       
+
             }
 
         }
@@ -139,7 +132,7 @@ public class Busqueda2 implements Constantes {
         if (e.getX() > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.getX() - 1][e.getY()].tipo != 'P') {
                 Estado2 izquierda = new Estado2(e.getX() - 1, e.getY(), 'L', e);
-                     izquierda.calcularH(objetivo);
+                izquierda.calcularH(objetivo);
                 if (getTipoBusqueda()) {
                     colaEstados.add(izquierda); // busqueda en anchura;
                 } else {
@@ -154,7 +147,7 @@ public class Busqueda2 implements Constantes {
     public void moverDerecha(Estado2 e) {
 
         if (e.getX() + 1 < n) {
-            if (lienzo.getLaberinto().getCasillas()[e.getX()+ 1][e.getY()].tipo != 'P') {
+            if (lienzo.getLaberinto().getCasillas()[e.getX() + 1][e.getY()].tipo != 'P') {
                 Estado2 derecha = new Estado2(e.getX() + 1, e.getY(), 'R', e);
                 derecha.calcularH(objetivo);
                 if (getTipoBusqueda()) {
@@ -201,4 +194,3 @@ public class Busqueda2 implements Constantes {
         }
     }
 }
-

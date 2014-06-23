@@ -2,7 +2,6 @@ package Sounds;
 
 import java.io.File;
 import javazoom.jlgui.basicplayer.BasicPlayer;
-import static sun.audio.AudioPlayer.player;
 
 public class Reproductor {
 

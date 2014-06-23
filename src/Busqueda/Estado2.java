@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Busqueda;
 
 import java.util.Objects;
-
 
 public class Estado2 implements Comparable {
 
@@ -26,38 +19,39 @@ public class Estado2 implements Comparable {
     public Estado2 getAntecesor() {
         return antecesor;
     }
-    
-    public void setAntecesor(Estado2 antecesor){
+
+    public void setAntecesor(Estado2 antecesor) {
         this.antecesor = antecesor;
     }
 
     public char getMovimiento() {
         return movimiento;
     }
-    
-    public void setMovimiento(char movimiento){
+
+    public void setMovimiento(char movimiento) {
         this.movimiento = movimiento;
     }
 
     public int getX() {
         return x;
     }
-    
-    public void setX(int x){
+
+    public void setX(int x) {
         this.x = x;
     }
 
     public int getY() {
         return y;
     }
-     
-    public void setY(int y){
+
+    public void setY(int y) {
         this.y = y;
     }
-     public void setG(int g) {
+
+    public void setG(int g) {
         this.g = g;
     }
-    
+
     public double getG() {
         return this.g;
     }
@@ -71,18 +65,18 @@ public class Estado2 implements Comparable {
     }
 
     public void calcularH(Estado2 meta) {
-        this.h = ((Math.pow(Math.abs(meta.x-this.x),2))
-              +(Math.pow(Math.abs(meta.y-this.y),2)));
+        this.h = ((Math.pow(Math.abs(meta.x - this.x), 2))
+                + (Math.pow(Math.abs(meta.y - this.y), 2)));
     }
-    
+
     public void calcularG() {
         this.g = 0;
     }
-    
+
     public void calcularF() {
         this.f = this.h + this.g;
     }
-    
+
     public double getF() {
         return f;
     }
@@ -107,13 +101,12 @@ public class Estado2 implements Comparable {
         return this.x == e.getX() && this.y == e.getY();
     }
 
-
     @Override
     public int compareTo(Object x) {
-        Estado2 o= (Estado2) x;
-        if(o.getH()>this.getH()){
+        Estado2 o = (Estado2) x;
+        if (o.getH() > this.getH()) {
             return -1;
-        }else if(o.getH()< this.getH()){
+        } else if (o.getH() < this.getH()) {
             return 1;
         }
         return 0;
@@ -128,6 +121,5 @@ public class Estado2 implements Comparable {
         hash = 71 * hash + this.movimiento;
         return hash;
     }
-
 
 }
