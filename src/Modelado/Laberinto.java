@@ -1,13 +1,16 @@
 package Modelado;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class Laberinto extends JComponent implements Constantes {
 
     public int Ancho, Largo;    //Dimensiones del Laberinto
     public Celda[][] Casillas;  //Las Casillas n x m
+    public ArrayList<Point> monedas;
     int i_jugador, j_jugador,
             i_jugador2, j_jugador2,
             i_premio, j_premio,
@@ -20,6 +23,7 @@ public class Laberinto extends JComponent implements Constantes {
     public AnimadorAutomatico animador;
 
     public Laberinto() {
+        monedas = new ArrayList<>();
         this.Casillas = new Celda[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -39,7 +43,27 @@ public class Laberinto extends JComponent implements Constantes {
         this.Largo = m * Longitud_Casilla;
         this.setSize(Ancho, Largo);
     }
+    
+    public Point menorDistancia(){ 
+        Point punto = new Point();
+        double menor=9999999;
 
+        for(int i=0; i < monedas.size() ; i++){
+            double opcion= (Math.sqrt(((Math.pow(Math.abs(monedas.get(i).x - i_jugador),2))
+                           +(Math.pow(Math.abs(monedas.get(i).y - j_jugador),2)))));
+            if(menor > opcion){
+               menor = opcion;
+               punto = new Point(monedas.get(i).x ,monedas.get(i).y);
+            }
+        } 
+         return punto;
+   
+   }     
+    
+    public void eliminarMoneda(int x, int y){
+        Point punto = new Point(x,y);
+        monedas.remove(punto);
+    }
     public void insertarObjetos() {
 
         Casillas[i_jugador][j_jugador].tipo = 'J';
@@ -131,6 +155,7 @@ public class Laberinto extends JComponent implements Constantes {
             if (Casillas[i_jugador][j_jugador - 1].tipo == 'F') {
                 //System.out.println("Jugador paso a: " + i_jugador + ", " + (j_jugador - 1));
                 VentanaPrincipal.countPremio++;
+                eliminarMoneda(i_jugador ,j_jugador-1);
                 System.out.println("Monedas: " + VentanaPrincipal.countPremio);
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 j_jugador -= 1;
@@ -162,6 +187,7 @@ public class Laberinto extends JComponent implements Constantes {
             if (Casillas[i_jugador][j_jugador + 1].tipo == 'F') {
                 //System.out.println("Jugador paso a: " + i_jugador + ", " + (j_jugador + 1));
                 VentanaPrincipal.countPremio++;
+                eliminarMoneda(i_jugador ,j_jugador+1);
                 System.out.println("Monedas: " + VentanaPrincipal.countPremio);
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 j_jugador += 1;
@@ -192,6 +218,7 @@ public class Laberinto extends JComponent implements Constantes {
             if (Casillas[i_jugador - 1][j_jugador].tipo == 'F') {
                 // System.out.println("Jugador paso a: " + (i_jugador - 1) + ", " + j_jugador);
                 VentanaPrincipal.countPremio++;
+                eliminarMoneda(i_jugador -1 ,j_jugador);
                 System.out.println("Monedas: " + VentanaPrincipal.countPremio);
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 i_jugador -= 1;
@@ -222,6 +249,7 @@ public class Laberinto extends JComponent implements Constantes {
             if (Casillas[i_jugador + 1][j_jugador].tipo == 'F') {
                 //System.out.println("Jugador paso a: " + (i_jugador + 1) + ", " + j_jugador);
                 VentanaPrincipal.countPremio++;
+                eliminarMoneda(i_jugador+1 ,j_jugador);
                 System.out.println("Monedas: " + VentanaPrincipal.countPremio);
                 Casillas[i_jugador][j_jugador].tipo = 'V';
                 i_jugador += 1;
@@ -510,7 +538,8 @@ public class Laberinto extends JComponent implements Constantes {
                 if(i%2==0 && (j-1)%3==0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M')
                     Casillas[i][j].tipo = 'P';
             }
-        } 
+        }
+        generarPremio(3);
         insertarMarco();
         insertarObjetos();
     }
@@ -665,11 +694,14 @@ public class Laberinto extends JComponent implements Constantes {
     
     
     public void generarPremio(int cantidad){
-
+     Point punto;
             do{
-                int x = (int) (Math.random() * n-3)+1;
-                int y = (int) (Math.random() * m-3)+1;
-                if(Casillas[x][y].tipo == 'V'){
+                int x = (int) (Math.random() * 13)+1;
+                int y = (int) (Math.random() * 13)+1;
+                 if(Casillas[x][y].tipo == 'V'){
+                    punto = new Point(x,y);
+                    monedas.add(punto);
+
                     Casillas[x][y].tipo = 'F';
                     cantidad=cantidad-1;
                 }                
