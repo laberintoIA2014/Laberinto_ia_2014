@@ -825,11 +825,9 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[6][5].tipo = 'P';
         Casillas[8][5].tipo = 'P';
         Casillas[2][6].tipo = 'P';
-        Casillas[9][6].tipo = 'P';
         Casillas[13][6].tipo = 'P';
         Casillas[2][7].tipo = 'P';
         Casillas[4][7].tipo = 'P';
-        Casillas[10][7].tipo = 'P';
         Casillas[13][7].tipo = 'P';
         Casillas[2][8].tipo = 'P';
         Casillas[5][8].tipo = 'P';
@@ -845,8 +843,6 @@ public class Laberinto extends JComponent implements Constantes {
         Casillas[10][11].tipo = 'P';
         Casillas[2][12].tipo = 'P';
         Casillas[6][12].tipo = 'P';
-        Casillas[7][12].tipo = 'P';
-        Casillas[8][12].tipo = 'P';
         Casillas[9][12].tipo = 'P';
         Casillas[1][13].tipo = 'P';
         Casillas[3][13].tipo = 'P';
