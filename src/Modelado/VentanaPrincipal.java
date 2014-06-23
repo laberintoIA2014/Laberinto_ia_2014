@@ -14,7 +14,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public AnimadorAutomatico animador;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
-    public static boolean StatusJugador1 = true, StatusJugador2 = true; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
 
     public VentanaPrincipal() {
@@ -52,12 +52,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador1 = new Busqueda3(lienzo);
                 buscador1.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador1.setRole(true);
-                buscador1.buscar();
+                buscador1.buscarJugador();
                 buscador1.calcularRuta();
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-                parar(1000);
+                parar(800);
             }
         }
     };
@@ -70,7 +70,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador2 = new Busqueda3(lienzo);
                 buscador2.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador2.setRole(false);
-                buscador2.buscar();
+                buscador2.buscarEnemigo();
                 buscador2.calcularRuta();
                 //System.out.println(buscador2.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
