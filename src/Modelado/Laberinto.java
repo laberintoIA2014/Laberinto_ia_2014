@@ -11,6 +11,7 @@ public class Laberinto extends JComponent implements Constantes {
     public int Ancho, Largo;    //Dimensiones del Laberinto
     public Celda[][] Casillas;  //Las Casillas n x m
     public ArrayList<Point> monedas;
+    public static boolean decision = false;
     int i_jugador, j_jugador,
             i_jugador2, j_jugador2,
             i_premio, j_premio,
@@ -43,7 +44,19 @@ public class Laberinto extends JComponent implements Constantes {
         this.Largo = m * Longitud_Casilla;
         this.setSize(Ancho, Largo);
     }
-
+    
+    public Point distanciaJugador(){
+       Point punto = new Point();
+       double opcion = (Math.sqrt(((Math.pow(Math.abs(i_jugador2 - i_jugador),2))
+                       +(Math.pow(Math.abs(j_jugador2 - j_jugador),2)))));
+       
+       if (opcion < 3){
+           decision = true;
+           return punto = new Point(i_jugador2,j_jugador2);
+       }
+       else return menorDistancia();
+    }
+    
     public Point menorDistancia() {
         Point punto = new Point();
         double menor = 9999999;
