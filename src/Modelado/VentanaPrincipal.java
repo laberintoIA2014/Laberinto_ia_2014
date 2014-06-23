@@ -88,7 +88,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     bool1 = false;
                     bool2 = false;
                     JOptionPane.showMessageDialog(null, "HAS GANADO!\nHas Obtenido " + countPremio + " Monedas", "Fin del Juego", 1);
-                    
                     break;
                 }
                 
