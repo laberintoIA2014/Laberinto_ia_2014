@@ -156,7 +156,7 @@ public class Busqueda4 implements Constantes {
                     if (verEspacioFuturo(e.x-1,e.y+1)) {
                             if (verEspacioFuturo(e.x+1,e.y+1)) {
                                     if (verEspacioFuturo(e.x,e.y+2)) {
-                                        Estado3 arriba = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'U', e);
+                                        Estado3 arriba = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
                                         colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }  
@@ -170,7 +170,7 @@ public class Busqueda4 implements Constantes {
                     if (verEspacioFuturo(e.x-2,e.y)) {
                             if (verEspacioFuturo(e.x-1,e.y-1)) {
                                     if (verEspacioFuturo(e.x-1,e.y+1)) {
-                                        Estado3 arriba = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'U', e);
+                                        Estado3 arriba = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'L', e);
                                         colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }  
@@ -184,7 +184,7 @@ public class Busqueda4 implements Constantes {
                     if (verEspacioFuturo(e.x+2,e.y)) {
                             if (verEspacioFuturo(e.x+1,e.y-1)) {
                                     if (verEspacioFuturo(e.x+1,e.y+1)) {
-                                        Estado3 arriba = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'U', e);
+                                        Estado3 arriba = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'R', e);
                                         colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }  

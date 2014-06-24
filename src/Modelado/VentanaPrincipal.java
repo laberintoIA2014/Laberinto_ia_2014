@@ -1,6 +1,5 @@
 package Modelado;
 
-
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -30,6 +29,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     JMenu menu;
     JMenuItem menuItem;
     public JLabel label, label2;
+    int cont = 0;
 
     public VentanaPrincipal() {
 
@@ -412,11 +412,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
         sonidofondo();
+
     }
 
     public void startThread() {
         if (!StatusJugador1 && !thread1.isAlive()) {
             thread1.start();
+
         } else if (thread1.isAlive() && !StatusJugador1) {
             thread1.resume();
         }
@@ -444,6 +446,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     Thread thread1 = new Thread() {
         @Override
         public void run() {
+            long startTime = System.currentTimeMillis();
+            int i = 0;
             while (bool1) {
 
                 buscador1 = new Busqueda4(lienzo);
@@ -453,20 +457,24 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador1.calcularRuta();
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
-
                 Timer lanzadorTareas = new Timer();
+                lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
 
-                lanzadorTareas.scheduleAtFixedRate(animador, 0, 50);
-                parar(700);
+                long endTime = System.currentTimeMillis();
+                long totalTime = endTime - startTime;
 
+                 parar(5 + (totalTime / (i + 1)));
+                i++;
             }
+
         }
     };
 
     Thread thread2 = new Thread() {
         @Override
         public void run() {
-
+    long startTime = System.currentTimeMillis();
+            int i = 0;
             while (bool2) {
                 buscador2 = new Busqueda4(lienzo);
                 buscador2.setTipoBusqueda(true); //true anchura, false profundidad
@@ -476,10 +484,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 //System.out.println(buscador2.pasos);
                 animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 Timer lanzadorTareas2 = new Timer();
+                lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 10);
+                       long endTime = System.currentTimeMillis();
+                long totalTime = endTime - startTime;
 
-                lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 50);
-                parar(700);
-
+                parar(5 + (totalTime / (i + 1)));
+                i++;
             }
         }
     };
@@ -526,7 +536,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         }
     };
 
-    public void parar(int time) {
+    public void parar(long time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
@@ -572,5 +582,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
 }
