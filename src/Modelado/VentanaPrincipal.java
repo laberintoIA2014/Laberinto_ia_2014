@@ -456,7 +456,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 Timer lanzadorTareas = new Timer();
 
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 50);
-                parar(1000);
+                parar(700);
 
             }
         }
@@ -477,7 +477,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 Timer lanzadorTareas2 = new Timer();
 
                 lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 50);
-                parar(1000);
+                parar(700);
 
             }
         }
