@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends JFrame implements Constantes {
 
-    public static Lienzo lienzo;
-    public AnimadorAutomatico animador;
+    public static Lienzo lienzo, lienzo2;
+    public AnimadorAutomatico animador, animador2;
     public Busqueda3 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
     public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
@@ -40,7 +40,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         label2 = new JLabel("IECI", (int) CENTER_ALIGNMENT);
         label2.setFont(new java.awt.Font("Impact", 0, 30));
         lienzo.getLaberinto().generarNivelNuevo(0);
-       
+
         ImageIcon icon = new ImageIcon("src/Images/laberinto_icon.jpg");
         Image Image = icon.getImage();
         this.setIconImage(Image);
@@ -410,7 +410,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             }
         });
         menu.add(menuItem);
-sonidofondo();
+        sonidofondo();
     }
 
     public void startThread() {
@@ -437,14 +437,14 @@ sonidofondo();
         }
 
         status.resume();
-        
+
     }
 
     Thread thread1 = new Thread() {
         @Override
         public void run() {
             while (bool1) {
-                
+
                 buscador1 = new Busqueda3(lienzo);
                 buscador1.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador1.setRole(true);
@@ -452,15 +452,12 @@ sonidofondo();
                 buscador1.calcularRuta();
                 //System.out.println(buscador1.pasos);
                 animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
+
                 Timer lanzadorTareas = new Timer();
-                try {
-                      lanzadorTareas.scheduleAtFixedRate(animador, 0, 1);
-                    thread1.sleep(100);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-              
-                
+
+                lanzadorTareas.scheduleAtFixedRate(animador, 0, 50);
+                parar(1000);
+
             }
         }
     };
@@ -468,7 +465,7 @@ sonidofondo();
     Thread thread2 = new Thread() {
         @Override
         public void run() {
-              
+
             while (bool2) {
                 buscador2 = new Busqueda3(lienzo);
                 buscador2.setTipoBusqueda(true); //true anchura, false profundidad
@@ -476,16 +473,12 @@ sonidofondo();
                 buscador2.buscarEnemigo();
                 buscador2.calcularRuta();
                 //System.out.println(buscador2.pasos);
-                animador = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
+                animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 Timer lanzadorTareas2 = new Timer();
-                     try {
-                          lanzadorTareas2.scheduleAtFixedRate(animador, 0, 1);
-                    thread2.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-  
+
+                lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 50);
+                parar(1000);
+
             }
         }
     };
@@ -573,7 +566,7 @@ sonidofondo();
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-                moneda.Play();
+            moneda.Play();
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

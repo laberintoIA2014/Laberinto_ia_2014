@@ -9,7 +9,7 @@ public class Reproductor {
 
     public Reproductor() {
 
-        player = new BasicPlayer();
+       player = new BasicPlayer();
     }
 
     public void Play() throws Exception {
