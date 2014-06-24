@@ -460,11 +460,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 Timer lanzadorTareas = new Timer();
                 lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
 
+
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
 
                  parar(5 + (totalTime / (i + 1)));
                 i++;
+
             }
 
         }
@@ -482,6 +484,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 buscador2.buscarEnemigo();
                 buscador2.calcularRuta();
                 //System.out.println(buscador2.pasos);
+
                 animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
                 Timer lanzadorTareas2 = new Timer();
                 lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 10);
@@ -490,6 +493,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
                 parar(5 + (totalTime / (i + 1)));
                 i++;
+
             }
         }
     };
