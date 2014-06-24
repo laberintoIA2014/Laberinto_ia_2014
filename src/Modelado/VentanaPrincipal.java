@@ -1,5 +1,6 @@
 package Modelado;
 
+import Busqueda.Busqueda;
 import Busqueda.Busqueda3;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
