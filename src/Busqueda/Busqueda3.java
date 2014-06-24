@@ -123,7 +123,8 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverArribaJugador(Estado3 e) {
-        if (e.y > 0) {
+        if (e.y > 2) {
+ 
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P'&& lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'H') {
                 if(e.y - 2>=0){
                     if(lienzo.getLaberinto().getCasillas()[e.x][e.y - 2].tipo != 'H'){
@@ -150,7 +151,7 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverAbajoJugador(Estado3 e) {
-        if (e.y + 1 < 16) {
+        if (e.y + 1 < 14) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P'&&lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'H') {
                  if(e.y +2<=16){
                     if(lienzo.getLaberinto().getCasillas()[e.x][e.y + 2].tipo != 'H'){
@@ -179,7 +180,7 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverIzquierdaJugador(Estado3 e) {
-        if (e.x > 0) {
+        if (e.x > 2) {
             if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'H') {
                 if(e.x - 2>=0){
                     if(lienzo.getLaberinto().getCasillas()[e.x - 2][e.y].tipo != 'H'){
@@ -206,7 +207,7 @@ public class Busqueda3 implements Constantes {
     }
 
     public synchronized void moverDerechaJugador(Estado3 e) {
-        if (e.x + 1 < 16) {
+        if (e.x + 1 < 14) {
             if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'H') {
                if(e.x + 2<=16){
                     if(lienzo.getLaberinto().getCasillas()[e.x + 2][e.y].tipo != 'H'){
