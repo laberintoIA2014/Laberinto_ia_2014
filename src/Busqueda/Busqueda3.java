@@ -106,18 +106,20 @@ public class Busqueda3 implements Constantes {
 
     public void expandirJugador(Estado3 temp) {
 
-        moverAbajoJugador(temp);
-        moverArribaJugador(temp);
         moverIzquierdaJugador(temp);
         moverDerechaJugador(temp);
+        moverAbajoJugador(temp);
+        moverArribaJugador(temp);
+        
 
     }
 
     public void expandirEnemigo(Estado3 temp) {
 
         moverAbajoEnemigo(temp);
-        moverArribaEnemigo(temp);
         moverIzquierdaEnemigo(temp);
+        moverArribaEnemigo(temp);
+        
         moverDerechaEnemigo(temp);
 
     }
@@ -140,10 +142,18 @@ public class Busqueda3 implements Constantes {
                                             //  colaEstados.add(0, arriba); // busqueda en profundidad;
                                         }
                                     }
+                                    else{
+                                        moverIzquierdaJugador(e);
+                                    }
                                 }
+                            }
+                            else{
+                                moverDerechaJugador(e);
+                                
                             }
                         }
                     }
+
                 }
             }
         }
@@ -166,8 +176,14 @@ public class Busqueda3 implements Constantes {
                                         } else {
                                             //  colaEstados.add(0, abajo); // busqueda en profundidad;
                                         }
+                                    }else{
+                                        
+                                        moverIzquierdaJugador(e);  
                                     }
                                 }
+                            }
+                            else{
+                                 moverDerechaJugador(e);  
                             }
                         }
                     }
@@ -195,8 +211,13 @@ public class Busqueda3 implements Constantes {
                                         } else {
                                             // colaEstados.add(0, izquierda); // busqueda en profundidad;
                                         }
+                                    }else{
+                                        moverArribaJugador(e);
                                     }
                                 }
+                            }
+                            else{
+                                moverAbajoJugador(e);
                             }
                         }
                     }
@@ -222,8 +243,12 @@ public class Busqueda3 implements Constantes {
                                         } else {
                                             //colaEstados.add(0, derecha); // busqueda en profundidad;
                                         }
+                                    }else{
+                                        moverArribaJugador(e);
                                     }
                                 }
+                            }else{
+                                moverAbajoJugador(e);
                             }
                         }
                     }
