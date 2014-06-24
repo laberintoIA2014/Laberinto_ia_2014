@@ -1,7 +1,6 @@
 package Modelado;
 
-import Busqueda.Busqueda;
-import Busqueda.Busqueda3;
+
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -17,12 +16,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import Busqueda.Busqueda4;
 
 public class VentanaPrincipal extends JFrame implements Constantes {
 
     public static Lienzo lienzo, lienzo2;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda3 buscador1, buscador2;
+    public Busqueda4 buscador1, buscador2;
     public static boolean bool1 = true, bool2 = true;
     public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
@@ -446,7 +446,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
             while (bool1) {
 
-                buscador1 = new Busqueda3(lienzo);
+                buscador1 = new Busqueda4(lienzo);
                 buscador1.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador1.setRole(true);
                 buscador1.buscarJugador();
@@ -468,7 +468,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         public void run() {
 
             while (bool2) {
-                buscador2 = new Busqueda3(lienzo);
+                buscador2 = new Busqueda4(lienzo);
                 buscador2.setTipoBusqueda(true); //true anchura, false profundidad
                 buscador2.setRole(false);
                 buscador2.buscarEnemigo();
