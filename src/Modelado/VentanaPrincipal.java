@@ -559,6 +559,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 }
                 JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
                 muerto = false;
+                    if (Thread1IsRunnig) {
+                        timer1.cancel();
+                        Thread1IsRunnig=false;
+                    }
+                    if (Thread2IsRunnig) {
+                        timer2.cancel();
+                        Thread2IsRunnig=false;
+                    }
+                    if (Thread3IsRunnig) {
+                        Thread3IsRunnig=false;
+                        timer3.cancel();
+                    }
                 lienzo.getLaberinto().vaciarLaberinto();
                 lienzo.getLaberinto().generarNivelNuevo(0);
                 lienzo.repaint();
