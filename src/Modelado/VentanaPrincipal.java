@@ -530,12 +530,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            busca = new Busqueda5(lienzo);
-            busca.setTipoBusqueda(true);
-            busca.setRole(false);
-            busca.buscarEnemigo();
-            busca.calcularRuta();
-            animador2 = new AnimadorAutomatico(lienzo, busca.pasos, false);
+            nuevo = new Busqueda_panxo(lienzo);
+            nuevo.setTipoBusqueda(true);
+            nuevo.setRole(false);
+            nuevo.buscarEnemigo();
+            nuevo.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, nuevo.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
         }
     };
@@ -594,12 +594,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     countPremio = 0;
 
                 } else {
-
                     resetJuego();
                     lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
                     label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
                     lienzo.repaint();
-                    parar(500);
                     if (Thread2IsRunnig) {
                         startThread2();
                     }
