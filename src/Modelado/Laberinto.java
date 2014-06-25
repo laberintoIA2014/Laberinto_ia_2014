@@ -728,17 +728,17 @@ public class Laberinto extends JComponent implements Constantes {
         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','P','P','P','P','V','V','V','V','V','P'}, 
-                                 {'P','V','V','V','V','P','P','P','P','P','P','V','V','V','V','P'}, 
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','P','P','P','V','V','P','P','P','V','V','V','P'}, 
-                                 {'P','V','V','V','P','P','P','V','V','P','P','P','V','V','V','P'}, 
-                                 {'P','V','V','V','P','P','P','V','V','P','P','P','V','V','V','P'},
+                                 {'P','V','V','P','V','V','V','V','V','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','P','V','V','V','V','V','V','P','V','V','V','P'},
+                                 {'P','V','V','V','V','P','V','V','V','V','P','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','P','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','P','P','V','V','V','P','V','V','P'},
+                                 {'P','V','V','P','V','V','V','P','P','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','P','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','P','V','V','V','V','P','V','V','V','V','P'},
+                                 {'P','V','V','V','P','V','V','V','V','V','V','P','V','V','V','P'},
+                                 {'P','V','V','P','V','V','V','V','V','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
         
@@ -756,44 +756,28 @@ public class Laberinto extends JComponent implements Constantes {
 
     public void generarNivel6() {
         NivelNum = 6;
-        Casillas[13][1].tipo = 'P';
-        Casillas[6][2].tipo = 'P';
-        Casillas[7][2].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[12][2].tipo = 'P';
-        Casillas[14][2].tipo = 'P';
-        Casillas[10][3].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[4][4].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[3][5].tipo = 'P';
-        Casillas[6][5].tipo = 'P';
-        Casillas[8][5].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[4][7].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[9][8].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[3][9].tipo = 'P';
-        Casillas[8][9].tipo = 'P';
-        Casillas[12][9].tipo = 'P';
-        Casillas[4][10].tipo = 'P';
-        Casillas[7][10].tipo = 'P';
-        Casillas[11][10].tipo = 'P';
-        Casillas[6][11].tipo = 'P';
-        Casillas[10][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[6][12].tipo = 'P';
-        Casillas[9][12].tipo = 'P';
-        Casillas[1][13].tipo = 'P';
-        Casillas[3][13].tipo = 'P';
-        Casillas[2][14].tipo = 'P';
+        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        
+        for(int i=0 ; i < mapa.length ; i++){
+            for(int j=0 ; j < mapa.length ; j++){
+                Casillas[j][i].tipo = mapa[i][j];
+            }
+        }
         eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
