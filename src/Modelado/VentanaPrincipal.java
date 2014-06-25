@@ -1,7 +1,5 @@
 package Modelado;
 
-import Busqueda.Busqueda4;
-import Busqueda.Busqueda5;
 import Busqueda.Busqueda_panxo;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
@@ -26,9 +24,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
     public Busqueda_panxo buscador, buscador2;
-    public Busqueda5 busca;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
-    public static int countPremio, sizePremio, InteligenciaJugador1, InteligenciaJugador2;
+    public static int countPremio, sizePremio, InteligenciaJugador1=1, InteligenciaJugador2=1;
     public JLabel label, label2;
     public static Timer timer1, timer2, timer3;
     public JMenuBar menuBar;
@@ -313,7 +310,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=1;
+                InteligenciaJugador2 = 1;
             }
         });
         menu.add(menuItem);
@@ -322,7 +319,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=2;
+                InteligenciaJugador2 = 2;
             }
         });
         menu.add(menuItem);
@@ -331,7 +328,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=3;
+                InteligenciaJugador2 = 3;
             }
         });
         menu.add(menuItem);
@@ -340,7 +337,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=4;
+                InteligenciaJugador2 = 4;
             }
         });
         menu.add(menuItem);
@@ -349,7 +346,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=5;
+                InteligenciaJugador2 = 5;
             }
         });
         menu.add(menuItem);
@@ -358,7 +355,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=6;
+                InteligenciaJugador2 = 6;
             }
         });
         menu.add(menuItem);
@@ -367,7 +364,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=7;
+                InteligenciaJugador2 = 7;
             }
         });
         menu.add(menuItem);
@@ -376,7 +373,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=8;
+                InteligenciaJugador2 = 8;
             }
         });
         menu.add(menuItem);
@@ -385,7 +382,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=9;
+                InteligenciaJugador2 = 9;
             }
         });
         menu.add(menuItem);
@@ -394,7 +391,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2=10;
+                InteligenciaJugador2 = 10;
             }
         });
         menu.add(menuItem);
@@ -518,6 +515,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             buscador = new Busqueda_panxo(lienzo);
             buscador.setTipoBusqueda(true);
             buscador.setRole(true);
+            buscador.setInteligenciaJugador(InteligenciaJugador1);
             buscador.buscarJugador();
             buscador.calcularRuta();
             animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
@@ -530,12 +528,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            busca = new Busqueda5(lienzo);
-            busca.setTipoBusqueda(true);
-            busca.setRole(false);
-            busca.buscarEnemigo();
-            busca.calcularRuta();
-            animador2 = new AnimadorAutomatico(lienzo, busca.pasos, false);
+            buscador2 = new Busqueda_panxo(lienzo);
+            buscador2.setTipoBusqueda(true);
+            buscador2.setRole(false);
+            buscador2.setInteligenciaEnemigo(InteligenciaJugador2);
+            buscador2.buscarEnemigo();
+            buscador2.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
         }
     };
@@ -558,21 +557,21 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
-              
-                    if (Thread1IsRunnig) {
-                        timer1.cancel();
-                        Thread1IsRunnig=false;
-                        StatusJugador2 = false;
-                    }
-                    if (Thread2IsRunnig) {
-                        timer2.cancel();
-                        Thread2IsRunnig=false;
-                        StatusJugador2 = false;
-                    }
-                    if (Thread3IsRunnig) {
-                        Thread3IsRunnig=false;
-                        timer3.cancel();
-                    }
+
+                if (Thread1IsRunnig) {
+                    timer1.cancel();
+                    Thread1IsRunnig = false;
+                    StatusJugador2 = false;
+                }
+                if (Thread2IsRunnig) {
+                    timer2.cancel();
+                    Thread2IsRunnig = false;
+                    StatusJugador2 = false;
+                }
+                if (Thread3IsRunnig) {
+                    Thread3IsRunnig = false;
+                    timer3.cancel();
+                }
                 lienzo.getLaberinto().vaciarLaberinto();
                 lienzo.getLaberinto().generarNivelNuevo(0);
                 lienzo.repaint();
