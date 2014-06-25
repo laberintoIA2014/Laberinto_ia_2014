@@ -114,7 +114,8 @@ public class Laberinto extends JComponent implements Constantes {
 
     void chequearTecla(KeyEvent evento) {
 
-        if (!VentanaPrincipal.Thread1IsRunnig && !VentanaPrincipal.Thread2IsRunnig) {
+
+        if (!VentanaPrincipal.muerto) {
 
             if (VentanaPrincipal.StatusJugador1) {
                 //jugador 1
@@ -330,6 +331,9 @@ public class Laberinto extends JComponent implements Constantes {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (j_jugador2 > 0) {
             if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'J') {
+                    VentanaPrincipal.muerto = true;
+                    VentanaPrincipal.StatusJugador1 = false;
+                    VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 -= 1;
@@ -352,6 +356,9 @@ public class Laberinto extends JComponent implements Constantes {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > j_jugador2) {
             if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'J') {
+                    VentanaPrincipal.muerto = true;
+                    VentanaPrincipal.StatusJugador1 = false;
+                    VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 += 1;
@@ -374,6 +381,9 @@ public class Laberinto extends JComponent implements Constantes {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (i_jugador2 > 0) {
             if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'J') {
+                    VentanaPrincipal.muerto = true;
+                    VentanaPrincipal.StatusJugador1 = false;
+                    VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 -= 1;
@@ -396,6 +406,9 @@ public class Laberinto extends JComponent implements Constantes {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > i_jugador2) {
             if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'J') {
+                    VentanaPrincipal.muerto = true;
+                    VentanaPrincipal.StatusJugador1 = false;
+                    VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 += 1;
@@ -1184,4 +1197,15 @@ public class Laberinto extends JComponent implements Constantes {
         }
     }
 
+    public int protegerMeta() {
+        int i;
+        if (VentanaPrincipal.countPremio + 1 <= VentanaPrincipal.sizePremio) {
+
+            i = VentanaPrincipal.countPremio;
+            return i;
+
+        } else {
+            return 0;
+        }
+    }
 }

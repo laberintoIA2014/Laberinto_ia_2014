@@ -1,15 +1,20 @@
 package Modelado;
 
+import Busqueda.Busqueda4;
+import Busqueda.Busqueda5;
 import Busqueda.Busqueda_panxo;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.input.KeyCode.J;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,15 +27,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda_panxo buscador, buscador2;
+    public Busqueda4 buscador, buscador2;
+    public Busqueda5 busca;
+    public Busqueda_panxo nuevo;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
     public static int countPremio, sizePremio;
     public JLabel label, label2;
     public static Timer timer1, timer2, timer3;
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem;
+    public JMenuBar menuBar;
+    public JMenu menu;
+    public JMenuItem menuItem;
     public static boolean Thread1IsRunnig = false, Thread2IsRunnig = false, Thread3IsRunnig = false, pause1 = false, pause2 = false, pause3 = false, muerto = false;
+    public Reproductor sonidoFondo = new Reproductor();
 
     public VentanaPrincipal() {
 
@@ -42,7 +50,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         label2 = new JLabel("IECI", (int) CENTER_ALIGNMENT);
         label2.setFont(new java.awt.Font("Impact", 0, 30));
         lienzo.getLaberinto().generarNivelNuevo(0);
-
+        sonidofondoGo();
         ImageIcon icon = new ImageIcon("src/Images/laberinto_icon.jpg");
         Image Image = icon.getImage();
         this.setIconImage(Image);
@@ -55,7 +63,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.setLocationRelativeTo(null);
 
         menuBar = new JMenuBar();
-        menu = new JMenu("LAB NIVEL");
+        menu = new JMenu("Laberinto Nivel");
         menuBar.add(menu);
         menuItem = new JMenuItem("Nivel 1");
         menuItem.addActionListener(new ActionListener() {
@@ -207,7 +215,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menu = new JMenu("P1 NIVEL");
+        menu = new JMenu("Jugador 1 Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
         menuItem = new JMenuItem("Nivel 1");
@@ -301,7 +309,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menu = new JMenu("P2 NIVEL");
+        menu = new JMenu("Jugador 2 Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
         menuItem = new JMenuItem("Nivel 1");
@@ -394,10 +402,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menu = new JMenu("J VS J");
+        menu = new JMenu("Duelo");
         menuBar.add(menu);
         setJMenuBar(menuBar);
-        menuItem = new JMenuItem("J1 VS J2");
+        menuItem = new JMenuItem("Jug. 1 Vs Jug. 2");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -405,108 +413,102 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 if (lienzo.getLaberinto().getNivelLaberinto() != 0) {
                     StatusJugador1 = true;
                     StatusJugador2 = true;
-
+                } else {
+                    StatusJugador1 = false;
+                    StatusJugador2 = false;
                 }
 
                 if (Thread1IsRunnig == true) {
                     timer1.cancel();
                     Thread1IsRunnig = false;
-
                 }
 
                 if (Thread2IsRunnig == true) {
                     timer2.cancel();
                     Thread2IsRunnig = false;
-
                 }
-
+                Thread1IsRunnig = false;
+                Thread2IsRunnig = false;
             }
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("J1 VS J2IA");
+        menuItem = new JMenuItem("Jug. 1 VS Jug. 2 IA");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StatusJugador1 = true;
-                StatusJugador2 = false;
-
-                if (Thread1IsRunnig == true) {
-                    timer1.cancel();
-                    Thread1IsRunnig = false;
-
-                }
-                if (Thread2IsRunnig == false) {
-                    startThread2();
+                if (lienzo.getLaberinto().getNivelLaberinto() != 0) {
+                    StatusJugador1 = true;
+                    StatusJugador2 = false;
+                    if (Thread1IsRunnig == true) {
+                        timer1.cancel();
+                        Thread1IsRunnig = false;
+                    }
+                    if (Thread2IsRunnig == false) {
+                        startThread2();
+                    }
                 }
 
             }
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("J1IA VS J2");
+        menuItem = new JMenuItem("Jug. 1 IA VS Jug. 2");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StatusJugador1 = false;
-                StatusJugador2 = true;
+                if (lienzo.getLaberinto().getNivelLaberinto() != 0) {
+                    StatusJugador1 = false;
+                    StatusJugador2 = true;
 
-                if (Thread2IsRunnig == true) {
-                    timer2.cancel();
-                    Thread2IsRunnig = false;
+                    if (Thread2IsRunnig == true) {
+                        timer2.cancel();
+                        Thread2IsRunnig = false;
+                    }
+                    if (Thread1IsRunnig == false) {
+                        startThread1();
+                    }
                 }
-                if (Thread1IsRunnig == false) {
-                    startThread1();
-                }
+
             }
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("J1IA VS J2IA");
+        menuItem = new JMenuItem("Jug. 1 IA VS Jug. 2 IA");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StatusJugador2 = false;
-                StatusJugador1 = false;
-                if (Thread1IsRunnig == false) {
-                    startThread1();
-
+                if (lienzo.getLaberinto().getNivelLaberinto() != 0) {
+                    StatusJugador2 = false;
+                    StatusJugador1 = false;
+                    if (Thread1IsRunnig == false) {
+                        startThread1();
+                    }
+                    if (Thread2IsRunnig == false) {
+                        startThread2();
+                    }
                 }
-
-                if (Thread2IsRunnig == false) {
-                    startThread2();
-
-                }
-
             }
         });
         menu.add(menuItem);
-
-        try {
-            sonidofondo();
-        } catch (Exception ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(new thread1(), 0, 200);
+        timer1.scheduleAtFixedRate(new thread1(), 0, 300);
     }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new thread2(), 0, 230);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 340);
     }
 
     public void startStatus() {
         Thread3IsRunnig = true;
         timer3 = new Timer();
-
-        timer3.scheduleAtFixedRate(status, 0, 1);
+        timer3.scheduleAtFixedRate(new status(), 0, 300);
     }
 
     class thread1 extends TimerTask {
@@ -514,7 +516,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador = new Timer();
-            buscador = new Busqueda_panxo(lienzo);
+            buscador = new Busqueda4(lienzo);
             buscador.setTipoBusqueda(true);
             buscador.setRole(true);
             buscador.buscarJugador();
@@ -529,24 +531,26 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            buscador2 = new Busqueda_panxo(lienzo);
-            buscador2.setTipoBusqueda(true); //true anchura, false profundidad
-            buscador2.setRole(false);
-            buscador2.buscarEnemigo();
-            buscador2.calcularRuta();
-            //System.out.println(buscador1.pasos);
-            animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
+            nuevo = new Busqueda_panxo(lienzo);
+            nuevo.setTipoBusqueda(true);
+            nuevo.setRole(false);
+            nuevo.buscarEnemigo();
+            nuevo.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, nuevo.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
-
         }
     };
 
-    TimerTask status = new TimerTask() {
+    class status extends TimerTask {
+
         @Override
         public void run() {
-            label2.setText("Monedas Count: " + countPremio);
+
             if (lienzo.getLaberinto().getNivelLaberinto() == 0) {
-                label2.setText("IECI");
+
+            } else {
+                label2.setText("Monedas Obtenidas: " + countPremio);
+                lienzo.repaint();
             }
             if (muerto == true) {
                 try {
@@ -554,27 +558,53 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 } catch (Exception ex) {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                JOptionPane.showMessageDialog(null, "HAS SIDO CAPTURADO!\nMONEDAS RECOLECTADAS: " + countPremio + " / " + sizePremio, "Fin del Juego!", 1);
+                JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
                 muerto = false;
-                parar(1000);
+                lienzo.getLaberinto().vaciarLaberinto();
+                lienzo.getLaberinto().generarNivelNuevo(0);
+                lienzo.repaint();
+                label.setText("FIN DEL JUEGO!");
+                label2.setText("IECI");
             } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
-
-                JOptionPane.showMessageDialog(null, "HAS SUPERADO EL NIVEL " + lienzo.getLaberinto().getNivelLaberinto() + "\nMONEDAS RECOLECTADAS: " + countPremio, "Nivel Completado!", 1);
-                if (countPremio == 10) {
-                    JOptionPane.showMessageDialog(null, "FELICITACIONES\nHAS COMPLETADO EL JUEGO!!!", "Juego Completado!", 1);
+                if (Thread2IsRunnig) {
+                    timer2.cancel();
+                }
+                JOptionPane.showMessageDialog(null, "Has Superado Nivel " + lienzo.getLaberinto().getNivelLaberinto() + "\nMonedas Obtenidas: " + countPremio, "Nivel Completado", 1);
+                if (countPremio == 10 && lienzo.getLaberinto().getNivelLaberinto() == 10) {
+                    JOptionPane.showMessageDialog(null, "FELICITACIONES\nHAS COMPLETADO EL JUEGO", "Juego Completado", 1);
                     lienzo.getLaberinto().vaciarLaberinto();
                     lienzo.getLaberinto().generarNivelNuevo(0);
                     lienzo.repaint();
                     label.setText("FIN DEL JUEGO!");
+                    label2.setText("IECI");
+                    StatusJugador1 = false;
+                    StatusJugador2 = false;
+                    if (Thread1IsRunnig) {
+                        timer1.cancel();
+                    }
+                    if (Thread2IsRunnig) {
+                        timer2.cancel();
+                    }
+                    if (Thread3IsRunnig) {
+                        timer3.cancel();
+                    }
+                    Thread1IsRunnig = false;
+                    Thread2IsRunnig = false;
+                    Thread3IsRunnig = false;
+
                     countPremio = 0;
+
                 } else {
-                    lienzo.getLaberinto().vaciarLaberinto();
-                    lienzo.getLaberinto().defaultPosicionLaberinto();
+
+                    resetJuego();
                     lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
-                    lienzo.repaint();
-                    countPremio = 0;
                     label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
-                    label2.setText("Monedas Count: " + countPremio);
+                    lienzo.repaint();
+                    parar(500);
+                    if (Thread2IsRunnig) {
+                        startThread2();
+                    }
+
                 }
             }
         }
@@ -588,6 +618,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
     public void resetJuego() {
+        sonidofondoGo();
         lienzo.getLaberinto().vaciarLaberinto();
         lienzo.getLaberinto().defaultPosicionLaberinto();
         countPremio = 0;
@@ -599,10 +630,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         primerasangre.Play();
     }
 
-    public void sonidofondo() throws Exception {
-        Reproductor fondo = new Reproductor();
-        fondo.AbrirFichero("src/Sounds/fondo.ogg");
-        fondo.Play();
+    public void sonidofondoGo() {
+        try {
+            sonidoFondo.AbrirFichero("src/Sounds/fondo.ogg");
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            sonidoFondo.Stop();
+            sonidoFondo.Play();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
