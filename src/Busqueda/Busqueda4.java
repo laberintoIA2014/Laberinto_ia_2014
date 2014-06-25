@@ -137,13 +137,13 @@ public class Busqueda4 implements Constantes {
 
     }
 
+    
     public synchronized void moverArribaJugador(Estado3 e) {
             if (verEspacioActual(e.x,e.y-1)) {
                     if (verEspacioFuturo(e.x,e.y-2)) {
                             if (verEspacioFuturo(e.x-1,e.y-1)) {
                                     if (verEspacioFuturo(e.x+1,e.y-1)) {
                                         Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                                        arriba.calcularF(e, objetivo);
                                         colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }
@@ -154,14 +154,12 @@ public class Busqueda4 implements Constantes {
 
     public synchronized void moverAbajoJugador(Estado3 e) {
             if (verEspacioActual(e.x,e.y+1)) {
-                    if (verEspacioFuturo(e.x-1,e.y+1)) {
+                    if (verEspacioFuturo(e.x,e.y+2)) {
                             if (verEspacioFuturo(e.x+1,e.y+1)) {
-                                    if (verEspacioFuturo(e.x,e.y+2)) {
-
-                                        Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'U', e);
-                                        abajo.calcularF(e, objetivo);
-                                        colaEstados.add(abajo); // busqueda en anchura;
-                
+                                    if (verEspacioFuturo(e.x+1,e.y+1)) {
+                                        Estado3 arriba = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                                        colaEstados.add(arriba); // busqueda en anchura;
+                                        
                                      }  
                              }
                      }
@@ -173,11 +171,8 @@ public class Busqueda4 implements Constantes {
                     if (verEspacioFuturo(e.x-2,e.y)) {
                             if (verEspacioFuturo(e.x-1,e.y-1)) {
                                     if (verEspacioFuturo(e.x-1,e.y+1)) {
-
-                                        Estado3 izquierda = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'U', e);
-                                        izquierda.calcularF(e, objetivo);
-                                        colaEstados.add(izquierda); // busqueda en anchura;
-
+                                        Estado3 arriba = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'L', e);
+                                        colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }  
                              }
@@ -190,11 +185,8 @@ public class Busqueda4 implements Constantes {
                     if (verEspacioFuturo(e.x+2,e.y)) {
                             if (verEspacioFuturo(e.x+1,e.y-1)) {
                                     if (verEspacioFuturo(e.x+1,e.y+1)) {
-
-                                        Estado3 derecha = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'U', e);
-                                        derecha.calcularF(e, objetivo);
-                                        colaEstados.add(derecha); // busqueda en anchura;
-
+                                        Estado3 arriba = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'R', e);
+                                        colaEstados.add(arriba); // busqueda en anchura;
                                         
                                      }  
                              }
@@ -263,7 +255,7 @@ public class Busqueda4 implements Constantes {
         do {
             pasos.add(antecesor.Movimiento);
             antecesor = antecesor.Antecesor;
-
+            
         } while (antecesor != null);
     }
 

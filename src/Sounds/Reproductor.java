@@ -5,11 +5,10 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 
 public class Reproductor {
 
-    private BasicPlayer player;
+    private final BasicPlayer player;
 
     public Reproductor() {
-
-       player = new BasicPlayer();
+        player = new BasicPlayer();
     }
 
     public void Play() throws Exception {

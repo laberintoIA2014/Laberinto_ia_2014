@@ -60,7 +60,6 @@ public class Busqueda3 implements Constantes {
                 colaEstados.remove(0); //Anchura
             }
         }
-
         if (exito) {
             //System.out.println("Ruta Calculada");
         } else {
@@ -110,7 +109,6 @@ public class Busqueda3 implements Constantes {
         moverDerechaJugador(temp);
         moverAbajoJugador(temp);
         moverArribaJugador(temp);
-        
 
     }
 
@@ -119,38 +117,33 @@ public class Busqueda3 implements Constantes {
         moverAbajoEnemigo(temp);
         moverIzquierdaEnemigo(temp);
         moverArribaEnemigo(temp);
-        
         moverDerechaEnemigo(temp);
 
     }
 
     public synchronized void moverArribaJugador(Estado3 e) {
         if (e.y > 2) {
- 
-            if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P'&& lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'H') {
-                if(e.y - 2>=0){
-                    if(lienzo.getLaberinto().getCasillas()[e.x][e.y - 2].tipo != 'H'){
-                        if(e.x-1>=0)
-                        {
-                            if(lienzo.getLaberinto().getCasillas()[e.x-1][e.y - 1].tipo != 'H'){
-                                if(e.x+1<=16){
-                                    if(lienzo.getLaberinto().getCasillas()[e.x+1][e.y - 1].tipo != 'H')
-                                    {
+
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'H') {
+                if (e.y - 2 >= 0) {
+                    if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 2].tipo != 'H') {
+                        if (e.x - 1 >= 0) {
+                            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y - 1].tipo != 'H') {
+                                if (e.x + 1 <= 16) {
+                                    if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y - 1].tipo != 'H') {
                                         Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
                                         if (getTipoBusqueda()) {
                                             colaEstados.add(arriba); // busqueda en anchura;
                                         } else {
                                             //  colaEstados.add(0, arriba); // busqueda en profundidad;
                                         }
-                                    }
-                                    else{
+                                    } else {
                                         moverIzquierdaJugador(e);
                                     }
                                 }
-                            }
-                            else{
+                            } else {
                                 moverDerechaJugador(e);
-                                
+
                             }
                         }
                     }
@@ -162,34 +155,30 @@ public class Busqueda3 implements Constantes {
 
     public synchronized void moverAbajoJugador(Estado3 e) {
         if (e.y + 1 < 14) {
-            if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P'&&lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'H') {
-                 if(e.y +2<=16){
-                    if(lienzo.getLaberinto().getCasillas()[e.x][e.y + 2].tipo != 'H'){
-                        if(e.x-1>=0)
-                        {
-                            if(lienzo.getLaberinto().getCasillas()[e.x-1][e.y + 1].tipo != 'H'){
-                                if(e.x+1<=16){
-                                    if(lienzo.getLaberinto().getCasillas()[e.x+1][e.y + 1].tipo != 'H')
-                                    {
+            if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'H') {
+                if (e.y + 2 <= 16) {
+                    if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 2].tipo != 'H') {
+                        if (e.x - 1 >= 0) {
+                            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y + 1].tipo != 'H') {
+                                if (e.x + 1 <= 16) {
+                                    if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y + 1].tipo != 'H') {
                                         Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
                                         if (getTipoBusqueda()) {
                                             colaEstados.add(abajo);
                                         } else {
                                             //  colaEstados.add(0, abajo); // busqueda en profundidad;
                                         }
-                                    }else{
-                                        
-                                        moverIzquierdaJugador(e);  
+                                    } else {
+
+                                        moverIzquierdaJugador(e);
                                     }
                                 }
-                            }
-                            else{
-                                 moverDerechaJugador(e);  
+                            } else {
+                                moverDerechaJugador(e);
                             }
                         }
                     }
                 }
-                
 
             }
         }
@@ -198,31 +187,28 @@ public class Busqueda3 implements Constantes {
     public synchronized void moverIzquierdaJugador(Estado3 e) {
         if (e.x > 2) {
             if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'H') {
-                if(e.x - 2>=0){
-                    if(lienzo.getLaberinto().getCasillas()[e.x - 2][e.y].tipo != 'H'){
-                        if(e.y-1>=0)
-                        {
-                            if(lienzo.getLaberinto().getCasillas()[e.x-1][e.y-1].tipo != 'H'){
-                                if(e.y+1<=16){
-                                    if(lienzo.getLaberinto().getCasillas()[e.x-1][e.y+1].tipo != 'H')
-                                    {
+                if (e.x - 2 >= 0) {
+                    if (lienzo.getLaberinto().getCasillas()[e.x - 2][e.y].tipo != 'H') {
+                        if (e.y - 1 >= 0) {
+                            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y - 1].tipo != 'H') {
+                                if (e.y + 1 <= 16) {
+                                    if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y + 1].tipo != 'H') {
                                         Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
                                         if (getTipoBusqueda()) {
                                             colaEstados.add(izquierda); // busqueda en anchura;
                                         } else {
                                             // colaEstados.add(0, izquierda); // busqueda en profundidad;
                                         }
-                                    }else{
+                                    } else {
                                         moverArribaJugador(e);
                                     }
                                 }
-                            }
-                            else{
+                            } else {
                                 moverAbajoJugador(e);
                             }
                         }
                     }
-                } 
+                }
             }
         }
     }
@@ -230,25 +216,23 @@ public class Busqueda3 implements Constantes {
     public synchronized void moverDerechaJugador(Estado3 e) {
         if (e.x + 1 < 14) {
             if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'H') {
-               if(e.x + 2<=16){
-                    if(lienzo.getLaberinto().getCasillas()[e.x + 2][e.y].tipo != 'H'){
-                        if(e.y-1>=0)
-                        {
-                            if(lienzo.getLaberinto().getCasillas()[e.x+1][e.y-1].tipo != 'H'){
-                                if(e.y+1<=16){
-                                    if(lienzo.getLaberinto().getCasillas()[e.x+1][e.y+1].tipo != 'H')
-                                    {
+                if (e.x + 2 <= 16) {
+                    if (lienzo.getLaberinto().getCasillas()[e.x + 2][e.y].tipo != 'H') {
+                        if (e.y - 1 >= 0) {
+                            if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y - 1].tipo != 'H') {
+                                if (e.y + 1 <= 16) {
+                                    if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y + 1].tipo != 'H') {
                                         Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
                                         if (getTipoBusqueda()) {
                                             colaEstados.add(derecha); // busqueda en anchura;
                                         } else {
                                             //colaEstados.add(0, derecha); // busqueda en profundidad;
                                         }
-                                    }else{
+                                    } else {
                                         moverArribaJugador(e);
                                     }
                                 }
-                            }else{
+                            } else {
                                 moverAbajoJugador(e);
                             }
                         }

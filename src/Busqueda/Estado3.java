@@ -13,8 +13,6 @@ public class Estado3 implements Comparable<Estado3> {
         this.x = x;
         this.y = y;
         this.f = f;
-        this.g = 0;
-        this.h = 0;
         this.Antecesor = Antecesor;
         this.Movimiento = Movimiento;
     }

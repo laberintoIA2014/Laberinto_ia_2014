@@ -1,11 +1,13 @@
 package Modelado;
 
+import Busqueda.Busqueda4;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -15,21 +17,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import Busqueda.Busqueda4;
 
 public class VentanaPrincipal extends JFrame implements Constantes {
 
-    public static Lienzo lienzo, lienzo2;
+    public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda4 buscador1, buscador2;
-    public static boolean bool1 = true, bool2 = true;
+    public Busqueda4 buscador, buscador2;
     public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
     public static int countPremio, sizePremio;
-    JMenuBar menuBar;
-    JMenu menu;
-    JMenuItem menuItem;
     public JLabel label, label2;
-    int cont = 0;
+    public static Timer timer1, timer2,timer3;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenuItem menuItem;
+    public static boolean Thread1IsRunnig = false, Thread2IsRunnig = false, Thread3IsRunnig = false, pause1=false, pause2=false, pause3=false, muerto=false;
 
     public VentanaPrincipal() {
 
@@ -54,7 +55,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         this.setLocationRelativeTo(null);
 
         menuBar = new JMenuBar();
-        menu = new JMenu("LABERINTO NIVEL");
+        menu = new JMenu("LAB NIVEL");
         menuBar.add(menu);
         menuItem = new JMenuItem("Nivel 1");
         menuItem.addActionListener(new ActionListener() {
@@ -63,6 +64,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel1();
                 label.setText("NIVEL 1");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -74,6 +78,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel2();
                 label.setText("NIVEL 2");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -85,6 +92,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel3();
                 label.setText("NIVEL 3");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -96,6 +106,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel4();
                 label.setText("NIVEL 4");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -107,6 +120,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel5();
                 label.setText("NIVEL 5");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -118,6 +134,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel6();
                 label.setText("NIVEL 6");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -129,6 +148,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel7();
                 label.setText("NIVEL 7");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -140,6 +162,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel8();
                 label.setText("NIVEL 8");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -151,6 +176,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel9();
                 label.setText("NIVEL 9");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -162,6 +190,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 resetJuego();
                 lienzo.getLaberinto().generarNivel10();
                 label.setText("NIVEL 10");
+                if (Thread3IsRunnig == false) {
+                    startStatus();
+                }
             }
         });
         menu.add(menuItem);
@@ -360,11 +391,26 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                if(lienzo.getLaberinto().getNivelLaberinto()!=0){
                 StatusJugador1 = true;
                 StatusJugador2 = true;
-                bool1 = true;
-                bool2 = true;
-                startThread();
+                }
+
+                if(Thread1IsRunnig == true){
+                    pause1 = true;
+           
+                 thread1.cancel();
+                 
+                
+                }
+               
+                if(Thread2IsRunnig == true){
+                    pause2 = true;
+           
+                    thread2.cancel();
+                 }
+         
             }
         });
         menu.add(menuItem);
@@ -375,10 +421,23 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 StatusJugador1 = true;
                 StatusJugador2 = false;
-                bool1 = true;
-                bool2 = true;
-                startThread();
-
+                
+                if (Thread2IsRunnig == false) {
+                    startThread2();
+                }
+                    if(pause2 == true){
+                    thread2.run();
+                    pause1=false;
+                }
+                
+                   if (Thread1IsRunnig == true) {
+                    thread1.cancel();
+                    pause1=true;
+                }
+                
+                
+                
+                
             }
         });
         menu.add(menuItem);
@@ -387,13 +446,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                StatusJugador1 = false;
-                StatusJugador2 = true;
-                bool1 = true;
-                bool2 = true;
-                startThread();
-
+                if (Thread1IsRunnig == false) {
+                    thread1.run();
+                    
+                }
             }
         });
         menu.add(menuItem);
@@ -402,145 +458,127 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StatusJugador1 = false;
-                StatusJugador2 = false;
-                bool1 = true;
-                bool2 = true;
 
-                startThread();
-            }
-        });
-        menu.add(menuItem);
-        sonidofondo();
-
-    }
-
-    public void startThread() {
-        if (!StatusJugador1 && !thread1.isAlive()) {
-            thread1.start();
-
-        } else if (thread1.isAlive() && !StatusJugador1) {
-            thread1.resume();
-        }
-        if (!StatusJugador2 && !thread2.isAlive()) {
-            thread2.start();
-        } else if (thread2.isAlive() && !StatusJugador2) {
-            thread2.resume();
-        }
-
-        if (thread1.isAlive() && StatusJugador1) {
-            thread1.suspend();
-        }
-
-        if (thread2.isAlive() && StatusJugador2) {
-            thread2.suspend();
-        }
-        if (!status.isAlive()) {
-            status.start();
-        }
-
-        status.resume();
-
-    }
-
-    Thread thread1 = new Thread() {
-        @Override
-        public void run() {
-            long startTime = System.currentTimeMillis();
-            int i = 0;
-            while (bool1) {
-
-                buscador1 = new Busqueda4(lienzo);
-                buscador1.setTipoBusqueda(true); //true anchura, false profundidad
-                buscador1.setRole(true);
-                buscador1.buscarJugador();
-                buscador1.calcularRuta();
-                //System.out.println(buscador1.pasos);
-                animador = new AnimadorAutomatico(lienzo, buscador1.pasos, true);
-                Timer lanzadorTareas = new Timer();
-                lanzadorTareas.scheduleAtFixedRate(animador, 0, 10);
-
-
-                long endTime = System.currentTimeMillis();
-                long totalTime = endTime - startTime;
-
-                 parar(5 + (totalTime / (i + 1)));
-                i++;
-
-            }
-
-        }
-    };
-
-    Thread thread2 = new Thread() {
-        @Override
-        public void run() {
-    long startTime = System.currentTimeMillis();
-            int i = 0;
-            while (bool2) {
-                buscador2 = new Busqueda4(lienzo);
-                buscador2.setTipoBusqueda(true); //true anchura, false profundidad
-                buscador2.setRole(false);
-                buscador2.buscarEnemigo();
-                buscador2.calcularRuta();
-                //System.out.println(buscador2.pasos);
-
-                animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
-                Timer lanzadorTareas2 = new Timer();
-                lanzadorTareas2.scheduleAtFixedRate(animador2, 0, 10);
-                       long endTime = System.currentTimeMillis();
-                long totalTime = endTime - startTime;
-
-                parar(5 + (totalTime / (i + 1)));
-                i++;
-
-            }
-        }
-    };
-
-    Thread status = new Thread() {
-        @Override
-        public void run() {
-            while (true) {
-                label2.setText("Monedas Count: " + countPremio);
-                if (!bool1 && !bool2) {
-                    sonidoPrimeraSangre();
-                    thread2.suspend();
-                    thread1.suspend();
-                    JOptionPane.showMessageDialog(null, "HAS SIDO CAPTURADO!\nMONEDAS RECOLECTADAS: " + countPremio + " / " + sizePremio, "Fin del Juego!", 1);
-                    status.suspend();
-                } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
-                    thread2.suspend();
-                    thread1.suspend();
-                    JOptionPane.showMessageDialog(null, "HAS SUPERADO EL NIVEL " + lienzo.getLaberinto().getNivelLaberinto() + "\nMONEDAS RECOLECTADAS: " + countPremio, "Nivel Completado!", 1);
-                    if (countPremio == 10) {
-                        StatusJugador1 = false;
-                        StatusJugador2 = false;
-                        JOptionPane.showMessageDialog(null, "FELICITACIONES\nHAS COMPLETADO EL JUEGO!!!", "Juego Completado!", 1);
-                        lienzo.getLaberinto().vaciarLaberinto();
-                        lienzo.getLaberinto().generarNivelNuevo(0);
-                        lienzo.repaint();
-                        label.setText("FIN DEL JUEGO!");
-                        label2.setText("IECI");
-                        status.suspend();
-                    } else {
-                        lienzo.getLaberinto().vaciarLaberinto();
-                        lienzo.getLaberinto().defaultPosicionLaberinto();
-                        lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
-                        lienzo.repaint();
-                        thread1.resume();
-                        thread2.resume();
-                        countPremio = 0;
-                        label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
-                        label2.setText("Monedas Count: " + countPremio);
-                    }
+                if (Thread1IsRunnig == false) {
+                    startThread1();
+                }else if(pause1 == true) {
+                  
+                    thread1.run();
+                    
+                }
+               
+                
+                if (Thread2IsRunnig == false) {
+                    startThread2();
+                }else if(pause2 == true){
+            
+                    thread2.run();
+                    
                 }
 
             }
+        });
+        menu.add(menuItem);
+
+        try {
+            sonidofondo();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void startThread1() {
+        Thread1IsRunnig = true;
+        timer1 = new Timer();
+        timer1.scheduleAtFixedRate(thread1, 0, 300);
+   }
+
+    public void startThread2() {
+        Thread2IsRunnig = true;
+        timer2 = new Timer();
+        timer2.scheduleAtFixedRate(thread2, 0, 300);
+    }
+
+    public void startStatus() {
+        Thread3IsRunnig = true;
+         timer3 = new Timer();
+     
+        timer3.scheduleAtFixedRate(status, 0, 1);
+    }
+  
+    TimerTask thread1 = new TimerTask() {
+        
+       @Override
+        public void run() {
+            Timer timer_animador = new Timer();
+            buscador = new Busqueda4(lienzo);
+            buscador.setTipoBusqueda(true);
+            buscador.setRole(true);
+            buscador.buscarJugador();
+            buscador.calcularRuta();
+            animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
+            timer_animador.scheduleAtFixedRate(animador, 1, 300);
+        }
+    };
+     
+    TimerTask thread2 = new TimerTask() {
+        @Override
+        public void run() {
+            Timer timer_animador2 = new Timer();
+            buscador2 = new Busqueda4(lienzo);
+            buscador2.setTipoBusqueda(true); //true anchura, false profundidad
+            buscador2.setRole(false);
+            buscador2.buscarEnemigo();
+            buscador2.calcularRuta();
+            //System.out.println(buscador1.pasos);
+            animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
+            timer_animador2.scheduleAtFixedRate(animador2, 1, 300);
+
         }
     };
 
-    public void parar(long time) {
+    TimerTask status = new TimerTask() {
+        @Override
+        public void run() {
+
+            label2.setText("Monedas Count: " + countPremio);
+            if (lienzo.getLaberinto().getNivelLaberinto() == 0) {
+                label2.setText("IECI");
+            }
+            if (muerto == true) {
+                try {
+                    sonidoPrimeraSangre();
+                } catch (Exception ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "HAS SIDO CAPTURADO!\nMONEDAS RECOLECTADAS: " + countPremio + " / " + sizePremio, "Fin del Juego!", 1);
+            } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
+
+                JOptionPane.showMessageDialog(null, "HAS SUPERADO EL NIVEL " + lienzo.getLaberinto().getNivelLaberinto() + "\nMONEDAS RECOLECTADAS: " + countPremio, "Nivel Completado!", 1);
+                if (countPremio == 10) {
+                    thread1.cancel();
+                    thread2.cancel();
+                    JOptionPane.showMessageDialog(null, "FELICITACIONES\nHAS COMPLETADO EL JUEGO!!!", "Juego Completado!", 1);
+                    lienzo.getLaberinto().vaciarLaberinto();
+                    lienzo.getLaberinto().generarNivelNuevo(0);
+                    lienzo.repaint();
+                    label.setText("FIN DEL JUEGO!");
+                    countPremio = 0;
+                } else {
+                    lienzo.getLaberinto().vaciarLaberinto();
+                    lienzo.getLaberinto().defaultPosicionLaberinto();
+                    lienzo.getLaberinto().generarNivelNuevo(lienzo.getLaberinto().getNivelLaberinto() + 1);
+                    lienzo.repaint();
+                    countPremio = 0;
+                    label.setText("NIVEL " + (lienzo.getLaberinto().getNivelLaberinto()));
+                    label2.setText("Monedas Count: " + countPremio);
+                }
+            }
+        }
+    };
+
+    public void parar(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
@@ -548,44 +586,21 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
     public void resetJuego() {
-        bool1 = true;
-        bool2 = true;
         lienzo.getLaberinto().vaciarLaberinto();
         lienzo.getLaberinto().defaultPosicionLaberinto();
-        lienzo.repaint();
         countPremio = 0;
-        status.resume();
-        parar(200);
-
     }
 
-    public void sonidoPrimeraSangre() {
-        Reproductor moneda = new Reproductor();
-        try {
-            moneda.AbrirFichero("src/Sounds/primerasangre.wav");
-        } catch (Exception ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            moneda.Play();
-        } catch (Exception ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void sonidoPrimeraSangre() throws Exception {
+        Reproductor primerasangre = new Reproductor();
+        primerasangre.AbrirFichero("src/Sounds/primerasangre.wav");
+        primerasangre.Play();
     }
 
-    public void sonidofondo() {
-        Reproductor moneda = new Reproductor();
-        try {
-            moneda.AbrirFichero("src/Sounds/fondo.ogg");
-        } catch (Exception ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            moneda.Play();
-        } catch (Exception ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void sonidofondo() throws Exception {
+        Reproductor fondo = new Reproductor();
+        fondo.AbrirFichero("src/Sounds/fondo.ogg");
+        fondo.Play();
     }
-
 
 }
