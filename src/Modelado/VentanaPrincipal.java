@@ -590,6 +590,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     lienzo.repaint();
                     label.setText("FIN DEL JUEGO!");
                     label2.setText("IECI");
+                    InteligenciaJugador1=1;
+                    InteligenciaJugador2=1;
                     StatusJugador1 = false;
                     StatusJugador2 = false;
                     if (Thread1IsRunnig) {
