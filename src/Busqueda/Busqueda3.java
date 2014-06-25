@@ -48,9 +48,7 @@ public class Busqueda3 implements Constantes {
             if (temp.equals(objetivo)) {
                 objetivo = temp;
                 exito = true;
-
             } else {
-
                 if (!historial.contains(temp)) {
                     //System.out.println("COLAESTADO ACTUAL ->    " + colaEstados);
                     //System.out.println("HISTORIAL ACTUAL ->   " + historial);
@@ -68,17 +66,14 @@ public class Busqueda3 implements Constantes {
     }
 
     public void buscarEnemigo() {
-
         if (role == false) {
             inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
             objetivo = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
             colaEstados.add(inicial);
         }
-
         if (inicial.equals(objetivo)) {
             exito = true;
         }
-
         while (!colaEstados.isEmpty() && !exito) {
             temp = colaEstados.poll();
             //System.out.println("WHILE ACTUAL->    " + temp.x + ", " + temp.y + " " + temp.getF());
@@ -95,7 +90,6 @@ public class Busqueda3 implements Constantes {
                 colaEstados.remove(0); //Anchura
             }
         }
-
         if (exito) {
             //System.out.println("Ruta Calculada");
         } else {
@@ -104,21 +98,17 @@ public class Busqueda3 implements Constantes {
     }
 
     public void expandirJugador(Estado3 temp) {
-
         moverIzquierdaJugador(temp);
         moverDerechaJugador(temp);
         moverAbajoJugador(temp);
         moverArribaJugador(temp);
-
     }
 
     public void expandirEnemigo(Estado3 temp) {
-
         moverAbajoEnemigo(temp);
         moverIzquierdaEnemigo(temp);
         moverArribaEnemigo(temp);
         moverDerechaEnemigo(temp);
-
     }
 
     public synchronized void moverArribaJugador(Estado3 e) {

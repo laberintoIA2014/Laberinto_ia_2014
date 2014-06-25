@@ -443,7 +443,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
                 if (Thread1IsRunnig == false) {
                     startThread1();
-                    thread1.run();
+         
                      StatusJugador1 = false;
                 }
 
@@ -451,7 +451,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
                 if (Thread2IsRunnig == false )  {
                     startThread2();
-                      thread2.run();
+                     
                 }
 
          
@@ -471,13 +471,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(thread1, 0, 450);
+        timer1.scheduleAtFixedRate(new thread1(), 0, 450);
     }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(thread2, 0, 450);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 450);
     }
 
     public void startStatus() {
@@ -487,7 +487,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         timer3.scheduleAtFixedRate(status, 0, 1);
     }
 
-    TimerTask thread1 = new TimerTask() {
+    class thread1 extends TimerTask {
 
         @Override
         public void run() {
@@ -502,7 +502,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         }
     };
 
-    TimerTask thread2 = new TimerTask() {
+    class thread2 extends TimerTask  {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
@@ -521,7 +521,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     TimerTask status = new TimerTask() {
         @Override
         public void run() {
-
             label2.setText("Monedas Count: " + countPremio);
             if (lienzo.getLaberinto().getNivelLaberinto() == 0) {
                 label2.setText("IECI");
@@ -536,12 +535,11 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 muerto = false;
                 StatusJugador1 = false;
                 StatusJugador2 = false;
+                parar(1000);
             } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
 
                 JOptionPane.showMessageDialog(null, "HAS SUPERADO EL NIVEL " + lienzo.getLaberinto().getNivelLaberinto() + "\nMONEDAS RECOLECTADAS: " + countPremio, "Nivel Completado!", 1);
                 if (countPremio == 10) {
-                    thread1.cancel();
-                    thread2.cancel();
                     JOptionPane.showMessageDialog(null, "FELICITACIONES\nHAS COMPLETADO EL JUEGO!!!", "Juego Completado!", 1);
                     lienzo.getLaberinto().vaciarLaberinto();
                     lienzo.getLaberinto().generarNivelNuevo(0);
