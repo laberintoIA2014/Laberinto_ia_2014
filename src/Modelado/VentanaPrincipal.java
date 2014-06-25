@@ -499,7 +499,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new thread2(), 0, 230);
+
+        timer2.scheduleAtFixedRate(new thread2(), 0, 210);
+
     }
 
     public void startStatus() {

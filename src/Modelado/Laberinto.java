@@ -725,67 +725,29 @@ public class Laberinto extends JComponent implements Constantes {
 
     public void generarNivel5() {
         NivelNum = 5;
-        Casillas[2][4].tipo = 'P';
-        Casillas[3][2].tipo = 'P';
-        Casillas[4][13].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[6][6].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[10][4].tipo = 'P';
-        Casillas[11][2].tipo = 'P';
-        Casillas[12][8].tipo = 'P';
-        Casillas[13][2].tipo = 'P';
-        Casillas[14][3].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[3][3].tipo = 'P';
-        Casillas[4][14].tipo = 'P';
-        Casillas[5][3].tipo = 'P';
-        Casillas[6][11].tipo = 'P';
-        Casillas[7][8].tipo = 'P';
-        Casillas[8][3].tipo = 'P';
-        Casillas[10][6].tipo = 'P';
-        Casillas[11][3].tipo = 'P';
-        Casillas[12][10].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[14][11].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[3][4].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[6][13].tipo = 'P';
-        Casillas[7][10].tipo = 'P';
-        Casillas[8][4].tipo = 'P';
-        Casillas[10][7].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[13][4].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[3][7].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[7][11].tipo = 'P';
-        Casillas[8][6].tipo = 'P';
-        Casillas[10][8].tipo = 'P';
-        Casillas[11][6].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[2][10].tipo = 'P';
-        Casillas[3][10].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[7][13].tipo = 'P';
-        Casillas[8][7].tipo = 'P';
-        Casillas[10][11].tipo = 'P';
-        Casillas[11][12].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[3][11].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[10][12].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[3][13].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[10][13].tipo = 'P';
-        Casillas[13][10].tipo = 'P';
+        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'}, 
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'}, 
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'}, 
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'}, 
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        
+        for(int i=0 ; i < mapa.length ; i++){
+            for(int j=0 ; j < mapa.length ; j++){
+                Casillas[i][j].tipo = mapa[i][j];
+            }
+        }
+        
         eliminarContornoInterno();
         insertarMarco();
         insertarObjetos();
