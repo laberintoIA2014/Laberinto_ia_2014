@@ -24,9 +24,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda4 buscador, buscador2;
+    public Busqueda_panxo buscador, buscador2;
     public Busqueda5 busca;
-    public Busqueda_panxo nuevo;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
     public static int countPremio, sizePremio, InteligenciaJugador1, InteligenciaJugador2;
     public JLabel label, label2;
@@ -515,12 +514,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador = new Timer();
-            nuevo = new Busqueda_panxo(lienzo);
-            nuevo.setTipoBusqueda(true);
-            nuevo.setRole(true);
-            nuevo.buscarJugador();
-            nuevo.calcularRuta();
-            animador = new AnimadorAutomatico(lienzo, nuevo.pasos, true);
+            buscador = new Busqueda_panxo(lienzo);
+            buscador.setTipoBusqueda(true);
+            buscador.setRole(true);
+            buscador.buscarJugador();
+            buscador.calcularRuta();
+            animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
             timer_animador.scheduleAtFixedRate(animador, 0, 1);
         }
     };
@@ -530,12 +529,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            nuevo = new Busqueda_panxo(lienzo);
-            nuevo.setTipoBusqueda(true);
-            nuevo.setRole(false);
-            nuevo.buscarEnemigo();
-            nuevo.calcularRuta();
-            animador2 = new AnimadorAutomatico(lienzo, nuevo.pasos, false);
+            buscador2 = new Busqueda_panxo(lienzo);
+            buscador2.setTipoBusqueda(true);
+            buscador2.setRole(false);
+            buscador2.buscarEnemigo();
+            buscador2.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
         }
     };
