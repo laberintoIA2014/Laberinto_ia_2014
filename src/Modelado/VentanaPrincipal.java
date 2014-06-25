@@ -66,6 +66,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 1");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -80,6 +81,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 2");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -94,6 +96,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 3");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -108,6 +111,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 4");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -122,6 +126,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 5");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -136,6 +141,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 6");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -150,6 +156,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 7");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -164,6 +171,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 8");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -178,6 +186,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 9");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -192,6 +201,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 label.setText("NIVEL 10");
                 if (Thread3IsRunnig == false) {
                     startStatus();
+                    lienzo.repaint();
                 }
             }
         });
@@ -422,13 +432,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 StatusJugador2 = false;
 
                 if (Thread1IsRunnig == true) {
-                    pause1 = true;
                     timer1.cancel();
                     Thread1IsRunnig = false;
 
                 }
                 if (Thread2IsRunnig == false) {
-                    startThread1();
+                    startThread2();
                 }
 
             }
@@ -443,13 +452,11 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 StatusJugador2 = true;
 
                 if (Thread2IsRunnig == true) {
-                    pause2 = true;
                     timer2.cancel();
                     Thread2IsRunnig = false;
                 }
                 if (Thread1IsRunnig == false) {
                     startThread1();
-                    Thread1IsRunnig = false;
                 }
             }
         });
@@ -459,15 +466,16 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                StatusJugador2 = false;
+                StatusJugador1 = false;
                 if (Thread1IsRunnig == false) {
                     startThread1();
-                    StatusJugador1 = false;
+
                 }
 
                 if (Thread2IsRunnig == false) {
                     startThread2();
-                    StatusJugador2 = false;
+
                 }
 
             }
@@ -548,8 +556,6 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 }
                 JOptionPane.showMessageDialog(null, "HAS SIDO CAPTURADO!\nMONEDAS RECOLECTADAS: " + countPremio + " / " + sizePremio, "Fin del Juego!", 1);
                 muerto = false;
-                StatusJugador1 = false;
-                StatusJugador2 = false;
                 parar(1000);
             } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
 
