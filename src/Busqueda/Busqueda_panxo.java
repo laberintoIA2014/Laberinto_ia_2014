@@ -14,7 +14,7 @@ public class Busqueda_panxo implements Constantes {
     public ArrayList<Character> pasos;
     public ArrayList<Point> premios;
     public int index_pasos;
-    public int nivel_busqueda_Jugador=1;
+    public int nivel_busqueda_Jugador=2;
     public int nivel_busqueda_Enemigo=2;
     public Estado3 inicial;
     public Estado3 objetivo;

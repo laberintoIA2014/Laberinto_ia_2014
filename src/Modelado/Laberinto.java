@@ -1153,8 +1153,7 @@ public class Laberinto extends JComponent implements Constantes {
 
     public int protegerMeta() {
         int i;
-        if (VentanaPrincipal.countPremio + 1 <= VentanaPrincipal.sizePremio) {
-
+        if (VentanaPrincipal.countPremio <= VentanaPrincipal.sizePremio) {
             i = VentanaPrincipal.countPremio;
             return i;
 

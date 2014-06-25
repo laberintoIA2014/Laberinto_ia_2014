@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -529,12 +530,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            buscador2 = new Busqueda_panxo(lienzo);
-            buscador2.setTipoBusqueda(true);
-            buscador2.setRole(false);
-            buscador2.buscarEnemigo();
-            buscador2.calcularRuta();
-            animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
+            busca = new Busqueda5(lienzo);
+            busca.setTipoBusqueda(true);
+            busca.setRole(false);
+            busca.buscarEnemigo();
+            busca.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, busca.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
         }
     };
@@ -557,14 +558,16 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
-                muerto = false;
+              
                     if (Thread1IsRunnig) {
                         timer1.cancel();
                         Thread1IsRunnig=false;
+                        StatusJugador2 = false;
                     }
                     if (Thread2IsRunnig) {
                         timer2.cancel();
                         Thread2IsRunnig=false;
+                        StatusJugador2 = false;
                     }
                     if (Thread3IsRunnig) {
                         Thread3IsRunnig=false;
@@ -575,6 +578,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 lienzo.repaint();
                 label.setText("FIN DEL JUEGO!");
                 label2.setText("IECI");
+                muerto = false;
             } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
                 if (Thread2IsRunnig) {
                     timer2.cancel();
@@ -630,6 +634,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         lienzo.getLaberinto().vaciarLaberinto();
         lienzo.getLaberinto().defaultPosicionLaberinto();
         countPremio = 0;
+        lienzo.getLaberinto().monedas = new ArrayList<>();
     }
 
     public void sonidoPrimeraSangre() throws Exception {

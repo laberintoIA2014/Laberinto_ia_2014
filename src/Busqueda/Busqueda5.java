@@ -9,57 +9,56 @@ import java.util.PriorityQueue;
 public class Busqueda5 implements Constantes {
 
     public Lienzo lienzo;
-    public PriorityQueue<Estado3> colaEstados;
+    public PriorityQueue<Estado3> colaEstados, colaEstados2;
     public ArrayList<Estado3> historial;
     public ArrayList<Character> pasos;
     public ArrayList<Point> premios;
     public int index_pasos;
+    public int nivel_busqueda_Jugador=2;
+    public int nivel_busqueda_Enemigo=3;
     public Estado3 inicial;
     public Estado3 objetivo;
     public Estado3 temp;
     public boolean exito, tipoBusqueda, role;
-    public int InteligenciaJugador1 = 0, InteligenciaJugador2 = 0;
 
     public Busqueda5(Lienzo lienzo) {
         this.lienzo = lienzo;
         colaEstados = new PriorityQueue<Estado3>();
+        colaEstados2 = new PriorityQueue<Estado3>();
         historial = new ArrayList<>();
         pasos = new ArrayList<>();
         index_pasos = 0;
         exito = false;
         premios = new ArrayList<>();
+
     }
 
-    public void buscarEnemigo() {
-        if (role == false) {
-            if (lienzo.getLaberinto().protegerMeta() > 1) {
-                System.out.println(lienzo.getLaberinto().protegerMeta());
-                inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
-                objetivo = new Estado3(lienzo.getLaberinto().getFinX() - 1, lienzo.getLaberinto().getFinY() - 1, 0, 'N', null);
-                colaEstados.add(inicial);
-            } else {
-                inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
-                objetivo = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
-                colaEstados.add(inicial);
-            }
+    public void buscarJugador() {
+        if (role == true) {
+            inicial = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
+            objetivo = new Estado3(lienzo.getLaberinto().distanciaJugador().x, lienzo.getLaberinto().distanciaJugador().y, 0, 'N', null);
+            colaEstados.add(inicial);
         }
-        
+
         if (inicial.equals(objetivo)) {
             exito = true;
         }
 
         while (!colaEstados.isEmpty() && !exito) {
+
             temp = colaEstados.poll();
             //System.out.println("WHILE ACTUAL->    " + temp.x + ", " + temp.y + " " + temp.getF());
             if (temp.equals(objetivo)) {
                 objetivo = temp;
                 exito = true;
+
             } else {
+
                 if (!historial.contains(temp)) {
                     //System.out.println("COLAESTADO ACTUAL ->    " + colaEstados);
                     //System.out.println("HISTORIAL ACTUAL ->   " + historial);
                     historial.add(temp);
-                    expandirEnemigo(temp);
+                    expandirJugador(temp);
                 }
                 colaEstados.remove(0); //Anchura
             }
@@ -72,18 +71,83 @@ public class Busqueda5 implements Constantes {
         }
     }
 
-    public boolean verEspacioActual(int x, int y) {
-        if (x >= 0 && y >= 0 && x <= 16 && y <= 16) {
-            return lienzo.getLaberinto().getCasillas()[x][y].tipo != 'P'
-                    && lienzo.getLaberinto().getCasillas()[x][y].tipo != 'H';
+    public void buscarEnemigo() {
+
+         if (role == false) {
+            if (lienzo.getLaberinto().protegerMeta()>0) {
+                System.out.println("Array de monedas "+lienzo.getLaberinto().protegerMeta());
+                  int x = (int) (Math.random() * 2) + 1;
+            int y = (int) (Math.random() * 3) + 1;
+                inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
+                objetivo = new Estado3(lienzo.getLaberinto().getFinX() - x, lienzo.getLaberinto().getFinY() - y, 0, 'N', null);
+                colaEstados2.add(inicial);
+                
+            } else {
+              
+                inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
+                objetivo = new Estado3(lienzo.getLaberinto().getJugadorX(), lienzo.getLaberinto().getJugadorY(), 0, 'N', null);
+                colaEstados2.add(inicial);
+            }
+        }
+
+        if (inicial.equals(objetivo)) {
+            exito = true;
+        }
+
+        while (!colaEstados2.isEmpty() && !exito) {
+            temp = colaEstados2.poll();
+            //System.out.println("WHILE ACTUAL->    " + temp.x + ", " + temp.y + " " + temp.getF());
+            if (temp.equals(objetivo)) {
+                objetivo = temp;
+                exito = true;
+            } else {
+                if (!historial.contains(temp)) {
+                    //System.out.println("COLAESTADO ACTUAL ->    " + colaEstados);
+                    //System.out.println("HISTORIAL ACTUAL ->   " + historial);
+                    historial.add(temp);
+                    expandirEnemigo(temp);
+                }
+                colaEstados2.remove(0); //Anchura
+            }
+        }
+
+        if (exito) {
+            //System.out.println("Ruta Calculada");
+        } else {
+            //System.out.println("La Ruta no pudo Calcularse");
+        }
+    }
+
+    public void expandirJugador(Estado3 temp) {
+
+        moverAbajoJugador(temp);
+        moverArribaJugador(temp);
+        moverIzquierdaJugador(temp);
+        moverDerechaJugador(temp);
+
+    }
+    
+    public boolean verEspacioActual_Jugador(int x, int y){
+       if(x>=0 && y >=0 && x<16 && y<16){
+        return  lienzo.getLaberinto().getCasillas()[x][y].tipo != 'P' &&
+                lienzo.getLaberinto().getCasillas()[x][y].tipo != 'H';
         }
         return false;
     }
-
-    public boolean verEspacioFuturo(int x, int y) {
-        if (x >= 0 && y >= 0 && x <= 16 && y <= 16) {
-            return lienzo.getLaberinto().getCasillas()[x][y].tipo != 'H';
+    
+    public boolean verEspacioFuturo_Jugador(int x, int y){
+        if(x>=0 && y >=0 && x<16 && y<16){
+        return  lienzo.getLaberinto().getCasillas()[x][y].tipo != 'H';
         }
+        return false;
+    }
+    
+    public boolean verEspacioActual_Enemigo(int x, int y){
+        if(x>=0 && y >=0 && x<16 && y<16){
+            return lienzo.getLaberinto().getCasillas()[x][y].tipo != 'P' && 
+                   lienzo.getLaberinto().getCasillas()[x][y].tipo != 'F' && 
+                   lienzo.getLaberinto().getCasillas()[x][y].tipo != 'M';
+         }
         return false;
     }
 
@@ -96,128 +160,184 @@ public class Busqueda5 implements Constantes {
 
     }
 
-    public synchronized void moverArribaEnemigo(Estado3 e) {
-        if (e.y > 0) {
-            if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'M') {
-                Estado3 arriba = new Estado3(e.x, e.y - 1, -3 * e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                if (arriba.h >= 10.0 && !historial.contains(arriba)) {
-                    colaEstados.add(arriba);
-                    historial.add(arriba);
-
-                    if (arriba.equals(objetivo)) {
-                        inicial = arriba;
-
-                        if (inicial.equals(objetivo)) {
-                            exito = true;
-                        } else {
-                            calcularRuta();
-                            colaEstados.clear();
-                            historial.clear();
-                            colaEstados.add(inicial);
-                            historial.add(inicial);
-                            buscarEnemigo();
-                        }
-                    }
-                }
-
+    
+    public synchronized void moverArribaJugador(Estado3 e) {
+        if(nivel_busqueda_Jugador==1){      
+            if (verEspacioActual_Jugador(e.x,e.y-1)) {
+                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo)*(Math.random()*2)*-1, 'U', e);
                 colaEstados.add(arriba); // busqueda en anchura;
-
+                                        
             }
+      }
+        
+        if(nivel_busqueda_Jugador==2){      
+            if (verEspacioActual_Jugador(e.x,e.y-1)&&  
+                verEspacioFuturo_Jugador(e.x,e.y-2)) {
+                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
+                colaEstados.add(arriba); // busqueda en anchura;
+                                        
+            }
+      }
+        
+        if(nivel_busqueda_Jugador==3){      
+        if (verEspacioActual_Jugador(e.x,e.y-1)   &&  
+                verEspacioFuturo_Jugador(e.x,e.y-2)   && 
+                verEspacioFuturo_Jugador(e.x-1,e.y-1) && 
+                verEspacioFuturo_Jugador(e.x+1,e.y-1)){
+                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
+                colaEstados.add(arriba); // busqueda en anchura;
+                                        
+            }
+      }                     
+                 
+     }
 
+    public synchronized void moverAbajoJugador(Estado3 e) {
+        if(nivel_busqueda_Jugador==1){ 
+            if (verEspacioActual_Jugador(e.x,e.y+1)){
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo)*(Math.random()*2)*-1, 'D', e);
+                colaEstados.add(abajo); // busqueda en anchura;
+                                        
+              }
+          }
+        
+        if(nivel_busqueda_Jugador==2){ 
+            if (verEspacioActual_Jugador(e.x,e.y+1) && 
+                verEspacioFuturo_Jugador(e.x,e.y+2)){
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                colaEstados.add(abajo); // busqueda en anchura;
+                                        
+              }
+          }
+        
+        if(nivel_busqueda_Jugador==3){ 
+            if (verEspacioActual_Jugador(e.x,e.y+1) && 
+                verEspacioFuturo_Jugador(e.x,e.y+2) &&
+                verEspacioFuturo_Jugador(e.x+1,e.y+1)&&  
+                verEspacioFuturo_Jugador(e.x+1,e.y+1)){
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                colaEstados.add(abajo); // busqueda en anchura;
+                                        
+              }
+          } 
+      }
+           
+
+    public synchronized void moverIzquierdaJugador(Estado3 e) {
+        if(nivel_busqueda_Jugador==1){ 
+            if (verEspacioActual_Jugador(e.x-1,e.y)){
+                Estado3 izquierda = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo)*(Math.random()*2)*-1, 'L', e);
+                colaEstados.add(izquierda); // busqueda en anchura;
+
+             }  
         }
+        if(nivel_busqueda_Jugador==2){ 
+            if (verEspacioActual_Jugador(e.x-1,e.y) &&
+                verEspacioFuturo_Jugador(e.x-2,e.y)) {
+                Estado3 izquierda = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'L', e);
+                colaEstados.add(izquierda); // busqueda en anchura;
 
+             }  
+        }
+        
+        if(nivel_busqueda_Jugador==3){ 
+            if (verEspacioActual_Jugador(e.x-1,e.y) &&
+                verEspacioFuturo_Jugador(e.x-2,e.y) &&
+                verEspacioFuturo_Jugador(e.x-1,e.y-1) &&
+                verEspacioFuturo_Jugador(e.x-1,e.y+1)) {
+                Estado3 izquierda = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y, objetivo), 'L', e);
+                colaEstados.add(izquierda); // busqueda en anchura;
+
+             }  
+        }     
     }
 
+    public synchronized void moverDerechaJugador(Estado3 e) {
+        if(nivel_busqueda_Jugador==1){  
+            if (verEspacioActual_Jugador(e.x+1,e.y)){
+                Estado3 derecha = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo)*(Math.random()*2)*-1, 'R', e);
+                colaEstados.add(derecha); // busqueda en anchura;
+            }                                 
+        } 
+        if(nivel_busqueda_Jugador==2){  
+            if (verEspacioActual_Jugador(e.x+1,e.y) && 
+                verEspacioFuturo_Jugador(e.x+2,e.y)) {
+                Estado3 derecha = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'R', e);
+                colaEstados.add(derecha); // busqueda en anchura;
+            }                                 
+        } 
+        
+       if(nivel_busqueda_Jugador==3){  
+        if (verEspacioActual_Jugador(e.x+1,e.y) && 
+            verEspacioFuturo_Jugador(e.x+2,e.y) && 
+            verEspacioFuturo_Jugador(e.x+1,e.y-1)&& 
+            verEspacioFuturo_Jugador(e.x+1,e.y+1)) {
+            Estado3 derecha = new Estado3(e.x+1, e.y , e.setF(e.x+1, e.y, objetivo), 'R', e);
+            colaEstados.add(derecha); // busqueda en anchura;
+                                        
+        }                              }  
+     
+    }
+
+    public synchronized void moverArribaEnemigo(Estado3 e) {
+         if(nivel_busqueda_Enemigo==2){  
+           if (verEspacioActual_Enemigo(e.x,e.y-1)){
+               Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo)*Math.random()*-1, 'U', e);
+               colaEstados2.add(arriba); // busqueda en anchura;
+           }
+         }
+         if(nivel_busqueda_Enemigo==3){  
+           if (verEspacioActual_Enemigo(e.x,e.y-1)){
+               Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
+               colaEstados2.add(arriba); // busqueda en anchura;
+           }
+         }
+     }
+
     public synchronized void moverAbajoEnemigo(Estado3 e) {
-        if (e.y + 1 < 16) {
-            if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'M') {
-                Estado3 abajo = new Estado3(e.x, e.y + 1, -3 * e.setF(e.x, e.y + 1, objetivo), 'D', e);
-
-                if (abajo.h >= 10.0 && !historial.contains(abajo)) {
-                    colaEstados.add(abajo);
-                    historial.add(abajo);
-
-                    if (abajo.equals(objetivo)) {
-                        inicial = abajo;
-
-                        if (inicial.equals(objetivo)) {
-                            exito = true;
-                        } else {
-                            calcularRuta();
-                            colaEstados.clear();
-                            historial.clear();
-                            colaEstados.add(inicial);
-                            historial.add(inicial);
-                            buscarEnemigo();
-                        }
-                    }
-                }
-
-                colaEstados.add(abajo);
-
+        if(nivel_busqueda_Enemigo==2){  
+            if (verEspacioActual_Enemigo(e.x,e.y+1)){
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo)*Math.random()*2, 'D', e);
+                colaEstados2.add(abajo);
             }
-
         }
+        if(nivel_busqueda_Enemigo==3){  
+            if (verEspacioActual_Enemigo(e.x,e.y+1)){
+                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                colaEstados2.add(abajo);
+            }
+        }     
     }
 
     public synchronized void moverIzquierdaEnemigo(Estado3 e) {
-        if (e.x > 0) {
-            if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'M') {
-                Estado3 izquierda = new Estado3(e.x - 1, e.y, -3 * e.setF(e.x - 1, e.y, objetivo), 'L', e);
-
-                if (izquierda.h >= 10.0 && !historial.contains(izquierda)) {
-                    colaEstados.add(izquierda);
-                    historial.add(izquierda);
-
-                    if (izquierda.equals(objetivo)) {
-                        inicial = izquierda;
-
-                        if (inicial.equals(objetivo)) {
-                            exito = true;
-                        } else {
-                            calcularRuta();
-                            colaEstados.clear();
-                            historial.clear();
-                            colaEstados.add(inicial);
-                            historial.add(inicial);
-                            buscarEnemigo();
-                        }
-                    }
-                }
-
-                colaEstados.add(izquierda);
-
+        if(nivel_busqueda_Enemigo==2){  
+            if (verEspacioActual_Enemigo(e.x-1,e.y)){
+                Estado3 izquierda = new Estado3(e.x-1, e.y , e.setF(e.x-1, e.y , objetivo)*Math.random()*-1, 'L', e);
+                colaEstados2.add(izquierda);
             }
         }
+      if(nivel_busqueda_Enemigo==3){    
+        if (verEspacioActual_Enemigo(e.x-1,e.y)){
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
+                colaEstados2.add(izquierda); // busqueda en anchura;
+
+         }
+      }  
     }
 
     public synchronized void moverDerechaEnemigo(Estado3 e) {
-        if (e.x + 1 < 16) {
-            if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'M') {
-                Estado3 derecha = new Estado3(e.x + 1, e.y, -3 * e.setF(e.x + 1, e.y, objetivo), 'R', e);
-
-                if (derecha.h >= 10.0 && !historial.contains(derecha)) {
-                    colaEstados.add(derecha);
-                    historial.add(derecha);
-
-                    if (derecha.equals(objetivo)) {
-                        inicial = derecha;
-
-                        if (inicial.equals(objetivo)) {
-                            exito = true;
-                        } else {
-                            calcularRuta();
-                            colaEstados.clear();
-                            historial.clear();
-                            colaEstados.add(inicial);
-                            historial.add(inicial);
-                            buscarEnemigo();
-                        }
-                    }
-                }
-                colaEstados.add(derecha);
+        if(nivel_busqueda_Enemigo==2){    
+        if (verEspacioActual_Enemigo(e.x+1,e.y)){
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo)*Math.random()*2, 'R', e);
+                colaEstados2.add(derecha); // busqueda en anchura;
+         }
+     } 
+        if(nivel_busqueda_Enemigo==3){    
+           if (verEspacioActual_Enemigo(e.x+1,e.y)){
+                   Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
+                   colaEstados2.add(derecha); // busqueda en anchura;
             }
-        }
+        } 
     }
 
     public void calcularRuta() {
@@ -225,7 +345,7 @@ public class Busqueda5 implements Constantes {
         do {
             pasos.add(antecesor.Movimiento);
             antecesor = antecesor.Antecesor;
-
+            
         } while (antecesor != null);
     }
 
@@ -251,21 +371,4 @@ public class Busqueda5 implements Constantes {
         } catch (InterruptedException e) {
         }
     }
-
-    public void getInteligenciaJugador() {
-
-    }
-
-    public void setInteligenciaJugador(int x) {
-
-    }
-
-    public void getInteligenciaEnemigo() {
-
-    }
-
-    public void setInteligenciaEnemigo(int x) {
-
-    }
-
 }
