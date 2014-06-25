@@ -18,6 +18,7 @@ public class Busqueda5 implements Constantes {
     public Estado3 objetivo;
     public Estado3 temp;
     public boolean exito, tipoBusqueda, role;
+    public int InteligenciaJugador1 = 0, InteligenciaJugador2 = 0;
 
     public Busqueda5(Lienzo lienzo) {
         this.lienzo = lienzo;
@@ -27,7 +28,6 @@ public class Busqueda5 implements Constantes {
         index_pasos = 0;
         exito = false;
         premios = new ArrayList<>();
-
     }
 
     public void buscarJugador() {
@@ -69,14 +69,14 @@ public class Busqueda5 implements Constantes {
     }
 
     public void buscarEnemigo() {
-        
+
         //Si quedan solo 2 monedas
         if (role == false) {
             if (lienzo.getLaberinto().protegerMeta() > 2) {
                 System.out.println(lienzo.getLaberinto().protegerMeta());
                 inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
-                objetivo = new Estado3(lienzo.getLaberinto().getFinX()-1, lienzo.getLaberinto().getFinY()-1, 0, 'N', null);
-                
+                objetivo = new Estado3(lienzo.getLaberinto().getFinX() - 1, lienzo.getLaberinto().getFinY() - 1, 0, 'N', null);
+
                 colaEstados.add(inicial);
             } else {
                 inicial = new Estado3(lienzo.getLaberinto().getJugador2X(), lienzo.getLaberinto().getJugador2Y(), 0, 'N', null);
@@ -205,44 +205,32 @@ public class Busqueda5 implements Constantes {
         }
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public synchronized void moverArribaEnemigo(Estado3 e) {
         if (e.y > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y - 1].tipo != 'M') {
-                Estado3 arriba = new Estado3(e.x, e.y - 1, -3*e.setF(e.x, e.y - 1, objetivo), 'U', e);
-             if(arriba.h >= 10.0 && !historial.contains(arriba)) {
-                       colaEstados.add(arriba);
-                       historial.add(arriba);
+                Estado3 arriba = new Estado3(e.x, e.y - 1, -3 * e.setF(e.x, e.y - 1, objetivo), 'U', e);
+                if (arriba.h >= 10.0 && !historial.contains(arriba)) {
+                    colaEstados.add(arriba);
+                    historial.add(arriba);
 
-                       if (arriba.equals(objetivo)) {
-                           inicial = arriba;
-                          
-                           if (inicial.equals(objetivo)) {
-                               exito = true;
-                           }else{
-                               calcularRuta();
-                               colaEstados.clear();
-                               historial.clear();
-                               colaEstados.add(inicial);
-                               historial.add(inicial);
-                               buscarEnemigo();
-                           }
-                       }
-                   }
-             
-                    colaEstados.add(arriba); // busqueda en anchura;
-           
+                    if (arriba.equals(objetivo)) {
+                        inicial = arriba;
+
+                        if (inicial.equals(objetivo)) {
+                            exito = true;
+                        } else {
+                            calcularRuta();
+                            colaEstados.clear();
+                            historial.clear();
+                            colaEstados.add(inicial);
+                            historial.add(inicial);
+                            buscarEnemigo();
+                        }
+                    }
+                }
+
+                colaEstados.add(arriba); // busqueda en anchura;
+
             }
 
         }
@@ -252,31 +240,29 @@ public class Busqueda5 implements Constantes {
     public synchronized void moverAbajoEnemigo(Estado3 e) {
         if (e.y + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x][e.y + 1].tipo != 'M') {
-                Estado3 abajo = new Estado3(e.x, e.y + 1, -3*e.setF(e.x, e.y + 1, objetivo), 'D', e);
-           
-                   if(abajo.h >= 10.0 && !historial.contains(abajo)) {
-                       colaEstados.add(abajo);
-                       historial.add(abajo);
+                Estado3 abajo = new Estado3(e.x, e.y + 1, -3 * e.setF(e.x, e.y + 1, objetivo), 'D', e);
 
-                       if (abajo.equals(objetivo)) {
-                           inicial = abajo;
-                          
-                           if (inicial.equals(objetivo)) {
-                               exito = true;
-                           }else{
-                               calcularRuta();
-                               colaEstados.clear();
-                               historial.clear();
-                               colaEstados.add(inicial);
-                               historial.add(inicial);
-                               buscarEnemigo();
-                           }
-                       }
-                   }
-                
-                
+                if (abajo.h >= 10.0 && !historial.contains(abajo)) {
                     colaEstados.add(abajo);
-         
+                    historial.add(abajo);
+
+                    if (abajo.equals(objetivo)) {
+                        inicial = abajo;
+
+                        if (inicial.equals(objetivo)) {
+                            exito = true;
+                        } else {
+                            calcularRuta();
+                            colaEstados.clear();
+                            historial.clear();
+                            colaEstados.add(inicial);
+                            historial.add(inicial);
+                            buscarEnemigo();
+                        }
+                    }
+                }
+
+                colaEstados.add(abajo);
 
             }
 
@@ -286,32 +272,30 @@ public class Busqueda5 implements Constantes {
     public synchronized void moverIzquierdaEnemigo(Estado3 e) {
         if (e.x > 0) {
             if (lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x - 1][e.y].tipo != 'M') {
-                Estado3 izquierda = new Estado3(e.x - 1, e.y, -3*e.setF(e.x - 1, e.y, objetivo), 'L', e);
-           
-                   if(izquierda.h >= 10.0 && !historial.contains(izquierda)) {
-                       colaEstados.add(izquierda);
-                       historial.add(izquierda);
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, -3 * e.setF(e.x - 1, e.y, objetivo), 'L', e);
 
-                       if (izquierda.equals(objetivo)) {
-                           inicial = izquierda;
-                          
-                           if (inicial.equals(objetivo)) {
-                               exito = true;
-                           }else{
-                               calcularRuta();
-                               colaEstados.clear();
-                               historial.clear();
-                               colaEstados.add(inicial);
-                               historial.add(inicial);
-                               buscarEnemigo();
-                           }
-                       }
-                   }
-               
-         
-                    colaEstados.add(izquierda); 
- 
-           
+                if (izquierda.h >= 10.0 && !historial.contains(izquierda)) {
+                    colaEstados.add(izquierda);
+                    historial.add(izquierda);
+
+                    if (izquierda.equals(objetivo)) {
+                        inicial = izquierda;
+
+                        if (inicial.equals(objetivo)) {
+                            exito = true;
+                        } else {
+                            calcularRuta();
+                            colaEstados.clear();
+                            historial.clear();
+                            colaEstados.add(inicial);
+                            historial.add(inicial);
+                            buscarEnemigo();
+                        }
+                    }
+                }
+
+                colaEstados.add(izquierda);
+
             }
         }
     }
@@ -319,32 +303,29 @@ public class Busqueda5 implements Constantes {
     public synchronized void moverDerechaEnemigo(Estado3 e) {
         if (e.x + 1 < 16) {
             if (lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'P' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'F' && lienzo.getLaberinto().getCasillas()[e.x + 1][e.y].tipo != 'M') {
-                Estado3 derecha = new Estado3(e.x + 1, e.y, -3*e.setF(e.x + 1, e.y, objetivo), 'R', e);
-              
-                
-              if(derecha.h >= 10.0 && !historial.contains(derecha)) {
-                       colaEstados.add(derecha);
-                       historial.add(derecha);
+                Estado3 derecha = new Estado3(e.x + 1, e.y, -3 * e.setF(e.x + 1, e.y, objetivo), 'R', e);
 
-                       if (derecha.equals(objetivo)) {
-                           inicial = derecha;
-                          
-                           if (inicial.equals(objetivo)) {
-                               exito = true;
-                           } else {
-                               calcularRuta();
-                               colaEstados.clear();
-                               historial.clear();
-                               colaEstados.add(inicial);
-                               historial.add(inicial);
-                               buscarEnemigo();
-                           }
-                       }
-                   }
-               
-         
-                    colaEstados.add(derecha); 
- 
+                if (derecha.h >= 10.0 && !historial.contains(derecha)) {
+                    colaEstados.add(derecha);
+                    historial.add(derecha);
+
+                    if (derecha.equals(objetivo)) {
+                        inicial = derecha;
+
+                        if (inicial.equals(objetivo)) {
+                            exito = true;
+                        } else {
+                            calcularRuta();
+                            colaEstados.clear();
+                            historial.clear();
+                            colaEstados.add(inicial);
+                            historial.add(inicial);
+                            buscarEnemigo();
+                        }
+                    }
+                }
+                colaEstados.add(derecha);
+
             }
         }
     }
@@ -380,4 +361,21 @@ public class Busqueda5 implements Constantes {
         } catch (InterruptedException e) {
         }
     }
+
+    public void getInteligenciaJugador() {
+
+    }
+
+    public void setInteligenciaJugador(int x) {
+
+    }
+
+    public void getInteligenciaEnemigo() {
+
+    }
+
+    public void setInteligenciaEnemigo(int x) {
+
+    }
+
 }

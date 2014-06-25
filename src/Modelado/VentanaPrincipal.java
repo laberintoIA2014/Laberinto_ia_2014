@@ -8,13 +8,10 @@ import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javafx.scene.input.KeyCode.J;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +28,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public Busqueda5 busca;
     public Busqueda_panxo nuevo;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
-    public static int countPremio, sizePremio;
+    public static int countPremio, sizePremio, InteligenciaJugador1, InteligenciaJugador2;
     public JLabel label, label2;
     public static Timer timer1, timer2, timer3;
     public JMenuBar menuBar;
@@ -222,7 +219,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 1;
             }
         });
         menu.add(menuItem);
@@ -231,7 +228,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 2;
             }
         });
         menu.add(menuItem);
@@ -240,7 +237,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 3;
             }
         });
         menu.add(menuItem);
@@ -249,7 +246,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 4;
             }
         });
         menu.add(menuItem);
@@ -258,7 +255,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 5;
             }
         });
         menu.add(menuItem);
@@ -267,7 +264,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 6;
             }
         });
         menu.add(menuItem);
@@ -276,7 +273,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 7;
             }
 
         });
@@ -286,7 +283,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 8;
             }
         });
         menu.add(menuItem);
@@ -295,7 +292,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 9;
             }
         });
         menu.add(menuItem);
@@ -304,7 +301,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador1 = 10;
             }
         });
         menu.add(menuItem);
@@ -316,7 +313,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=1;
             }
         });
         menu.add(menuItem);
@@ -325,7 +322,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=2;
             }
         });
         menu.add(menuItem);
@@ -334,7 +331,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=3;
             }
         });
         menu.add(menuItem);
@@ -343,7 +340,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=4;
             }
         });
         menu.add(menuItem);
@@ -352,7 +349,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=5;
             }
         });
         menu.add(menuItem);
@@ -361,7 +358,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=6;
             }
         });
         menu.add(menuItem);
@@ -370,7 +367,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=7;
             }
         });
         menu.add(menuItem);
@@ -379,7 +376,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=8;
             }
         });
         menu.add(menuItem);
@@ -388,7 +385,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=9;
             }
         });
         menu.add(menuItem);
@@ -397,7 +394,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InteligenciaJugador2=10;
             }
         });
         menu.add(menuItem);
@@ -496,13 +493,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(new thread1(), 0, 300);
+        timer1.scheduleAtFixedRate(new thread1(), 0, 200);
     }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new thread2(), 0, 340);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 230);
     }
 
     public void startStatus() {
@@ -516,12 +513,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador = new Timer();
-            buscador = new Busqueda4(lienzo);
-            buscador.setTipoBusqueda(true);
-            buscador.setRole(true);
-            buscador.buscarJugador();
-            buscador.calcularRuta();
-            animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
+            nuevo = new Busqueda_panxo(lienzo);
+            nuevo.setTipoBusqueda(true);
+            nuevo.setRole(true);
+            nuevo.buscarJugador();
+            nuevo.calcularRuta();
+            animador = new AnimadorAutomatico(lienzo, nuevo.pasos, true);
             timer_animador.scheduleAtFixedRate(animador, 0, 1);
         }
     };
@@ -531,12 +528,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            nuevo = new Busqueda_panxo(lienzo);
-            nuevo.setTipoBusqueda(true);
-            nuevo.setRole(false);
-            nuevo.buscarEnemigo();
-            nuevo.calcularRuta();
-            animador2 = new AnimadorAutomatico(lienzo, nuevo.pasos, false);
+            busca = new Busqueda5(lienzo);
+            busca.setTipoBusqueda(true);
+            busca.setRole(false);
+            busca.buscarEnemigo();
+            busca.calcularRuta();
+            animador2 = new AnimadorAutomatico(lienzo, busca.pasos, false);
             timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
         }
     };
@@ -645,4 +642,3 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
 }
-

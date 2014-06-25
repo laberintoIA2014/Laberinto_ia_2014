@@ -114,7 +114,6 @@ public class Laberinto extends JComponent implements Constantes {
 
     void chequearTecla(KeyEvent evento) {
 
-
         if (!VentanaPrincipal.muerto) {
 
             if (VentanaPrincipal.StatusJugador1) {
@@ -172,12 +171,6 @@ public class Laberinto extends JComponent implements Constantes {
                 j_jugador -= 1;
                 Casillas[i_jugador][j_jugador].tipo = 'J';
                 // Casillas[i_jugador][j_jugador].tipo = 'J';
-            } else if (Casillas[i_jugador][j_jugador - 1].tipo == 'M') {
-                if (VentanaPrincipal.countPremio == VentanaPrincipal.sizePremio) {
-                    Casillas[i_jugador][j_jugador].tipo = 'V';
-                    j_jugador += 1;
-                    Casillas[i_jugador][j_jugador].tipo = 'J';
-                }
             } else if (Casillas[i_jugador][j_jugador - 1].tipo != 'P') {
                 if (Casillas[i_jugador][j_jugador - 1].tipo == 'M') {
                     if (VentanaPrincipal.countPremio == VentanaPrincipal.sizePremio) {
@@ -294,7 +287,6 @@ public class Laberinto extends JComponent implements Constantes {
                 //System.out.println("Jugador paso a: " + (i_jugador + 1) + ", " + j_jugador);
                 VentanaPrincipal.countPremio++;
                 sonidoMoneda();
-
                 eliminarMoneda(i_jugador + 1, j_jugador);
                 System.out.println("Monedas: " + VentanaPrincipal.countPremio);
                 Casillas[i_jugador][j_jugador].tipo = 'V';
@@ -331,9 +323,9 @@ public class Laberinto extends JComponent implements Constantes {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (j_jugador2 > 0) {
             if (Casillas[i_jugador2][j_jugador2 - 1].tipo == 'J') {
-                    VentanaPrincipal.muerto = true;
-                    VentanaPrincipal.StatusJugador1 = false;
-                    VentanaPrincipal.StatusJugador2 = false;
+                VentanaPrincipal.muerto = true;
+                VentanaPrincipal.StatusJugador1 = false;
+                VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 -= 1;
@@ -356,9 +348,9 @@ public class Laberinto extends JComponent implements Constantes {
         //System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > j_jugador2) {
             if (Casillas[i_jugador2][j_jugador2 + 1].tipo == 'J') {
-                    VentanaPrincipal.muerto = true;
-                    VentanaPrincipal.StatusJugador1 = false;
-                    VentanaPrincipal.StatusJugador2 = false;
+                VentanaPrincipal.muerto = true;
+                VentanaPrincipal.StatusJugador1 = false;
+                VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 j_jugador2 += 1;
@@ -381,9 +373,9 @@ public class Laberinto extends JComponent implements Constantes {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (i_jugador2 > 0) {
             if (Casillas[i_jugador2 - 1][j_jugador2].tipo == 'J') {
-                    VentanaPrincipal.muerto = true;
-                    VentanaPrincipal.StatusJugador1 = false;
-                    VentanaPrincipal.StatusJugador2 = false;
+                VentanaPrincipal.muerto = true;
+                VentanaPrincipal.StatusJugador1 = false;
+                VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 -= 1;
@@ -406,9 +398,9 @@ public class Laberinto extends JComponent implements Constantes {
         // System.out.println("Jugador esta en: " + i_jugador2 + ", " + j_jugador2);
         if (15 > i_jugador2) {
             if (Casillas[i_jugador2 + 1][j_jugador2].tipo == 'J') {
-                    VentanaPrincipal.muerto = true;
-                    VentanaPrincipal.StatusJugador1 = false;
-                    VentanaPrincipal.StatusJugador2 = false;
+                VentanaPrincipal.muerto = true;
+                VentanaPrincipal.StatusJugador1 = false;
+                VentanaPrincipal.StatusJugador2 = false;
 
                 Casillas[i_jugador2][j_jugador2].tipo = 'V';
                 i_jugador2 += 1;
