@@ -1,6 +1,6 @@
 package Modelado;
 
-import Busqueda.Busqueda4;
+import Busqueda.Busqueda_panxo;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -22,7 +22,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda4 buscador, buscador2;
+    public Busqueda_panxo buscador, buscador2;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
     public static int countPremio, sizePremio;
     public JLabel label, label2;
@@ -493,13 +493,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(new thread1(), 0, 450);
+        timer1.scheduleAtFixedRate(new thread1(), 0, 200);
     }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new thread2(), 0, 460);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 230);
     }
 
     public void startStatus() {
@@ -514,7 +514,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador = new Timer();
-            buscador = new Busqueda4(lienzo);
+            buscador = new Busqueda_panxo(lienzo);
             buscador.setTipoBusqueda(true);
             buscador.setRole(true);
             buscador.buscarJugador();
@@ -529,7 +529,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            buscador2 = new Busqueda4(lienzo);
+            buscador2 = new Busqueda_panxo(lienzo);
             buscador2.setTipoBusqueda(true); //true anchura, false profundidad
             buscador2.setRole(false);
             buscador2.buscarEnemigo();
