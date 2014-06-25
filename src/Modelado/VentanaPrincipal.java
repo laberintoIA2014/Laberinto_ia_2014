@@ -23,14 +23,14 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
     public Busqueda4 buscador, buscador2;
-    public static boolean StatusJugador1 = false, StatusJugador2 = false; // TECLADO MOVIMIENTOS JUGADOR
+    public static boolean StatusJugador1 = false, StatusJugador2 = false;
     public static int countPremio, sizePremio;
     public JLabel label, label2;
-    public static Timer timer1, timer2,timer3;
+    public static Timer timer1, timer2, timer3;
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem menuItem;
-    public static boolean Thread1IsRunnig = false, Thread2IsRunnig = false, Thread3IsRunnig = false, pause1=false, pause2=false, pause3=false, muerto=false;
+    public static boolean Thread1IsRunnig = false, Thread2IsRunnig = false, Thread3IsRunnig = false, pause1 = false, pause2 = false, pause3 = false, muerto = false;
 
     public VentanaPrincipal() {
 
@@ -391,26 +391,27 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                if(lienzo.getLaberinto().getNivelLaberinto()!=0){
-                StatusJugador1 = true;
-                StatusJugador2 = true;
+
+                if (lienzo.getLaberinto().getNivelLaberinto() != 0) {
+                    StatusJugador1 = true;
+                    StatusJugador2 = true;
+
                 }
 
-                if(Thread1IsRunnig == true){
+                if (Thread1IsRunnig == true) {
                     pause1 = true;
-           
-                 thread1.cancel();
-                 
-                
+                    timer1.cancel();
+                    Thread1IsRunnig = false;
+
                 }
-               
-                if(Thread2IsRunnig == true){
+
+                if (Thread2IsRunnig == true) {
                     pause2 = true;
-           
-                    thread2.cancel();
-                 }
-         
+                    timer2.cancel();
+                    Thread2IsRunnig = false;
+
+                }
+
             }
         });
         menu.add(menuItem);
@@ -421,23 +422,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             public void actionPerformed(ActionEvent e) {
                 StatusJugador1 = true;
                 StatusJugador2 = false;
-                
-                if (Thread2IsRunnig == false) {
-                    startThread2();
-                }
-                    if(pause2 == true){
-                    thread2.run();
-                    pause1=false;
-                }
-                
-                   if (Thread1IsRunnig == true) {
-                    thread1.cancel();
-                    pause1=true;
-                }
-                
-                
-                
-                
+
             }
         });
         menu.add(menuItem);
@@ -446,10 +431,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Thread1IsRunnig == false) {
-                    thread1.run();
-                    
-                }
+
             }
         });
         menu.add(menuItem);
@@ -461,20 +443,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
                 if (Thread1IsRunnig == false) {
                     startThread1();
-                }else if(pause1 == true) {
-                  
                     thread1.run();
-                    
+                     StatusJugador1 = false;
                 }
-               
-                
-                if (Thread2IsRunnig == false) {
+
+
+
+                if (Thread2IsRunnig == false )  {
                     startThread2();
-                }else if(pause2 == true){
-            
-                    thread2.run();
-                    
+                      thread2.run();
                 }
+
+         
 
             }
         });
@@ -491,25 +471,25 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(thread1, 0, 300);
-   }
+        timer1.scheduleAtFixedRate(thread1, 0, 450);
+    }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(thread2, 0, 300);
+        timer2.scheduleAtFixedRate(thread2, 0, 450);
     }
 
     public void startStatus() {
         Thread3IsRunnig = true;
-         timer3 = new Timer();
-     
+        timer3 = new Timer();
+
         timer3.scheduleAtFixedRate(status, 0, 1);
     }
-  
+
     TimerTask thread1 = new TimerTask() {
-        
-       @Override
+
+        @Override
         public void run() {
             Timer timer_animador = new Timer();
             buscador = new Busqueda4(lienzo);
@@ -518,10 +498,10 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             buscador.buscarJugador();
             buscador.calcularRuta();
             animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
-            timer_animador.scheduleAtFixedRate(animador, 1, 300);
+            timer_animador.scheduleAtFixedRate(animador, 0, 1);
         }
     };
-     
+
     TimerTask thread2 = new TimerTask() {
         @Override
         public void run() {
@@ -533,7 +513,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             buscador2.calcularRuta();
             //System.out.println(buscador1.pasos);
             animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
-            timer_animador2.scheduleAtFixedRate(animador2, 1, 300);
+            timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
 
         }
     };
@@ -553,6 +533,9 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "HAS SIDO CAPTURADO!\nMONEDAS RECOLECTADAS: " + countPremio + " / " + sizePremio, "Fin del Juego!", 1);
+                muerto = false;
+                StatusJugador1 = false;
+                StatusJugador2 = false;
             } else if (countPremio == sizePremio && lienzo.getLaberinto().EsunWinner()) {
 
                 JOptionPane.showMessageDialog(null, "HAS SUPERADO EL NIVEL " + lienzo.getLaberinto().getNivelLaberinto() + "\nMONEDAS RECOLECTADAS: " + countPremio, "Nivel Completado!", 1);

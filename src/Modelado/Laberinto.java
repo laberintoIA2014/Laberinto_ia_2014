@@ -191,11 +191,17 @@ public class Laberinto extends JComponent implements Constantes {
                     }
                 }
  
+                
+                   if (Casillas[i_jugador][j_jugador - 1].tipo == 'H') {
+                    VentanaPrincipal.muerto = true;
+              
+                    Casillas[i_jugador][j_jugador].tipo = 'V';
+                } else {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
                     j_jugador -= 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                     //System.out.println("Jugador paso a: " + i_jugador + ", " + j_jugador);
-            
+                }
             } else {
                 System.out.println("Contra una Pared");
             }
@@ -225,12 +231,16 @@ public class Laberinto extends JComponent implements Constantes {
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                 }
             } else if (Casillas[i_jugador][j_jugador + 1].tipo != 'P') {
-            
+            if (Casillas[i_jugador][j_jugador + 1].tipo == 'H') {
+                    VentanaPrincipal.muerto = true;
+               
+                    Casillas[i_jugador][j_jugador].tipo = 'V';
+                } else {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
                     j_jugador += 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                     // System.out.println("Jugador paso a: " + i_jugador + ", " + j_jugador);
-                
+                }
             } else {
                 System.out.println("Contra una Pared");
             }
@@ -260,12 +270,16 @@ public class Laberinto extends JComponent implements Constantes {
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                 }
             } else if (Casillas[i_jugador - 1][j_jugador].tipo != 'P') {
-             
+                   if (Casillas[i_jugador - 1][j_jugador].tipo == 'H') {
+                    VentanaPrincipal.muerto = true;
+   
+                    Casillas[i_jugador][j_jugador].tipo = 'V';
+                } else {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
                     i_jugador -= 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                     // System.out.println("Jugador paso a: " + i_jugador + ", " + j_jugador);
-          
+                }
             } else {
                 System.out.println("Contra una Pared");
             }
@@ -295,12 +309,16 @@ public class Laberinto extends JComponent implements Constantes {
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                 }
             } else if (Casillas[i_jugador + 1][j_jugador].tipo != 'P') {
-               
+               if (Casillas[i_jugador + 1][j_jugador].tipo == 'H') {
+                    VentanaPrincipal.muerto = true;
+
+                    Casillas[i_jugador][j_jugador].tipo = 'V';
+                } else {
                     Casillas[i_jugador][j_jugador].tipo = 'V';
                     i_jugador += 1;
                     Casillas[i_jugador][j_jugador].tipo = 'J';
                     //System.out.println("Jugador paso a: " + i_jugador + ", " + j_jugador);
-            
+                }
             } else {
                 System.out.println("Contra una Pared");
             }
