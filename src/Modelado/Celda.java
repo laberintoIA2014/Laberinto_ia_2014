@@ -44,7 +44,6 @@ public class Celda extends JComponent implements Constantes {
 
     @Override
     public void update(Graphics g) {
-           g.drawRect(x, y, Longitud_Casilla, Longitud_Casilla);
 
         switch (tipo) {
             case 'J':

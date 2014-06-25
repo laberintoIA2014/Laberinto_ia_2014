@@ -114,6 +114,7 @@ public class Laberinto extends JComponent implements Constantes {
 
     void chequearTecla(KeyEvent evento) {
 
+
         if (!VentanaPrincipal.muerto) {
 
             if (VentanaPrincipal.StatusJugador1) {

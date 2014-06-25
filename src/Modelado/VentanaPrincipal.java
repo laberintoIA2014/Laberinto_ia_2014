@@ -645,3 +645,4 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     }
 
 }
+
