@@ -491,13 +491,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(thread1, 0, 300);
+        timer1.scheduleAtFixedRate(thread1, 0, 200);
    }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(thread2, 0, 300);
+        timer2.scheduleAtFixedRate(thread2, 0, 210);
     }
 
     public void startStatus() {
@@ -518,7 +518,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             buscador.buscarJugador();
             buscador.calcularRuta();
             animador = new AnimadorAutomatico(lienzo, buscador.pasos, true);
-            timer_animador.scheduleAtFixedRate(animador, 1, 300);
+            timer_animador.scheduleAtFixedRate(animador, 0, 1);
         }
     };
      
@@ -533,7 +533,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
             buscador2.calcularRuta();
             //System.out.println(buscador1.pasos);
             animador2 = new AnimadorAutomatico(lienzo, buscador2.pasos, false);
-            timer_animador2.scheduleAtFixedRate(animador2, 1, 300);
+            timer_animador2.scheduleAtFixedRate(animador2, 0, 1);
 
         }
     };
