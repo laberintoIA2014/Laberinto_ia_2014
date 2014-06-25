@@ -399,14 +399,12 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 }
 
                 if (Thread1IsRunnig == true) {
-                    pause1 = true;
                     timer1.cancel();
                     Thread1IsRunnig = false;
 
                 }
 
                 if (Thread2IsRunnig == true) {
-                    pause2 = true;
                     timer2.cancel();
                     Thread2IsRunnig = false;
 
@@ -423,6 +421,16 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 StatusJugador1 = true;
                 StatusJugador2 = false;
 
+                if (Thread1IsRunnig == true) {
+                    pause1 = true;
+                    timer1.cancel();
+                    Thread1IsRunnig = false;
+
+                }
+                if (Thread2IsRunnig == false) {
+                    startThread1();
+                }
+
             }
         });
         menu.add(menuItem);
@@ -431,7 +439,18 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                StatusJugador1 = false;
+                StatusJugador2 = true;
 
+                if (Thread2IsRunnig == true) {
+                    pause2 = true;
+                    timer2.cancel();
+                    Thread2IsRunnig = false;
+                }
+                if (Thread1IsRunnig == false) {
+                    startThread1();
+                    Thread1IsRunnig = false;
+                }
             }
         });
         menu.add(menuItem);
@@ -443,18 +462,13 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
                 if (Thread1IsRunnig == false) {
                     startThread1();
-         
-                     StatusJugador1 = false;
+                    StatusJugador1 = false;
                 }
 
-
-
-                if (Thread2IsRunnig == false )  {
+                if (Thread2IsRunnig == false) {
                     startThread2();
-                     
+                    StatusJugador2 = false;
                 }
-
-         
 
             }
         });
@@ -477,7 +491,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
-        timer2.scheduleAtFixedRate(new thread2(), 0, 450);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 460);
     }
 
     public void startStatus() {
@@ -502,7 +516,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         }
     };
 
-    class thread2 extends TimerTask  {
+    class thread2 extends TimerTask {
+
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
