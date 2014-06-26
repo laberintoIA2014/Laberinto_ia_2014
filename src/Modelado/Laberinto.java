@@ -668,17 +668,26 @@ public class Laberinto extends JComponent implements Constantes {
 
     public void generarNivel4() {
         NivelNum = 4;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (i % 2 != 0 && j % 3 != 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
-                    Casillas[i][j].tipo = 'P';
-                }
-            }
-        }
-        eliminarContornoInterno();
-        insertarMarco();
+        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','F','V','P'},
+                                 {'P','V','V','V','P','P','V','V','V','V','V','V','V','P','V','P'},
+                                 {'P','V','V','V','V','V','P','V','V','V','V','V','P','V','V','P'},
+                                 {'P','V','P','V','V','V','V','P','V','V','V','P','V','V','V','P'},
+                                 {'P','V','P','V','V','V','V','P','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','P','F','V','V','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','V','V','P','P','V','V','P','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','P','V','V','P','P','V','V','V','P'},
+                                 {'P','V','V','V','V','V','P','V','V','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','P','V','V','V','V','P','V','P'},
+                                 {'P','V','V','V','F','V','V','V','P','V','V','V','V','P','V','P'},
+                                 {'P','V','V','P','V','V','V','V','V','P','V','F','V','V','V','P'},
+                                 {'P','V','P','V','V','V','V','V','V','V','P','P','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        
+        
+        insertPremio(mapa,4);
         insertarObjetos();
-        generarPremio(4);
     }
 
     public void generarNivel5() {
