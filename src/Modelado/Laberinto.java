@@ -692,20 +692,29 @@ public class Laberinto extends JComponent implements Constantes {
         generarPremio(3);
     }
 
-    public void generarNivel3() {
+     public void generarNivel3() {
+         
         NivelNum = 3;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (i % 2 == 0 && (j - 1) % 3 == 0 && Casillas[i][j].tipo != 'J' && Casillas[i][j].tipo != 'H' && Casillas[i][j].tipo != 'E' && Casillas[i][j].tipo != 'F' && Casillas[i][j].tipo != 'M') {
-                    Casillas[i][j].tipo = 'P';
-                }
-
-            }
-        }
-        eliminarContornoInterno();
-        insertarMarco();
+        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','P','V','V','V','V','V','V','P','V','V','V','V','P'},
+                                 {'P','V','F','V','P','V','V','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','P','V','V','P','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','F','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','V','P','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','F','V','V','V','P'},
+                                 {'P','V','P','V','V','P','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','F','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','V','P','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        
+        insertPremio(mapa,4);
         insertarObjetos();
-        generarPremio(5);
+        
     }
 
     public void generarNivel4() {
@@ -725,191 +734,97 @@ public class Laberinto extends JComponent implements Constantes {
 
     public void generarNivel5() {
         NivelNum = 5;
-        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','V','P','V','V','V','V','V','V','V','V','P','V','V','P'},
                                  {'P','V','V','V','P','V','V','V','V','V','V','P','V','V','V','P'},
                                  {'P','V','V','V','V','P','V','V','V','V','P','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','P','V','V','P','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','P','P','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','V','V','V','F','V','V','V','V','F','V','V','P'},
+                                 {'P','V','V','F','V','V','V','P','P','V','V','V','P','V','V','P'},
                                  {'P','V','V','P','V','V','V','P','P','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','P','V','V','P','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','P','V','V','V','V','P','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','P','V','V','V','V','P','F','V','V','V','P'},
                                  {'P','V','V','V','P','V','V','V','V','V','V','P','V','V','V','P'},
                                  {'P','V','V','P','V','V','V','V','V','V','V','V','P','V','V','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','F','V','V','V','V','V','V','V','V','P'},
                                  {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
-        
-        for(int i=0 ; i < mapa.length ; i++){
-            for(int j=0 ; j < mapa.length ; j++){
-                Casillas[j][i].tipo = mapa[i][j];
-            }
-        }
-        
-        eliminarContornoInterno();
-        insertarMarco();
+        insertPremio(mapa,5);
         insertarObjetos();
-        generarPremio(5);
     }
-
+    
     public void generarNivel6() {
-        NivelNum = 6;
-        Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
-                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+        NivelNum = 6;      
+         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','V','V','V','F','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','P','P','P','P','V','V','P','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','P','V','V','P','V','P'},
+                                 {'P','V','V','F','P','V','V','P','V','V','V','P','V','V','V','P'},
+                                 {'P','V','V','P','V','V','P','V','P','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','P','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','F','V','V','P','V','V','V','P','V','V','F','V','V','P'},
+                                 {'P','V','V','P','V','V','V','V','P','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','P','V','V','P','V','V','V','P','V','V','V','P'},
+                                 {'P','V','F','V','V','V','P','V','V','V','P','V','V','V','V','P'},
+                                 {'P','V','P','V','V','V','P','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','V','P','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','F','V','V','V','V','V','V','V','P'},
                                  {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
         
-        for(int i=0 ; i < mapa.length ; i++){
-            for(int j=0 ; j < mapa.length ; j++){
-                Casillas[j][i].tipo = mapa[i][j];
-            }
-        }
-        eliminarContornoInterno();
-        insertarMarco();
+        insertPremio(mapa,6);
         insertarObjetos();
-        generarPremio(6);
     }
 
     public void generarNivel7() {
-        NivelNum = 7;
-        Casillas[2][3].tipo = 'P';
-        Casillas[2][4].tipo = 'P';
-        Casillas[2][5].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[2][14].tipo = 'P';
-        Casillas[2][15].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[5][5].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[5][15].tipo = 'P';
-        Casillas[13][2].tipo = 'P';
-        Casillas[13][3].tipo = 'P';
-        Casillas[13][4].tipo = 'P';
-        Casillas[13][5].tipo = 'P';
-        Casillas[13][6].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[13][8].tipo = 'P';
-        Casillas[13][11].tipo = 'P';
-        Casillas[13][12].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[11][8].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[11][10].tipo = 'P';
-        Casillas[8][11].tipo = 'P';
-        Casillas[11][11].tipo = 'P';
-        Casillas[9][11].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[8][6].tipo = 'P';
-        Casillas[11][6].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[2][9].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[8][8].tipo = 'P';
-        Casillas[5][14].tipo = 'P';
-        Casillas[8][13].tipo = 'P';
-        Casillas[9][13].tipo = 'P';
-        Casillas[8][14].tipo = 'P';
-        Casillas[11][14].tipo = 'P';
-        Casillas[10][13].tipo = 'P';
-        Casillas[11][13].tipo = 'P';
-        Casillas[8][4].tipo = 'P';
-        Casillas[8][2].tipo = 'P';
-        Casillas[9][2].tipo = 'P';
-        Casillas[10][2].tipo = 'P';
-        Casillas[11][4].tipo = 'P';
-        Casillas[11][2].tipo = 'P';
-        Casillas[8][1].tipo = 'P';
-        Casillas[11][1].tipo = 'P';
-        eliminarContornoInterno();
-        insertarMarco();
+         NivelNum = 7;
+         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','P','V','V','V','P','P','P','P','V','P','V','P'},
+                                 {'P','V','P','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','F','V','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','F','V','P','V','V','V','V','V','V','V','V','P','V','P'},
+                                 {'P','V','V','V','P','V','V','V','P','V','V','P','V','F','V','P'},
+                                 {'P','V','P','V','V','V','F','V','V','V','V','V','V','P','V','P'},
+                                 {'P','V','P','V','P','V','V','V','P','V','V','P','V','P','V','P'},
+                                 {'P','V','V','V','P','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','F','V','V','V','V','V','P','V','V','P','V','V','V','P'},
+                                 {'P','V','P','V','F','V','V','V','V','V','V','V','V','P','V','P'},
+                                 {'P','V','P','V','P','V','V','V','V','V','V','F','V','P','V','P'},
+                                 {'P','V','P','V','P','V','V','V','P','P','P','P','V','V','V','P'},
+                                 {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        insertPremio(mapa,7);
         insertarObjetos();
-        generarPremio(7);
+        
     }
 
     public void generarNivel8() {
-        NivelNum = 8;
-        Casillas[2][3].tipo = 'P';
-        Casillas[2][4].tipo = 'P';
-        Casillas[2][6].tipo = 'P';
-        Casillas[2][7].tipo = 'P';
-        Casillas[2][8].tipo = 'P';
-        Casillas[4][7].tipo = 'P';
-        Casillas[2][11].tipo = 'P';
-        Casillas[2][12].tipo = 'P';
-        Casillas[2][13].tipo = 'P';
-        Casillas[5][2].tipo = 'P';
-        Casillas[5][3].tipo = 'P';
-        Casillas[5][4].tipo = 'P';
-        Casillas[5][6].tipo = 'P';
-        Casillas[5][7].tipo = 'P';
-        Casillas[5][8].tipo = 'P';
-        Casillas[5][11].tipo = 'P';
-        Casillas[5][12].tipo = 'P';
-        Casillas[5][13].tipo = 'P';
-        Casillas[7][6].tipo = 'P';
-        Casillas[10][6].tipo = 'P';
-        Casillas[7][8].tipo = 'P';
-        Casillas[10][8].tipo = 'P';
-        Casillas[7][9].tipo = 'P';
-        Casillas[10][9].tipo = 'P';
-        Casillas[8][9].tipo = 'P';
-        Casillas[9][9].tipo = 'P';
-        Casillas[8][10].tipo = 'P';
-        Casillas[9][10].tipo = 'P';
-        Casillas[8][11].tipo = 'P';
-        Casillas[9][11].tipo = 'P';
-        Casillas[8][12].tipo = 'P';
-        Casillas[9][12].tipo = 'P';
-        Casillas[7][4].tipo = 'P';
-        Casillas[10][4].tipo = 'P';
-        Casillas[7][2].tipo = 'P';
-        Casillas[10][2].tipo = 'P';
-        Casillas[12][3].tipo = 'P';
-        Casillas[12][4].tipo = 'P';
-        Casillas[12][5].tipo = 'P';
-        Casillas[12][6].tipo = 'P';
-        Casillas[12][7].tipo = 'P';
-        Casillas[12][8].tipo = 'P';
-        Casillas[13][7].tipo = 'P';
-        Casillas[12][11].tipo = 'P';
-        Casillas[12][13].tipo = 'P';
-        eliminarContornoInterno();
-        insertarMarco();
-        insertarObjetos();
-        generarPremio(8);
+         NivelNum = 8;
+         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
+                                 {'P','V','V','V','V','V','P','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','F','V','P','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','P','V','P','V','V','P','V','V','P','V','V','P'},
+                                 {'P','V','P','V','V','V','V','V','V','V','V','V','P','V','V','P'},
+                                 {'P','V','V','V','V','V','P','V','V','P','V','V','P','V','V','P'},
+                                 {'P','V','P','V','P','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','P','P','P','V','P','V','V','P','V','V','V','V','V','P'},
+                                 {'P','V','P','V','P','V','V','V','V','V','V','F','P','F','V','P'},
+                                 {'P','V','V','V','V','V','V','F','V','V','V','P','P','P','V','P'},
+                                 {'P','V','F','V','V','V','P','P','P','P','V','F','P','F','V','P'},
+                                 {'P','V','P','V','P','V','V','P','P','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','P','V','V','P','P','V','V','V','V','V','V','P'},
+                                 {'P','V','P','V','P','V','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','V','V','V','V','F','V','V','V','V','V','V','V','V','V','P'},
+                                 {'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'}};
+        
+     insertPremio(mapa,8);
+     insertarObjetos();
     }
 
     public void generarNivel9() {
+        NivelNum = 9;
         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
                                  {'P','V','V','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','P','V','P','P','V','P','P','V','V','P','P','P','V','P'},
@@ -931,6 +846,7 @@ public class Laberinto extends JComponent implements Constantes {
     }
 
     public void generarNivel10() {
+        NivelNum = 10;
         Character [][] mapa =   {{'P','P','P','P','P','P','P','P','P','P','P','P','P','P','P','P'},
                                  {'P','V','F','V','V','V','V','V','V','V','V','V','V','V','V','P'},
                                  {'P','V','V','V','P','V','V','F','V','V','P','V','V','V','V','P'},
