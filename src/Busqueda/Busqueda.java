@@ -177,7 +177,7 @@ public class Busqueda implements Constantes {
         if (nivel_busqueda_Jugador == 2) {
             if (verEspacioActual_Jugador(e.x, e.y + 1)
                     && verEspacioFuturo_Jugador(e.x, e.y + 2)) {
-                Estado abajo = new Estado(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
+                Estado abajo = new Estado(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo) * (Math.random() * 2) , 'D', e);
                 colaEstados.add(abajo); // busqueda en anchura;
             }
         }
@@ -202,7 +202,7 @@ public class Busqueda implements Constantes {
         if (nivel_busqueda_Jugador == 2) {
             if (verEspacioActual_Jugador(e.x - 1, e.y)
                     && verEspacioFuturo_Jugador(e.x - 2, e.y)) {
-                Estado izquierda = new Estado(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
+                Estado izquierda = new Estado(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo)* (Math.random() * 2) , 'L', e);
                 colaEstados.add(izquierda); // busqueda en anchura;
             }
         }
