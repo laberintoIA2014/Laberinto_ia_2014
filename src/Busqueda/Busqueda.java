@@ -170,7 +170,7 @@ public class Busqueda implements Constantes {
     public synchronized void moverAbajoJugador(Estado e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x, e.y + 1)) {
-                Estado abajo = new Estado(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo) * (Math.random() * 10) , 'D', e);
+                Estado abajo = new Estado(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo) * (Math.random() * 20) , 'D', e);
                 colaEstados.add(abajo); // busqueda en anchura;
             }
         }
