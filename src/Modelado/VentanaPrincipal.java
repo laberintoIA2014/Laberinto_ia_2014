@@ -1,6 +1,6 @@
 package Modelado;
 
-import Busqueda.Busqueda_panxo;
+import Busqueda.Busqueda;
 import Sounds.Reproductor;
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -23,7 +23,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
 
     public static Lienzo lienzo;
     public AnimadorAutomatico animador, animador2;
-    public Busqueda_panxo buscador, buscador2;
+    public Busqueda buscador, buscador2;
     public static boolean StatusJugador1 = false, StatusJugador2 = false;
     public static int countPremio, sizePremio, InteligenciaJugador1=1, InteligenciaJugador2=1;
     public JLabel label, label2;
@@ -490,14 +490,14 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     public void startThread1() {
         Thread1IsRunnig = true;
         timer1 = new Timer();
-        timer1.scheduleAtFixedRate(new thread1(), 0, 100);
+        timer1.scheduleAtFixedRate(new thread1(), 0, 250);
     }
 
     public void startThread2() {
         Thread2IsRunnig = true;
         timer2 = new Timer();
 
-        timer2.scheduleAtFixedRate(new thread2(), 0, 100);
+        timer2.scheduleAtFixedRate(new thread2(), 0, 255);
 
     }
 
@@ -512,7 +512,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador = new Timer();
-            buscador = new Busqueda_panxo(lienzo);
+            buscador = new Busqueda(lienzo);
             buscador.setTipoBusqueda(true);
             buscador.setRole(true);
             buscador.setInteligenciaJugador(InteligenciaJugador1);
@@ -528,7 +528,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         @Override
         public void run() {
             Timer timer_animador2 = new Timer();
-            buscador2 = new Busqueda_panxo(lienzo);
+            buscador2 = new Busqueda(lienzo);
             buscador2.setTipoBusqueda(true);
             buscador2.setRole(false);
             buscador2.setInteligenciaEnemigo(InteligenciaJugador2);
@@ -556,9 +556,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                 } catch (Exception ex) {
                     Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
-
-                if (Thread1IsRunnig) {
+                     if (Thread1IsRunnig) {
                     timer1.cancel();
                     Thread1IsRunnig = false;
                     StatusJugador2 = false;
@@ -572,6 +570,8 @@ public class VentanaPrincipal extends JFrame implements Constantes {
                     Thread3IsRunnig = false;
                     timer3.cancel();
                 }
+                JOptionPane.showMessageDialog(null, "Has Sido Capturado!\nMonedas Obtenidas: " + countPremio + " / " + sizePremio, "Fin del Juego", 1);
+           
                 lienzo.getLaberinto().vaciarLaberinto();
                 lienzo.getLaberinto().generarNivelNuevo(0);
                 lienzo.repaint();

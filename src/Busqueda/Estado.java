@@ -2,14 +2,14 @@ package Busqueda;
 
 import java.util.Objects;
 
-public class Estado3 implements Comparable<Estado3> {
+public class Estado implements Comparable<Estado> {
 
     public int x, y;
-    public Estado3 Antecesor;
+    public Estado Antecesor;
     public char Movimiento;
     public double f, g, h;
 
-    public Estado3(int x, int y, double f, char Movimiento, Estado3 Antecesor) {
+    public Estado(int x, int y, double f, char Movimiento, Estado Antecesor) {
         this.x = x;
         this.y = y;
         this.f = f;
@@ -35,7 +35,7 @@ public class Estado3 implements Comparable<Estado3> {
         this.h = h;
     }
 
-    public void calcularF(Estado3 actual, Estado3 objetivo) {
+    public void calcularF(Estado actual, Estado objetivo) {
 
         this.g = actual.getG()
                 + Math.sqrt(((Math.pow(Math.abs(actual.getX() - this.getX()), 2))
@@ -47,7 +47,7 @@ public class Estado3 implements Comparable<Estado3> {
         this.f = this.g + this.h;
     }
 
-    public Estado3 getAntecesor() {
+    public Estado getAntecesor() {
         return Antecesor;
     }
 
@@ -63,7 +63,7 @@ public class Estado3 implements Comparable<Estado3> {
         return y;
     }
 
-    public double setF(int x, int y, Estado3 meta) {
+    public double setF(int x, int y, Estado meta) {
         f = ((Math.pow(Math.abs(x - meta.x), 2))
                 + (Math.pow(Math.abs(y - meta.y), 2)));
         return f;
@@ -80,12 +80,12 @@ public class Estado3 implements Comparable<Estado3> {
 
     @Override
     public boolean equals(Object x) {
-        Estado3 e = (Estado3) x;
+        Estado e = (Estado) x;
         return this.x == e.x && this.y == e.y;
     }
 
     @Override
-    public int compareTo(Estado3 o) {
+    public int compareTo(Estado o) {
         if (o.getF() == this.getF()) {
             return 0;
         } else if (this.getF() > o.getF()) {
