@@ -135,7 +135,7 @@ public class Busqueda_panxo implements Constantes {
         moverDerechaEnemigo(temp);
     }
 
-    public synchronized void moverArribaJugador(Estado3 e) {
+       public synchronized void moverArribaJugador(Estado3 e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x, e.y - 1)) {
                 Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo) * (Math.random() * 2) * -1, 'U', e);
@@ -188,7 +188,7 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverIzquierdaJugador(Estado3 e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x - 1, e.y)) {
-                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo) * (Math.random() * 2) * -1, 'L', e);
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo) * (Math.random() * 2) , 'L', e);
                 colaEstados.add(izquierda); // busqueda en anchura;
             }
         }
@@ -214,7 +214,7 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverDerechaJugador(Estado3 e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x + 1, e.y)) {
-                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo) * (Math.random() * 2) * -1, 'R', e);
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo) * (Math.random() * 2) , 'R', e);
                 colaEstados.add(derecha); // busqueda en anchura;
             }
         }
@@ -236,28 +236,19 @@ public class Busqueda_panxo implements Constantes {
             }
         }
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
     //ENEMIGO INICIO
     public synchronized void moverArribaEnemigo(Estado3 e) {
         if (nivel_busqueda_Enemigo == 1) {
             if (verEspacioActual_Enemigo(e.x, e.y - 1)) {
-                
-                if(distanciaEneAJug() <6){
-                Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo), 'U', e);
-                colaEstados.add(arriba); // busqueda en anchura;
-                }else{
-                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo)*Math.random() * -2, 'U', e);
+
+                if (distanciaEneAJug() < 5) {
+                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo)* Math.random()*6000 + 1, 'U', e);
+                    colaEstados.add(arriba); // busqueda en anchura;
+                } else {
+                    Estado3 arriba = new Estado3(e.x, e.y - 1, e.setF(e.x, e.y - 1, objetivo) * Math.random() * -1, 'U', e);
                     colaEstados.add(arriba); // busqueda en anchura;
                 }
-           }
+            }
         }
         if (nivel_busqueda_Enemigo == 2) {
             if (verEspacioActual_Enemigo(e.x, e.y - 1)) {
@@ -276,14 +267,14 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverAbajoEnemigo(Estado3 e) {
         if (nivel_busqueda_Enemigo == 1) {
             if (verEspacioActual_Enemigo(e.x, e.y + 1)) {
-                 if(distanciaEneAJug() <6){
-                Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo), 'D', e);
-                colaEstados.add(abajo);
-                 }else{
-                   Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y +1, objetivo)*Math.random() * -2, 'D', e);
-                colaEstados.add(abajo);
-                 
-                 }
+                if (distanciaEneAJug() < 5) {
+                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo)* Math.random()*6000 + 1, 'D', e);
+                    colaEstados.add(abajo);
+                } else {
+                    Estado3 abajo = new Estado3(e.x, e.y + 1, e.setF(e.x, e.y + 1, objetivo) * Math.random() * -1, 'D', e);
+                    colaEstados.add(abajo);
+
+                }
             }
         }
         if (nivel_busqueda_Enemigo == 2) {
@@ -303,14 +294,14 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverIzquierdaEnemigo(Estado3 e) {
         if (nivel_busqueda_Enemigo == 1) {
             if (verEspacioActual_Enemigo(e.x - 1, e.y)) {
-                 if(distanciaEneAJug() <6){
-                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo), 'L', e);
-                colaEstados.add(izquierda);
-                 }else{
-                 Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo)*Math.random() * -2, 'L', e);
-                colaEstados.add(izquierda);
-                 
-                 }
+                if (distanciaEneAJug() < 5) {
+                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo)* Math.random()*6000 + 1, 'L', e);
+                    colaEstados.add(izquierda);
+                } else {
+                    Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo) * Math.random() *-1, 'L', e);
+                    colaEstados.add(izquierda);
+
+                }
             }
         }
         if (nivel_busqueda_Enemigo == 2) {
@@ -331,14 +322,14 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverDerechaEnemigo(Estado3 e) {
         if (nivel_busqueda_Enemigo == 1) {
             if (verEspacioActual_Enemigo(e.x + 1, e.y)) {
-                 if(distanciaEneAJug() <6){
-                  Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo), 'R', e);
-                  colaEstados.add(derecha);
-                 }else{
-                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x +1 , e.y , objetivo)*Math.random() * -2, 'R', e);
+                if (distanciaEneAJug() < 5) {
+                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo)* Math.random()*6000 + 1, 'R', e);
                     colaEstados.add(derecha);
-                 
-                 }
+                } else {
+                    Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo) * Math.random() * -1, 'R', e);
+                    colaEstados.add(derecha);
+
+                }
             }
         }
         if (nivel_busqueda_Enemigo == 2) {
@@ -402,9 +393,8 @@ public class Busqueda_panxo implements Constantes {
     public int setInteligenciaJugador() {
         return this.nivel_busqueda_Jugador;
     }
-    
-    
-    public int distanciaEneAJug(){
+
+    public int distanciaEneAJug() {
         return ((lienzo.getLaberinto().getJugador2X() - lienzo.getLaberinto().getJugadorX()) + (lienzo.getLaberinto().getJugador2Y() - lienzo.getLaberinto().getJugadorY()));
     }
 }

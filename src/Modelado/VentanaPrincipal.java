@@ -209,7 +209,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menu = new JMenu("Jugador 1 Nivel");
+        menu = new JMenu("Jugador Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
         menuItem = new JMenuItem("Nivel 1");
@@ -303,7 +303,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menu = new JMenu("Jugador 2 Nivel");
+        menu = new JMenu("Enemigo Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
         menuItem = new JMenuItem("Nivel 1");
@@ -399,7 +399,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menu = new JMenu("Duelo");
         menuBar.add(menu);
         setJMenuBar(menuBar);
-        menuItem = new JMenuItem("Jug. 1 Vs Jug. 2");
+        menuItem = new JMenuItem("Jug. Vs Ene.");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -427,7 +427,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Jug. 1 VS Jug. 2 IA");
+        menuItem = new JMenuItem("Jug. VS Ene. IA");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -447,7 +447,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Jug. 1 IA VS Jug. 2");
+        menuItem = new JMenuItem("Jug. IA VS Ene.");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -468,7 +468,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Jug. 1 IA VS Jug. 2 IA");
+        menuItem = new JMenuItem("Jug. IA VS Ene. IA");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
