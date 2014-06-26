@@ -15,7 +15,7 @@ public class Busqueda_panxo implements Constantes {
     public ArrayList<Point> premios;
     public int index_pasos;
     public int nivel_busqueda_Jugador = 1;
-    public int nivel_busqueda_Enemigo = 1;
+    public int nivel_busqueda_Enemigo = 2;
     public Estado3 inicial;
     public Estado3 objetivo;
     public Estado3 temp;
@@ -188,7 +188,7 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverIzquierdaJugador(Estado3 e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x - 1, e.y)) {
-                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo) * (Math.random() * 2) * -1, 'L', e);
+                Estado3 izquierda = new Estado3(e.x - 1, e.y, e.setF(e.x - 1, e.y, objetivo) * (Math.random() * 2) , 'L', e);
                 colaEstados.add(izquierda); // busqueda en anchura;
             }
         }
@@ -214,7 +214,7 @@ public class Busqueda_panxo implements Constantes {
     public synchronized void moverDerechaJugador(Estado3 e) {
         if (nivel_busqueda_Jugador == 1) {
             if (verEspacioActual_Jugador(e.x + 1, e.y)) {
-                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo) * (Math.random() * 2) * -1, 'R', e);
+                Estado3 derecha = new Estado3(e.x + 1, e.y, e.setF(e.x + 1, e.y, objetivo) * (Math.random() * 2) , 'R', e);
                 colaEstados.add(derecha); // busqueda en anchura;
             }
         }
