@@ -212,7 +212,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         menu = new JMenu("Jugador Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
-        menuItem = new JMenuItem("Nivel 1");
+        menuItem = new JMenuItem("Bajo");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -221,7 +221,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 2");
+        menuItem = new JMenuItem("Medio");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -230,7 +230,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 3");
+        menuItem = new JMenuItem("Alto");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -239,74 +239,11 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 4");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 4;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 5");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 5;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 6");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 6;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 7");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 7;
-            }
-
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 8");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 8;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 9");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 9;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 10");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador1 = 10;
-            }
-        });
-        menu.add(menuItem);
 
         menu = new JMenu("Enemigo Nivel");
         menuBar.add(menu);
         setJMenuBar(menuBar);
-        menuItem = new JMenuItem("Nivel 1");
+        menuItem = new JMenuItem("Bajo");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -315,7 +252,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 2");
+        menuItem = new JMenuItem("Medio");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -324,7 +261,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 3");
+        menuItem = new JMenuItem("Alto");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -333,69 +270,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
         });
         menu.add(menuItem);
 
-        menuItem = new JMenuItem("Nivel 4");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 4;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 5");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 5;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 6");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 6;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 7");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 7;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 8");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 8;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 9");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 9;
-            }
-        });
-        menu.add(menuItem);
-
-        menuItem = new JMenuItem("Nivel 10");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InteligenciaJugador2 = 10;
-            }
-        });
-        menu.add(menuItem);
-
+    
         menu = new JMenu("Duelo");
         menuBar.add(menu);
         setJMenuBar(menuBar);
@@ -510,7 +385,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     class thread1 extends TimerTask {
 
         @Override
-        public void run() {
+        public synchronized  void run() {
             Timer timer_animador = new Timer();
             buscador = new Busqueda(lienzo);
             buscador.setTipoBusqueda(true);
@@ -526,7 +401,7 @@ public class VentanaPrincipal extends JFrame implements Constantes {
     class thread2 extends TimerTask {
 
         @Override
-        public void run() {
+        public synchronized void run() {
             Timer timer_animador2 = new Timer();
             buscador2 = new Busqueda(lienzo);
             buscador2.setTipoBusqueda(true);
