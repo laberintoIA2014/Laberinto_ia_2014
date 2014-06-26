@@ -46,6 +46,7 @@ public class AnimadorAutomatico extends TimerTask implements Constantes {
                 this.cancel();
             }
         } else {
+           
             if (paso_actual >= 0) {
                 switch (pasos.get(paso_actual)) {
                     case 'D':
